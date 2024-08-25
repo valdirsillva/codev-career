@@ -1,4 +1,4 @@
-import { ProfileUser } from "../../components/profile/ProfileUser";
+import { ProfileUser } from "../../components/profile/profile-user"
 
 export function UserProfile() {
     return (

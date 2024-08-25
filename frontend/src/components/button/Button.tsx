@@ -2,8 +2,8 @@ import { Link } from "react-router-dom"
 
 interface ButtonProps {
   data: {
-    label: string;
-    routerPath: string;
+    label: string
+    routerPath: string
   }
 }
 

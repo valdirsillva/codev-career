@@ -7,16 +7,16 @@ export class AxiosConfig {
    * Singleton
    * privado p/ prevenir instanciação direta 
    */
-  private constructor() {}
+  private constructor() { }
 
   public static getInstance(): AxiosInstance {
-    if(!AxiosConfig.instance) {
+    if (!AxiosConfig.instance) {
       AxiosConfig.instance = axios.create({
         baseURL: process.env.REACT_APP_API ?? '',
       })
     }
 
-    return AxiosConfig.instance;
+    return AxiosConfig.instance
   }
 }
 

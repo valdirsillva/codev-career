@@ -1,4 +1,4 @@
-import { CreateCompany } from "../../components/form/CreateCompany";
+import { CreateCompany } from "../../components/form/create-company"
 
 export function Company() {
   return (

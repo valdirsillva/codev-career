@@ -1,20 +1,20 @@
 import { FormEvent, ChangeEvent, useState } from "react"
-import { ApiService } from "../../services/ApiService";
-import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ApiService } from "../../services/api-service"
+import { ArrowLeft } from "lucide-react"
+import { Link } from "react-router-dom"
 
 interface Company {
-  name: string;
-  quantityEmployee: number;
-  email: string;
-  cep: string;
-  phone: string;
-  city: string;
-  road: string;
-  state: string;
-  cnpj: string;
-  description_text: string;
-  password: string;
+  name: string
+  quantityEmployee: number
+  email: string
+  cep: string
+  phone: string
+  city: string
+  road: string
+  state: string
+  cnpj: string
+  description_text: string
+  password: string
 }
 
 export function CreateCompany() {
@@ -35,16 +35,16 @@ export function CreateCompany() {
   })
 
   const handleChangeValues = (e: ChangeEvent<HTMLInputElement>) => {
-    const fieldName = e.target.name;
-    const fieldValue = e.target.value;
+    const fieldName = e.target.name
+    const fieldValue = e.target.value
 
     setFieldValues((current) => {
       return {
         ...current,
         [fieldName]: fieldValue,
-      };
-    });
-  };
+      }
+    })
+  }
 
   const formSubmitCompany = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()

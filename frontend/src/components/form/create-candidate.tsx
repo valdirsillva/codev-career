@@ -1,12 +1,12 @@
-import { useState, ChangeEvent, FormEvent } from "react";
-import { ApiService } from "../../services/ApiService";
-import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useState, ChangeEvent, FormEvent } from "react"
+import { ApiService } from "../../services/api-service"
+import { ArrowLeft } from "lucide-react"
+import { Link } from "react-router-dom"
 
 interface Candidate {
-    name: string;
-    email: string;
-    password: string;
+    name: string
+    email: string
+    password: string
 }
 
 export function CreateCandidate() {
@@ -17,15 +17,15 @@ export function CreateCandidate() {
     })
 
     const handleChangeValues = (e: ChangeEvent<HTMLInputElement>) => {
-        const fieldName = e.target.name;
-        const fieldValue = e.target.value;
+        const fieldName = e.target.name
+        const fieldValue = e.target.value
 
         setFieldValues((current) => {
             return {
                 ...current,
                 [fieldName]: fieldValue,
-            };
-        });
+            }
+        })
     }
 
     const formSubmitCompany = async (e: FormEvent<HTMLFormElement>) => {

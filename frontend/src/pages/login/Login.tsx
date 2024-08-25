@@ -1,32 +1,32 @@
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/auth";
-import { CircleSpinner } from "../../components/spinner/circle-spinner";
-import { ChangeEvent, FormEvent, useContext, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import axios from "axios"
+import { Link, useNavigate } from "react-router-dom"
+import { AuthContext } from "../../context/auth"
+import { CircleSpinner } from "../../components/spinner/circle-spinner"
+import { ChangeEvent, FormEvent, useContext, useState } from "react"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 interface User {
-    email: string;
-    password: string;
+    email: string
+    password: string
 }
 
 export function Login() {
-    const navigation = useNavigate();
-    const [spinner, setSpinner] = useState(false);
-    const { setAuthenticated } = useContext(AuthContext);
+    const navigation = useNavigate()
+    const [spinner, setSpinner] = useState(false)
+    const { setAuthenticated } = useContext(AuthContext)
     const [formValues, setFormValues] = useState<User>({ email: "", password: "" })
 
     const handleChangeValues = (e: ChangeEvent<HTMLInputElement>): void => {
-        const fieldName = e.target.name;
-        const fieldValue = e.target.value;
+        const fieldName = e.target.name
+        const fieldValue = e.target.value
 
         setFormValues((current) => {
             return {
                 ...current,
                 [fieldName]: fieldValue,
-            };
-        });
+            }
+        })
     }
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -37,12 +37,12 @@ export function Login() {
                 password: formValues.password
             }
 
-            userValidate(user);
+            userValidate(user)
 
             const response = await axios.post(`${process.env.REACT_APP_API}/login`, user)
             const token = response.data.token
 
-            if (!token) return false;
+            if (!token) return false
 
             localStorage.setItem('@Auth:token', token)
             setAuthenticated(true)

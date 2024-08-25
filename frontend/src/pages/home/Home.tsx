@@ -1,13 +1,13 @@
-import { Fragment, useEffect, useState } from "react";
-// import { jobs } from "../../services/dataset";
+import { Fragment, useEffect, useState } from "react"
+// import { jobs } from "../../services/dataset"
 
 import { Briefcase, CircleDollarSign, MapPin } from "lucide-react"
 
-import { Stack } from "../../components/jobs/stacks/Stack";
-import { Description } from "../../components/jobs/description/Description";
-import { Search } from "../../components/jobs/search/Search";
-import { Header } from "../../components/header/Header";
-import { ApiService } from "../../services/ApiService";
+import { Stack } from "../../components/jobs/stacks/stack"
+import { Description } from "../../components/jobs/description/description"
+import { Search } from "../../components/jobs/search/search"
+import { Header } from "../../components/header/header"
+import { ApiService } from "../../services/api-service"
 
 export function Home() {
   const [listJobs, setListJobs] = useState([] as any[])

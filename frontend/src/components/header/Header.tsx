@@ -1,14 +1,14 @@
-import jwt_decode from 'jwt-decode';
-import { LogOut, User, User2 } from 'lucide-react';
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../context/auth';
+import jwt_decode from 'jwt-decode'
+import { LogOut, User, User2 } from 'lucide-react'
+import { useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../../context/auth'
 
 interface User {
-  id?: number;
-  name: string;
-  email: string;
-  exp?: number;
-  iat?: number;
+  id?: number
+  name: string
+  email: string
+  exp?: number
+  iat?: number
 }
 
 export function Header({ data }: any) {
@@ -17,7 +17,7 @@ export function Header({ data }: any) {
   const [userAuthenticated, setUserAuthenticated] = useState<User | null>(null)
 
   const logout = (): void => {
-    localStorage.removeItem("@Auth:token");
+    localStorage.removeItem("@Auth:token")
     setAuthenticated(false)
   }
 

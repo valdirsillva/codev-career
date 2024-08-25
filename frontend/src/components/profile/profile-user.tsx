@@ -1,5 +1,5 @@
-import { ArrowLeft, GraduationCap, SpeakerIcon } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ArrowLeft, GraduationCap, SpeakerIcon } from "lucide-react"
+import { Link } from "react-router-dom"
 
 export function ProfileUser() {
     return (

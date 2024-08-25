@@ -1,11 +1,10 @@
-import { Login } from "../pages/login/Login";
-import { Home } from "../pages/home/Home"
-import { Routes, Route, useNavigate } from "react-router-dom";
-import { Company } from "../pages/company/Company";
-import { Candidate } from "../pages/candidate/Candidate";
-import { useEffect, useState } from "react";
-import { AuthContext } from "../context/auth";
-import { UserProfile } from "../pages/profile/UserProfile";
+import { useEffect, useState } from "react"
+import { Login } from "../pages/login/login"
+import { Home } from "../pages/home/home"
+import { Routes, Route, useNavigate } from "react-router-dom"
+import { Company } from "../pages/company/company"
+import { Candidate } from "../pages/candidate/candidate"
+import { UserProfile } from "../pages/profile/user-profile"
 
 export function Router() {
     const navigate = useNavigate()
@@ -14,7 +13,7 @@ export function Router() {
     useEffect(() => {
         (() => {
             const user = localStorage.getItem("@Auth:token")
-            if (!user) return navigate("/");
+            if (!user) return navigate("/")
             setHasUser(true)
         })()
     }, [hasUser])
