@@ -1,0 +1,8 @@
+.bg-topo {
+  width: 100%;
+  height: 450px;
+  background-image: url('../public/images/pexels-matheus-bertelli-3856042.jpg');
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
