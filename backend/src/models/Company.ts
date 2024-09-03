@@ -2,15 +2,16 @@ import { PrismaCompanyRepository } from "../repositories/prisma/PrismaCompanyRep
 
 export interface CompanyProps {
   name: string;
-  quantityEmployee: string;
-  email: string;
-  cep: string;
-  phone: string;
-  city: string;
-  road: string;
-  state: string;
-  cnpj: string;
-  description_text: string;
+  quantityEmployee?: string | undefined
+  email: string
+  cep?: string | undefined
+  phone?: string | undefined
+  city?: string | undefined
+  road?: string | undefined
+  state?: string | undefined
+  cnpj: string
+  description_text?: string | undefined
+  password: string
 }
 
 export class CompanyModel {
@@ -68,44 +69,44 @@ export class CompanyModel {
     return this.props.name;
   }
 
-  public get quantityEmployee(): string | number {
+  public get quantityEmployee(): string | undefined {
     return this.props.quantityEmployee;
   }
 
-  public get email() {
+  public get email(): string | undefined {
     return this.props.email;
   }
 
-  public get cep() {
+  public get cep(): string | undefined {
     return this.props.cep;
   }
 
-  public get phone() {
+  public get phone(): string | undefined {
     return this.props.phone;
   }
 
-  public get city() {
+  public get city(): string | undefined {
     return this.props.city;
   }
 
-  public get state() {
+  public get state(): string | undefined {
     return this.props.state;
   }
 
-  public get road() {
+  public get road(): string | undefined {
     return this.props.road;
   }
 
-  public get cnpj() {
+  public get cnpj(): string | undefined {
     return this.props.cnpj;
   }
 
-  public get description_text() {
+  public get description_text(): string | undefined {
     return this.props.description_text;
   }
 
-  public save(data: CompanyProps) {
-    return this.repositoryCompany.create(data);
+  public save(data: Pick<CompanyProps, "name" | "email" | "cnpj" | "password">) {
+    return this.repositoryCompany.create(data)
   }
 
   public getCompanies() {

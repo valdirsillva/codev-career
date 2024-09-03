@@ -10,14 +10,8 @@ export async function company(app: FastifyInstance) {
   const instanceCompany = {
     name: '',
     cnpj: '',
-    quantityEmployee: '',
     email: '',
-    cep: '',
-    phone: '',
-    city: '',
-    road: '',
-    state: '',
-    description_text: ''
+    password: ''
   }
 
   const instanceJob = {

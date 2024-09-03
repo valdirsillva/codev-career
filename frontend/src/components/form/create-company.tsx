@@ -62,7 +62,7 @@ export function CreateCompany() {
             <label htmlFor="nomeEmpresa" className="w-30 font-medium text-gray-200 mb-1">Nome da empresa</label>
             <input
               type="text"
-              name="text"
+              name="name"
               id="nomeEmpresa"
               className="bg-[#121214] text-gray-200 p-3 rounded placeholder-slate-400 focus:outline-none focus:border-violet-800 focus:border-[1px] border-[1px] border-transparent"
               placeholder="Nome da empresa"
@@ -87,7 +87,7 @@ export function CreateCompany() {
             <label htmlFor="" className="w-20 font-medium text-gray-200 mb-1">Cnpj</label>
             <input
               type="text"
-              name="text"
+              name="cnpj"
               className="bg-[#121214] text-gray-200 p-3 rounded placeholder-slate-400 focus:outline-none focus:border-violet-800 focus:border-[1px] border-[1px] border-transparent"
               placeholder="Cnpj"
               value={fieldValues.cnpj}

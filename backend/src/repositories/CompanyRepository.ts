@@ -1,15 +1,9 @@
 
 export interface Company {
-  name: string;
-  cnpj: string;
-  quantityEmployee: string;
-  email: string;
-  cep: string;
-  phone: string;
-  city: string;
-  road: string;
-  state: string;
-  description_text: string;
+  name: string
+  cnpj: string
+  email: string
+  password: string
 }
 
 export interface CompanyRepository {
