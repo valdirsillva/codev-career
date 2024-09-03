@@ -65,26 +65,26 @@ export function Login() {
     return (
         <div className="w-full h-screen flex items-center justify-center">
             <ToastContainer />
-            <div className="sm:w-12/12 md:w-4/12 min-h-[80%] flex items-center justify-center flex-col bg-white p-5 rounded-md">
-                <h2 className="text-gray-600 font-bold text-3xl">Entre com a sua conta</h2>
+            <div className="sm:w-12/12 md:w-4/12 min-h-[80%] flex items-center justify-center flex-col bg-[#1a1a1e] p-5 rounded-md">
+                <h2 className="text-gray-200 font-bold text-3xl">Entre com a sua conta</h2>
                 <form onSubmit={handleSubmit} className="w-full flex flex-col gap-5 p-10">
                     <div className="flex flex-col">
-                        <label htmlFor="" className="w-20 font-medium text-gray-600 mb-1">Seu login</label>
+                        <label htmlFor="" className="w-20 font-medium text-gray-200 mb-1">Seu login</label>
                         <input
                             type="text"
                             name="email"
-                            className="border-slate-200 bg-gray-100 p-3 rounded placeholder-slate-400 focus:outline-none focus:border-violet-800 border-[1px] "
+                            className="bg-[#121214] text-gray-200 p-3 rounded placeholder-slate-400 focus:outline-none focus:border-violet-800 focus:border-[1px] border-[1px] border-transparent"
                             placeholder="Seu login"
                             value={formValues.email}
                             onChange={handleChangeValues}
                         />
                     </div>
                     <div className="flex flex-col">
-                        <label htmlFor="" className="w-[1px] font-medium text-gray-600 mb-1">Senha</label>
+                        <label htmlFor="" className="w-[1px] font-medium text-gray-200 mb-1">Senha</label>
                         <input
                             type="password"
                             name="password"
-                            className="border-slate-[1px] bg-gray-100 p-3 rounded placeholder-slate-400 focus:outline-none focus:border-violet-800 border-[1px]"
+                            className=" bg-[#121214] text-gray-200 p-3 rounded placeholder-slate-400 focus:outline-none focus:border-violet-800 focus:border-[1px] border-[1px] border-transparent"
                             placeholder="Sua senha"
                             onChange={handleChangeValues}
                         />
@@ -97,12 +97,12 @@ export function Login() {
                         </button>
 
                         <div className="mt-5">
-                            <span className=" font-medium text-gray-600">Não tem conta?
+                            <span className=" font-medium text-gray-200">Não tem conta?
                                 <a href="/company"> Sou empresa</a>
                             </span>
                         </div>
-                        <div className="mt-5">
-                            <span className=" font-medium text-gray-600">
+                        <div className="mt-2">
+                            <span className="font-medium text-gray-200">
                                 <Link to="/candidate">Sou candidato</Link>
                             </span>
                         </div>
