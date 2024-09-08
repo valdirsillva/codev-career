@@ -2,8 +2,8 @@
 export interface Company {
   name: string
   cnpj: string
-  email: string
-  password: string
+  sector: string
+  description: string
 }
 
 export interface CompanyRepository {

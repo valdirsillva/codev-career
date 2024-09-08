@@ -1,6 +1,6 @@
-import { CompanyProps } from "../../models/company";
-import { prisma } from "../../views/lib/prisma";
-import { Company, CompanyRepository } from "../company-repository";
+import { prisma } from "../../views/lib/prisma"
+import { CompanyProps } from "../../models/company"
+import { Company, CompanyRepository } from "../company-repository"
 
 export class PrismaCompanyRepository implements CompanyRepository {
   async checkCnpj(data: Company) {
@@ -17,9 +17,7 @@ export class PrismaCompanyRepository implements CompanyRepository {
       if (result?.cnpj != null) {
         throw new Error("O CNPJ informado já está vinculado a uma outra empresa")
       }
-
       return false
-
     } catch (err: any) {
       return true
     }
@@ -33,10 +31,10 @@ export class PrismaCompanyRepository implements CompanyRepository {
   async create(data: Company): Promise<CompanyProps | {}> {
     const result = await prisma.company.create({
       data: {
-        name: data.name,
-        email: data.email,
         cnpj: data.cnpj,
-        password: data.password
+        name: data.name,
+        sector: data.sector,
+        description: data.description,
       },
     })
     return result

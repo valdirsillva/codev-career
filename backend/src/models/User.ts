@@ -1,4 +1,4 @@
-import { PrismaUserRepository } from "../repositories/prisma/PrismaUserRepository"
+import { PrismaUserRepository } from "../repositories/prisma/prisma-user-repository"
 
 interface User {
     name: string

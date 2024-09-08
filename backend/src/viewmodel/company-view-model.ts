@@ -2,7 +2,6 @@ import { CompanyModel } from "../models/company"
 import { Company } from "../repositories/company-repository"
 
 export class CompanyViewModel {
-
   constructor(private readonly companyModel: CompanyModel) { }
 
   public get() {

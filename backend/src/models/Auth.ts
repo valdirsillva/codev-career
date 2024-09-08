@@ -1,4 +1,4 @@
-import { PrismaAuthRepository } from "../repositories/prisma/PrismaAuthRepository";
+import { PrismaAuthRepository } from "../repositories/prisma/prisma-auth-repository";
 
 interface Auth {
     email: string

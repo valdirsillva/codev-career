@@ -17,8 +17,7 @@ export function Home() {
       const api = new ApiService()
 
       const response = await api.get('/jobs')
-      // console.log(response.data.jobs)
-      setListJobs(response.data.jobs)
+      setListJobs(response.data)
     } catch (err) {
       console.log(err)
     }
@@ -53,31 +52,33 @@ export function Home() {
 
           <div className="sm:12/12 md:w-8/12 md:flex flex-col sm:mt-10 md:mt-20">
             <span className="font-bold sm:text-2xl md:text-3xl text-gray-200 min-[320px]:mb-4 md:mb-5">
-              Total de vagas encontradas: {listJobs.length}
+              {/* Total de vagas encontradas: {listJobs.length} */}
             </span>
-            {listJobs.map(({ id, job_title, job_quantity, seniority, salary, modality, technologies, requirements }) => {
+            {listJobs.map(({ id, title, salary, requirements }) => {
               return (
                 <section key={id} className="w-full mb-5 min-[320px]:p-3 md:p-10 bg-[#121214] text-gray-200 border-2 rounded-xl">
                   <div className="md:flex md:flex-col">
                     <span className="font-bold sm:text-3xl md:text-4xl text-indigo-600 ">
-                      {job_title}
+                      {title}
                     </span>
 
-                    <div className="flex flex-row items-center sm:gap-6 md:gap-12 mt-2 ">
-                      <Stack data={technologies.split(",")} />
-                    </div>
-
-                    <div className="flex flex-row items-center sm:gap-5 md:gap-10 m-1 text-gray-200">
+                    <div className="flex flex-row items-center sm:gap-5 md:gap-10 mt-2 text-gray-200">
                       <span className="flex font-bold">
                         <CircleDollarSign color="#fff" fill="#be185d" className="sm:mr-0 md:mr-3" /> R$ {salary}
                       </span>
-                      <span className="flex font-bold">
+
+
+                      {/* <span className="flex font-bold">
                         <Briefcase color="#fff" fill="#be185d" className="sm:mr-0 md:mr-3" />{seniority}
                       </span>
 
                       <span className="flex font-bold">
                         <MapPin color="#fff" fill="#be185d" className="sm:mr-0 md:mr-3" />{modality}
-                      </span>
+                      </span> */}
+                    </div>
+
+                    <div className="flex flex-row items-center sm:gap-6 md:gap-12 mt-1 ">
+                      <Stack data={requirements.split(",")} />
                     </div>
 
                     <div className="sm:w-12/12 md:w-8/12 flex flex-col md:p-1 mt-10">
