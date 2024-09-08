@@ -1,7 +1,7 @@
 import { FastifyInstance } from 'fastify'
-import { UserModel } from '../../models/User'
-import { UserViewModel } from '../../viewmodel/UserViewModel'
-import { UserView } from '../UserView'
+import { UserModel } from '../../models/user'
+import { UserViewModel } from '../../viewmodel/user-view-model'
+import { UserView } from '../user-view'
 
 export function userRouter(app: FastifyInstance) {
     const userInstance = {
