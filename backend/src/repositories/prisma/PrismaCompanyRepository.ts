@@ -1,6 +1,6 @@
-import { CompanyProps } from "../../models/Company";
+import { CompanyProps } from "../../models/company";
 import { prisma } from "../../views/lib/prisma";
-import { Company, CompanyRepository } from "../CompanyRepository";
+import { Company, CompanyRepository } from "../company-repository";
 
 export class PrismaCompanyRepository implements CompanyRepository {
   async checkCnpj(data: Company) {

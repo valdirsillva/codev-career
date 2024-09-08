@@ -1,5 +1,5 @@
 import { prisma } from "../../views/lib/prisma";
-import { JobProps, JobRepository, Jobs } from "../JobRepository";
+import { JobProps, JobRepository, Jobs } from "../job-repository";
 
 export class PrismaJobRepository implements JobRepository {
   async create(jobData: JobProps): Promise<JobProps | {}> {

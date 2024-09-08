@@ -1,4 +1,4 @@
-import { PrismaCompanyRepository } from "../repositories/prisma/PrismaCompanyRepository";
+import { PrismaCompanyRepository } from "../repositories/prisma/PrismaCompanyRepository"
 
 export interface CompanyProps {
   name: string;
@@ -15,9 +15,9 @@ export interface CompanyProps {
 }
 
 export class CompanyModel {
-  private props: CompanyProps;
+  private props: CompanyProps
 
-  private repositoryCompany: PrismaCompanyRepository;
+  private repositoryCompany: PrismaCompanyRepository
 
   constructor(props: CompanyProps) {
     this.repositoryCompany = new PrismaCompanyRepository()
@@ -30,79 +30,79 @@ export class CompanyModel {
   }
 
   public set quantityEmployee(quantityEmployee: string) {
-    this.props.quantityEmployee = quantityEmployee;
+    this.props.quantityEmployee = quantityEmployee
   }
 
   public set email(email: string) {
-    this.props.email = email;
+    this.props.email = email
   }
 
   public set cep(cep: string) {
-    this.props.cep = cep;
+    this.props.cep = cep
   }
 
   public set phone(phone: string) {
-    this.props.phone = phone;
+    this.props.phone = phone
   }
 
   public set city(city: string) {
-    this.props.city = city;
+    this.props.city = city
   }
 
   public set state(state: string) {
-    this.props.state = state;
+    this.props.state = state
   }
 
   public set road(road: string) {
-    this.props.road = road;
+    this.props.road = road
   }
 
   public set cnpj(cnpj: string) {
-    this.props.cnpj = cnpj;
+    this.props.cnpj = cnpj
   }
 
   public set description_text(description_text: string) {
-    this.props.description_text = description_text;
+    this.props.description_text = description_text
   }
 
   public get name(): string {
-    return this.props.name;
+    return this.props.name
   }
 
   public get quantityEmployee(): string | undefined {
-    return this.props.quantityEmployee;
+    return this.props.quantityEmployee
   }
 
   public get email(): string | undefined {
-    return this.props.email;
+    return this.props.email
   }
 
   public get cep(): string | undefined {
-    return this.props.cep;
+    return this.props.cep
   }
 
   public get phone(): string | undefined {
-    return this.props.phone;
+    return this.props.phone
   }
 
   public get city(): string | undefined {
-    return this.props.city;
+    return this.props.city
   }
 
   public get state(): string | undefined {
-    return this.props.state;
+    return this.props.state
   }
 
   public get road(): string | undefined {
-    return this.props.road;
+    return this.props.road
   }
 
   public get cnpj(): string | undefined {
-    return this.props.cnpj;
+    return this.props.cnpj
   }
 
   public get description_text(): string | undefined {
-    return this.props.description_text;
+    return this.props.description_text
   }
 
   public save(data: Pick<CompanyProps, "name" | "email" | "cnpj" | "password">) {
@@ -110,6 +110,6 @@ export class CompanyModel {
   }
 
   public getCompanies() {
-    return this.repositoryCompany.getAll();
+    return this.repositoryCompany.getAll()
   }
 }

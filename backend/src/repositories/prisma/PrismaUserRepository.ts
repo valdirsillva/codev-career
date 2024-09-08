@@ -1,5 +1,5 @@
 import { prisma } from "../../views/lib/prisma";
-import { UserRepository, User } from "../UserRepository";
+import { UserRepository, User } from "../user-repository";
 
 export class PrismaUserRepository implements UserRepository {
   async create(data: User) {

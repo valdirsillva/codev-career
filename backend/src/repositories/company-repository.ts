@@ -7,6 +7,6 @@ export interface Company {
 }
 
 export interface CompanyRepository {
-  create: (data: Company) => Promise<Company | {}>;
+  create: (data: Company) => Promise<Company | {}>
   getAll: () => Promise<Company[] | {}>
 }

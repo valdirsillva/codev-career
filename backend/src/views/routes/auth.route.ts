@@ -1,7 +1,7 @@
-import { AuthModel } from "../../models/Auth";
-import { AuthViewModel } from "../../viewmodel/AuthViewModel";
-import { AuthView } from "../AuthView";
-import { FastifyInstance } from "fastify";
+import { AuthModel } from "../../models/auth"
+import { AuthViewModel } from "../../viewmodel/auth-view-model"
+import { AuthView } from "../auth-view"
+import { FastifyInstance } from "fastify"
 
 export async function auth(app: FastifyInstance) {
     const login = {

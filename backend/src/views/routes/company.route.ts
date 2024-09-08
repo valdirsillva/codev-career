@@ -1,10 +1,10 @@
-import { FastifyInstance } from 'fastify';
-import { JobModel } from '../../models/Job';
-import { CompanyModel } from '../../models/Company';
-import { JobViewModel } from '../../viewmodel/JobViewModel';
-import { CompanyView } from '../CompanyView';
-import { JobView } from '../../views/JobView'
-import { CompanyViewModel } from "../../viewmodel/CompanyViewModel";
+import { FastifyInstance } from 'fastify'
+import { JobModel } from '../../models/job'
+import { CompanyModel } from '../../models/company'
+import { JobViewModel } from '../../viewmodel/job-view-model'
+import { CompanyView } from '../company-view'
+import { JobView } from '../job-view'
+import { CompanyViewModel } from "../../viewmodel/company-view-model"
 
 export async function company(app: FastifyInstance) {
   const instanceCompany = {
