@@ -1,25 +1,12 @@
-import { PrismaCompanyRepository } from "../repositories/prisma/PrismaCompanyRepository"
+import { PrismaCompanyRepository } from "../repositories/prisma/prisma-company-repository"
+import { CompanyModel } from "../repositories/protocols/company-repository"
 
-export interface CompanyProps {
-  name: string;
-  quantityEmployee?: string | undefined
-  email: string
-  cep?: string | undefined
-  phone?: string | undefined
-  city?: string | undefined
-  road?: string | undefined
-  state?: string | undefined
-  cnpj: string
-  description_text?: string | undefined
-  password: string
-}
-
-export class CompanyModel {
-  private props: CompanyProps
+export class Company {
+  private props: CompanyModel
 
   private repositoryCompany: PrismaCompanyRepository
 
-  constructor(props: CompanyProps) {
+  constructor(props: CompanyModel) {
     this.repositoryCompany = new PrismaCompanyRepository()
 
     this.props = { ...props }
@@ -29,83 +16,35 @@ export class CompanyModel {
     this.props.name = name
   }
 
-  public set quantityEmployee(quantityEmployee: string) {
-    this.props.quantityEmployee = quantityEmployee
-  }
-
-  public set email(email: string) {
-    this.props.email = email
-  }
-
-  public set cep(cep: string) {
-    this.props.cep = cep
-  }
-
-  public set phone(phone: string) {
-    this.props.phone = phone
-  }
-
-  public set city(city: string) {
-    this.props.city = city
-  }
-
-  public set state(state: string) {
-    this.props.state = state
-  }
-
-  public set road(road: string) {
-    this.props.road = road
-  }
-
   public set cnpj(cnpj: string) {
     this.props.cnpj = cnpj
   }
 
-  public set description_text(description_text: string) {
-    this.props.description_text = description_text
+  public set sector(sector: string) {
+    this.props.sector = sector
   }
 
-  public get name(): string {
-    return this.props.name
+  public set description(description: string) {
+    this.props.description = description
   }
 
-  public get quantityEmployee(): string | undefined {
-    return this.props.quantityEmployee
+  public get name() {
+    return this.name
   }
 
-  public get email(): string | undefined {
-    return this.props.email
+  public get cnpj() {
+    return this.cnpj
   }
 
-  public get cep(): string | undefined {
-    return this.props.cep
+  public get sector() {
+    return this.sector
   }
 
-  public get phone(): string | undefined {
-    return this.props.phone
+  public get description() {
+    return this.description
   }
 
-  public get city(): string | undefined {
-    return this.props.city
-  }
-
-  public get state(): string | undefined {
-    return this.props.state
-  }
-
-  public get road(): string | undefined {
-    return this.props.road
-  }
-
-  public get cnpj(): string | undefined {
-    return this.props.cnpj
-  }
-
-  public get description_text(): string | undefined {
-    return this.props.description_text
-  }
-
-  public save(data: Pick<CompanyProps, "name" | "email" | "cnpj" | "password">) {
+  public save(data: CompanyModel) {
     return this.repositoryCompany.create(data)
   }
 

@@ -1,43 +1,41 @@
 import { FastifyInstance } from 'fastify'
-import { JobModel } from '../../models/job'
-import { CompanyModel } from '../../models/company'
-import { JobViewModel } from '../../viewmodel/job-view-model'
 import { CompanyView } from '../company-view'
-import { JobView } from '../job-view'
+import { VacancyView } from '../vacancy-view'
+import { Company } from '../../models/company'
+import { Vacancy } from '../../models/vacancy'
+import { VacancyViewModel } from '../../viewmodel/vacancy-view-model'
 import { CompanyViewModel } from "../../viewmodel/company-view-model"
 
 export async function company(app: FastifyInstance) {
   const instanceCompany = {
     name: '',
     cnpj: '',
-    email: '',
-    password: ''
+    sector: '',
+    description: '',
   }
 
-  const instanceJob = {
-    job_title: '',
-    job_companyId: '',
-    job_quantity: '',
-    technologies: '',
+  const instanceVacancy = {
+    title: '',
+    description: '',
+    location: '',
+    companyId: '',
     salary: '',
-    modality: '',
-    seniority: '',
-    requirements: '',
-    details: '',
+    requirements: ''
   }
-  const companyModel = new CompanyModel(instanceCompany)
+
+  const companyModel = new Company(instanceCompany)
   const controllerCompany = new CompanyViewModel(companyModel)
   const viewCompany = new CompanyView(controllerCompany)
 
-  const jobModel = new JobModel(instanceJob)
-  const controllerJob = new JobViewModel(jobModel)
-  const viewJob = new JobView(controllerJob)
+  const vacancyModel = new Vacancy(instanceVacancy)
+  const controllerJob = new VacancyViewModel(vacancyModel)
+  const viewVacancy = new VacancyView(controllerJob)
 
-  app.get('/companies', viewCompany.get.bind(viewCompany))
-  app.post('/companies', viewCompany.create.bind(viewCompany))
+  app.get('/api/empresas', viewCompany.get.bind(viewCompany))
+  app.post('/api/empresas', viewCompany.create.bind(viewCompany))
 
-  app.get('/jobs', viewJob.get.bind(viewJob))
-  app.post('/jobs', viewJob.create.bind(viewJob))
+  app.get('/api/vagas', viewVacancy.get.bind(viewVacancy))
+  app.post('/api/vagas', viewVacancy.create.bind(viewVacancy))
 
   return app;
 

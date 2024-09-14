@@ -4,15 +4,14 @@ export interface UserModel {
   name: string
   email: string
   password: string
-  password_reset?: string | null
-  role?: string
+  password_reset?: string
 }
 
 export interface Users {
-  users: User[]
+  users: UserModel[]
 }
 
 export interface User {
   create: (data: UserModel) => Promise<void>;
-  getUsers: () => Promise<UserModel[]>
+  getUsers: () => Promise<Users | {}>
 }

@@ -1,15 +1,11 @@
-import { PrismaAuthRepository } from "../repositories/prisma/PrismaAuthRepository";
+import { PrismaAuthRepository } from "../repositories/prisma/prisma-auth-repository";
+import { AuthModel } from "../repositories/protocols/auth-repository";
 
-interface Auth {
-    email: string
-    password: string
-}
-
-export class AuthModel {
-    private props: Auth
+export class Auth {
+    private props: AuthModel
     private repositoryAuth: PrismaAuthRepository
 
-    constructor(props: Auth) {
+    constructor(props: AuthModel) {
         this.props = { ...props }
         this.repositoryAuth = new PrismaAuthRepository()
     }
@@ -30,7 +26,7 @@ export class AuthModel {
         return this.props.password
     }
 
-    public login(data: Auth) {
+    public login(data: AuthModel) {
         return this.repositoryAuth.login(data)
     }
 }

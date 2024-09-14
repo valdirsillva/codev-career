@@ -1,7 +1,7 @@
 import { describe, it, expect, test } from "@jest/globals";
 
 import Fastify from "fastify";
-import { PrismaCompanyRepository } from "../repositories/prisma/PrismaCompanyRepository";
+import { PrismaCompanyRepository } from "../repositories/prisma/prisma-company-repository";
 
 const app = Fastify({
   logger: false,

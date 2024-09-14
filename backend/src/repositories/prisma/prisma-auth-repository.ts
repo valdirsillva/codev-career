@@ -1,20 +1,19 @@
 import { prisma } from "../../views/lib/prisma";
-import { Auth, AuthRepository } from "../auth-repository";
+import { Auth, AuthModel } from "../auth-repository";
 
-export class PrismaAuthRepository implements AuthRepository {
-    async login({ email }: Auth) {
+export class PrismaAuthRepository implements Auth {
+    async login({ email }: AuthModel) {
         try {
             const user = await prisma.user.findFirst({
                 where: {
                     email,
                 }
             })
-
-            return user;
+            return user
 
         } catch (err: any) {
             console.error(err.message)
-            return null;
+            return null
         }
     }
 }

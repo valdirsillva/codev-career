@@ -5,5 +5,5 @@ export interface AuthModel {
 }
 
 export interface Auth {
-    login: (data: AuthModel) => Promise<AuthModel | null>
+    login: (data: Auth) => Promise<Auth | null>
 }

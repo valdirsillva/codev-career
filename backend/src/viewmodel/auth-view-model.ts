@@ -1,10 +1,10 @@
-import { AuthModel } from "../models/auth"
-import { Auth } from "../repositories/auth-repository"
+import { Auth } from "../models/auth"
+import { AuthModel } from "../repositories/auth-repository"
 
 export class AuthViewModel {
-    constructor(private readonly authModel: AuthModel) { }
+    constructor(private readonly authModel: Auth) { }
 
-    public login(data: Auth) {
+    public login(data: AuthModel) {
         return this.authModel.login(data)
     }
 }

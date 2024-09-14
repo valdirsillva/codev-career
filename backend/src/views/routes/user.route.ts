@@ -1,7 +1,8 @@
 import { FastifyInstance } from 'fastify'
-import { UserModel } from '../../models/user'
+import { User } from '../../models/user'
 import { UserViewModel } from '../../viewmodel/user-view-model'
 import { UserView } from '../user-view'
+import { PrismaUserRepository } from '../../repositories/prisma/prisma-user-repository'
 
 export function userRouter(app: FastifyInstance) {
     const userInstance = {
@@ -10,12 +11,12 @@ export function userRouter(app: FastifyInstance) {
         password: ''
     }
 
-    const userModel = new UserModel(userInstance)
+    const userModel = new User(userInstance, new PrismaUserRepository())
     const controllerUser = new UserViewModel(userModel)
     const viewUser = new UserView(controllerUser)
 
-    app.get("/candidates", viewUser.get.bind(viewUser))
-    app.post("/candidates", viewUser.create.bind(viewUser))
+    app.get("/api/usuarios", viewUser.get.bind(viewUser))
+    app.post("/api/usuarios", viewUser.create.bind(viewUser))
 
     return app;
 

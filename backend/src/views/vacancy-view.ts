@@ -1,11 +1,11 @@
-import { JobViewModel } from "../viewmodel/job-view-model"
+import { VacancyViewModel } from "../viewmodel/vacancy-view-model"
 
-export class JobView {
-  constructor(private readonly jobViewModel: JobViewModel) { }
+export class VacancyView {
+  constructor(private readonly vacancyViewModel: VacancyViewModel) { }
 
   public async get(request: any, reply: any) {
     try {
-      const companies = await this.jobViewModel.get()
+      const companies = await this.vacancyViewModel.get()
       reply.code(200).send(companies)
     } catch (err) {
       console.error(err)
@@ -18,7 +18,7 @@ export class JobView {
   public async create(request: any, reply: any) {
     try {
       const body = request.body
-      const data = await this.jobViewModel.create(body)
+      const data = await this.vacancyViewModel.create(body)
       reply.code(201).send(data)
     } catch (err) {
       console.error(err)
