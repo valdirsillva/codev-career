@@ -13,8 +13,18 @@ export class PrismaUserRepository implements User {
     }
   }
 
-  async getUsers(): Promise<User[] | {}> {
-    const response = await prisma.user.findMany()
-    return response
+  async getUsers(): Promise<UserModel[]> {
+    try {
+      const response = await prisma.user.findMany()
+
+      if (response.length === 0) {
+        throw new Error('Nenhum usuário')
+      }
+
+      return response
+    } catch (err: any) {
+      console.error(err)
+      return []
+    }
   }
 }

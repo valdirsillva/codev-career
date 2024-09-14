@@ -22,20 +22,38 @@ export class PrismaCompanyRepository implements Company {
     }
   }
 
-  async getAll(): Promise<Company[] | {}> {
-    const companies = await prisma.company.findMany()
-    return { companies: companies }
+  async getAll(): Promise<CompanyModel[]> {
+    try {
+      const response = await prisma.company.findMany()
+      if (response.length === 0) {
+        throw new Error("Nenhuma empresa encontrada.")
+      }
+
+      return response
+    } catch (err: any) {
+      console.error(err)
+      return []
+    }
   }
 
-  async create(data: CompanyModel): Promise<CompanyModel | {}> {
-    const result = await prisma.company.create({
-      data: {
-        cnpj: data.cnpj,
-        name: data.name,
-        sector: data.sector,
-        description: data.description,
-      },
-    })
-    return result
+  async create(data: CompanyModel): Promise<CompanyModel | undefined> {
+    try {
+      const response = await prisma.company.create({
+        data: {
+          cnpj: data.cnpj,
+          name: data.name,
+          sector: data.sector,
+          description: data.description,
+        },
+      })
+
+      if (!response) {
+        throw new Error("Houve um erro a cadastrar a empresa.")
+      }
+
+      return response
+    } catch (err: any) {
+      console.error(err)
+    }
   }
 }

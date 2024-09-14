@@ -26,7 +26,7 @@ export class Auth {
         return this.props.password
     }
 
-    public login(data: Auth) {
+    public login(data: AuthModel) {
         return this.repositoryAuth.login(data)
     }
 }

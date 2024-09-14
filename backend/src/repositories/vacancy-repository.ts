@@ -1,5 +1,5 @@
 
-export interface Vacancy {
+export interface VacancyNodel {
   id?: string
   title: string
   description: string
@@ -9,7 +9,7 @@ export interface Vacancy {
   companyId: string
 }
 
-export interface VacancyRepository {
-  create: (data: Vacancy) => Promise<Vacancy | {}>
-  getAll: () => Promise<Vacancy[]>
+export interface Vacancy {
+  create: (data: VacancyNodel) => Promise<VacancyNodel>
+  getAll: () => Promise<VacancyNodel[]>
 }

@@ -9,12 +9,11 @@ export class PrismaAuthRepository implements Auth {
                     email,
                 }
             })
-
-            return user;
+            return user
 
         } catch (err: any) {
             console.error(err.message)
-            return null;
+            return null
         }
     }
 }

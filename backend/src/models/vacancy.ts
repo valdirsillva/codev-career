@@ -1,11 +1,11 @@
 import { PrismaVacancyRepository } from "../repositories/prisma/prisma-vacancy-repository"
-import { Vacancy } from "../repositories/vacancy-repository"
+import { VacancyModel } from "../repositories/protocols/vacancy-repository"
 
-export class VacancyModel {
-  private props: Vacancy
+export class Vacancy {
+  private props: VacancyModel
   private repositoryVacancy: PrismaVacancyRepository
 
-  constructor(props: Vacancy) {
+  constructor(props: VacancyModel) {
     this.repositoryVacancy = new PrismaVacancyRepository()
 
     this.props = { ...props }
@@ -47,7 +47,7 @@ export class VacancyModel {
     return this.props.requirements
   }
 
-  public save(data: Vacancy) {
+  public save(data: VacancyModel) {
     return this.repositoryVacancy.create(data)
   }
   public getJobs() {

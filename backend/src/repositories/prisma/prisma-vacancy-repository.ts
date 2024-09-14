@@ -1,9 +1,9 @@
 import { prisma } from "../../views/lib/prisma";
-import { VacancyRepository, Vacancy } from "../vacancy-repository";
+import { VacancyModel } from "../protocols/vacancy-repository";
+import { Vacancy } from "../vacancy-repository";
 
-export class PrismaVacancyRepository implements VacancyRepository {
-  async create(vacancyData: Vacancy): Promise<Vacancy | {}> {
-
+export class PrismaVacancyRepository implements Vacancy {
+  async create(vacancyData: VacancyModel): Promise<VacancyModel> {
     const vacancy = await prisma.vacancy.create({
       data: {
         ...vacancyData
@@ -12,7 +12,7 @@ export class PrismaVacancyRepository implements VacancyRepository {
     return vacancy
   }
 
-  async getAll(): Promise<Vacancy[]> {
+  async getAll(): Promise<VacancyModel[]> {
     const vacancies = await prisma.vacancy.findMany()
     return vacancies
   }

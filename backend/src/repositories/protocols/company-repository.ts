@@ -1,12 +1,12 @@
 
 export interface CompanyModel {
-  name: string
+  name: string | null
   cnpj: string
   sector: string
   description: string
 }
 
 export interface Company {
-  create: (data: CompanyModel) => Promise<CompanyModel | {}>
-  getAll: () => Promise<CompanyModel[] | {}>
+  create: (data: CompanyModel) => Promise<CompanyModel | undefined>
+  getAll: () => Promise<CompanyModel[]>
 }
