@@ -1,14 +1,14 @@
-import { UserModel } from "../models/user"
-import { User } from "../repositories/user-repository"
+import { User } from "../models/user"
+import { UserModel } from "../repositories/protocols/user-repository"
 
 export class UserViewModel {
-  constructor(private readonly userModel: UserModel) { }
+  constructor(private readonly user: User) { }
 
   public get() {
-    return this.userModel.getUsers()
+    return this.user.getUsers()
   }
 
-  public create(data: User) {
-    return this.userModel.save(data)
+  public create(data: UserModel) {
+    return this.user.save(data)
   }
 }

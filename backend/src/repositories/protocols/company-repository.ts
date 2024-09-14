@@ -7,6 +7,6 @@ export interface CompanyModel {
 }
 
 export interface Company {
-  create: (data: CompanyModel) => Promise<CompanyModel>
-  getAll: () => Promise<CompanyModel[]>
+  create: (data: CompanyModel) => Promise<CompanyModel | {}>
+  getAll: () => Promise<CompanyModel[] | {}>
 }

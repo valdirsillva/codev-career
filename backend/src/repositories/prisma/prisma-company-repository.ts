@@ -1,9 +1,8 @@
 import { prisma } from "../../views/lib/prisma"
-import { CompanyProps } from "../../models/company"
-import { Company, CompanyRepository } from "../company-repository"
+import { CompanyModel, Company } from "../protocols/company-repository"
 
-export class PrismaCompanyRepository implements CompanyRepository {
-  async checkCnpj(data: Company) {
+export class PrismaCompanyRepository implements Company {
+  async checkCnpj(data: CompanyModel) {
     try {
       const result = await prisma.company.findUnique({
         where: {
@@ -28,7 +27,7 @@ export class PrismaCompanyRepository implements CompanyRepository {
     return { companies: companies }
   }
 
-  async create(data: Company): Promise<CompanyProps | {}> {
+  async create(data: CompanyModel): Promise<CompanyModel | {}> {
     const result = await prisma.company.create({
       data: {
         cnpj: data.cnpj,

@@ -1,19 +1,12 @@
 import { PrismaUserRepository } from "../repositories/prisma/prisma-user-repository"
+import { UserModel } from "../repositories/protocols/user-repository"
 
-interface User {
-    name: string
-    email: string
-    password: string
-    password_reset?: string
-}
-
-export class UserModel {
-    private props: User
+export class User {
+    private props: UserModel
     private repositoryUser: PrismaUserRepository
 
-    constructor(props: User) {
-        this.repositoryUser = new PrismaUserRepository()
-
+    constructor(props: UserModel, repositoryUser: PrismaUserRepository) {
+        this.repositoryUser = repositoryUser
         this.props = { ...props }
     }
 
@@ -45,7 +38,7 @@ export class UserModel {
         return this.props.password
     }
 
-    public save(data: Omit<User, "id">) {
+    public save(data: Omit<UserModel, "id">) {
         return this.repositoryUser.create(data)
     }
 

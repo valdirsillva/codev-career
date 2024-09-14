@@ -8,7 +8,7 @@ export interface UserModel {
 }
 
 export interface Users {
-  users: User[]
+  users: UserModel[]
 }
 
 export interface User {

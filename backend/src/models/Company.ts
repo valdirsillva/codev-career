@@ -1,18 +1,12 @@
 import { PrismaCompanyRepository } from "../repositories/prisma/prisma-company-repository"
+import { CompanyModel } from "../repositories/protocols/company-repository"
 
-export interface CompanyProps {
-  name: string
-  cnpj: string
-  sector: string
-  description: string
-}
-
-export class CompanyModel {
-  private props: CompanyProps
+export class Company {
+  private props: CompanyModel
 
   private repositoryCompany: PrismaCompanyRepository
 
-  constructor(props: CompanyProps) {
+  constructor(props: CompanyModel) {
     this.repositoryCompany = new PrismaCompanyRepository()
 
     this.props = { ...props }
@@ -50,7 +44,7 @@ export class CompanyModel {
     return this.description
   }
 
-  public save(data: CompanyProps) {
+  public save(data: CompanyModel) {
     return this.repositoryCompany.create(data)
   }
 
