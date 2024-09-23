@@ -39,7 +39,7 @@ export function Login() {
 
             userValidate(user)
 
-            const response = await axios.post(`${process.env.REACT_APP_API}/login`, user)
+            const response = await axios.post(`${process.env.REACT_APP_API}/api/login`, user)
             const token = response.data.token
 
             if (!token) return false

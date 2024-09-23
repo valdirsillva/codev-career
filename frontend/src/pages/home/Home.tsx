@@ -16,7 +16,7 @@ export function Home() {
     try {
       const api = new ApiService()
 
-      const response = await api.get('/jobs')
+      const response = await api.get('/api/vagas')
       setListJobs(response.data)
     } catch (err) {
       console.log(err)
@@ -26,8 +26,6 @@ export function Home() {
   useEffect(() => {
     fetchData()
   }, [])
-
-
 
   return (
     <Fragment>

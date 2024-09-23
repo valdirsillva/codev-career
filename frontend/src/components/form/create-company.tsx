@@ -45,7 +45,7 @@ export function CreateCompany() {
         password: fieldValues.password
       }
 
-      await api.post('/companies', newCompany)
+      await api.post('/api/empresas', newCompany)
 
     } catch (err) {
       console.error(err)
