@@ -1,8 +1,7 @@
 import { FormEvent, ChangeEvent, useState } from "react"
-import { ApiService } from "../../services/api-service"
 import { ToastContainer, toast } from "react-toastify"
-
 import { Link } from "react-router-dom"
+import { makeServiceApi } from "../../factories/api-service-factory"
 
 interface Company {
   name: string
@@ -36,8 +35,6 @@ export function CreateCompany() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
-      const api = new ApiService()
-
       const newCompany = {
         name: fieldValues.name,
         email: fieldValues.email,
@@ -45,7 +42,7 @@ export function CreateCompany() {
         password: fieldValues.password
       }
 
-      await api.post('/api/empresas', newCompany)
+      await makeServiceApi.post('/api/empresas', newCompany)
 
     } catch (err) {
       console.error(err)

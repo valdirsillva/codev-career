@@ -1,22 +1,19 @@
 import { Fragment, useEffect, useState } from "react"
 // import { jobs } from "../../services/dataset"
-
-import { Briefcase, CircleDollarSign, MapPin } from "lucide-react"
+import { CircleDollarSign } from "lucide-react"
 
 import { Stack } from "../../components/jobs/stacks/stack"
 import { Description } from "../../components/jobs/description/description"
 import { Search } from "../../components/jobs/search/search"
 import { Header } from "../../components/header/header"
-import { ApiService } from "../../services/api-service"
+import { makeServiceApi } from "../../factories/api-service-factory"
 
 export function Home() {
   const [listJobs, setListJobs] = useState([] as any[])
 
   const fetchData = async () => {
     try {
-      const api = new ApiService()
-
-      const response = await api.get('/api/vagas')
+      const response = await makeServiceApi.get('/api/vagas')
       setListJobs(response.data)
     } catch (err) {
       console.log(err)
@@ -35,7 +32,7 @@ export function Home() {
       }} />
       <section className="w-full relative mt-24">
         <div className="bg-topo flex items-center justify-center">
-          <h2 className="font-bold text-4xl text-indigo-600 bg-[#1a1a1e] text-gray-200 opacity-80 to-transparent p-10 rounded">
+          <h2 className="font-bold text-4xl bg-[#1a1a1e] text-gray-200 opacity-80 to-transparent p-10 rounded">
             Encontre aqui as melhores vagas de tecnologia. Voe alto! 🚀
           </h2>
         </div>
