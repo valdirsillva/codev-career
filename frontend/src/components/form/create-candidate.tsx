@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from "react"
-import { ApiService } from "../../services/api-service"
 import { ArrowLeft } from "lucide-react"
 import { Link } from "react-router-dom"
+import { makeServiceApi } from "../../factories/api-service-factory"
 
 interface Candidate {
     name: string
@@ -31,15 +31,13 @@ export function CreateCandidate() {
     const formSubmitCompany = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            const api = new ApiService()
-
             const newCandidate = {
                 name: fieldValues.name,
                 email: fieldValues.email,
                 password: fieldValues.password,
             }
 
-            await api.post('/candidates', newCandidate)
+            await makeServiceApi.post('/candidates', newCandidate)
 
         } catch (err) {
             console.error(err)

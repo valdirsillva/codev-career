@@ -1,12 +1,20 @@
 
 export interface CompanyModel {
+  id?: string
   name: string | null
   cnpj: string
-  sector: string
-  description: string
+  sector: string | null
+  description?: string | null
+}
+
+export interface UserCompany extends CompanyModel {
+  cnpj: string
+  email: string
+  password: string
+  role: string
 }
 
 export interface Company {
-  create: (data: CompanyModel) => Promise<CompanyModel | undefined>
+  create: (data: UserCompany) => Promise<CompanyModel | undefined>
   getAll: () => Promise<CompanyModel[]>
 }

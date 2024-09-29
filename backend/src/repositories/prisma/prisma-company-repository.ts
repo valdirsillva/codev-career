@@ -1,5 +1,6 @@
 import { prisma } from "../../views/lib/prisma"
-import { CompanyModel, Company } from "../protocols/company-repository"
+import { CompanyModel, UserCompany, Company } from "../protocols/company-repository"
+import bcrypt from "bcryptjs"
 
 export class PrismaCompanyRepository implements Company {
   async checkCnpj(data: CompanyModel) {
@@ -28,7 +29,6 @@ export class PrismaCompanyRepository implements Company {
       if (response.length === 0) {
         throw new Error("Nenhuma empresa encontrada.")
       }
-
       return response
     } catch (err: any) {
       console.error(err)
@@ -36,8 +36,20 @@ export class PrismaCompanyRepository implements Company {
     }
   }
 
-  async create(data: CompanyModel): Promise<CompanyModel | undefined> {
+  async create(data: UserCompany): Promise<CompanyModel | undefined> {
     try {
+      const saltRounds = 10
+      const hash = bcrypt.hashSync(data.password, saltRounds)
+
+      await prisma.user.create({
+        data: {
+          name: data.name!,
+          email: data?.email,
+          password: hash,
+          role: data.role
+        }
+      })
+
       const response = await prisma.company.create({
         data: {
           cnpj: data.cnpj,

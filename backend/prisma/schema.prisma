@@ -13,8 +13,8 @@ model Company {
   id          String    @id @default(uuid())
   name        String?
   cnpj        String    @unique
-  sector      String
-  description String
+  sector      String?
+  description String?
   Vacancy     Vacancy[]
 
   @@map("companies")
@@ -38,11 +38,17 @@ model Vacancy {
 
 // Candidato
 model Candidate {
-  id          String        @id @default(uuid())
-  name        String
-  email       String
-  experiences String
-  Application Application[]
+  id                  String        @id @default(uuid())
+  name                String
+  email               String
+  cpf                 String?
+  dataOfBirth         String?
+  phoneNumber         String?
+  gender              String
+  summaryProfessional String?
+  education           String
+  experiences         String
+  Application         Application[]
 
   @@map("candidates")
 }

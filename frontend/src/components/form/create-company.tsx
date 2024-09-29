@@ -39,7 +39,8 @@ export function CreateCompany() {
         name: fieldValues.name,
         email: fieldValues.email,
         cnpj: fieldValues.cnpj,
-        password: fieldValues.password
+        password: fieldValues.password,
+        role: 'COMPANY'
       }
 
       await makeServiceApi.post('/api/empresas', newCompany)
