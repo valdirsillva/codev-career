@@ -1,54 +1,41 @@
 import { PrismaCompanyRepository } from "../repositories/prisma/prisma-company-repository"
-import { CompanyModel } from "../repositories/protocols/company-repository"
+import { UserCompany } from "../repositories/protocols/company-repository"
+import { IUser } from "./IUser"
 
-export class Company {
-  private props: CompanyModel
+export class Company extends IUser {
+  private readonly cnpj: String
+  private readonly description: String
+  private readonly sector: String
 
-  private repositoryCompany: PrismaCompanyRepository
+  private readonly companyRepository: PrismaCompanyRepository
 
-  constructor(props: CompanyModel) {
-    this.repositoryCompany = new PrismaCompanyRepository()
+  constructor(name: String, email: String, password: String, phoneNumber: String, address: String, cnpj: String, description: String, sector: String, companyRepository: PrismaCompanyRepository) {
+    super(name, email, password, phoneNumber, address)
 
-    this.props = { ...props }
+    this.cnpj = cnpj
+    this.description = description
+    this.sector = sector
+
+    this.companyRepository = companyRepository
   }
 
-  public set name(name: string) {
-    this.props.name = name
-  }
-
-  public set cnpj(cnpj: string) {
-    this.props.cnpj = cnpj
-  }
-
-  public set sector(sector: string) {
-    this.props.sector = sector
-  }
-
-  public set description(description: string) {
-    this.props.description = description
-  }
-
-  public get name() {
-    return this.name
-  }
-
-  public get cnpj() {
+  public getCNPJ() {
     return this.cnpj
   }
 
-  public get sector() {
-    return this.sector
-  }
-
-  public get description() {
+  public getDescription() {
     return this.description
   }
 
-  public save(data: CompanyModel) {
-    return this.repositoryCompany.create(data)
+  public getSector() {
+    return this.sector
   }
 
-  public getCompanies() {
-    return this.repositoryCompany.getAll()
+  public add(data: UserCompany) {
+    return this.companyRepository.create(data)
+  }
+
+  public get() {
+    return this.companyRepository.getAll()
   }
 }

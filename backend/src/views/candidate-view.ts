@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify"
 import { CandidateViewModel } from "../viewmodel/candidate-view-model";
-import { CandidateModel } from "../repositories/protocols/candidate-repository";
+import { CandidateData } from "../repositories/protocols/candidate-repository";
 
 export class CandidateView {
   constructor(private readonly candidateViewModel: CandidateViewModel) { }
@@ -17,7 +17,7 @@ export class CandidateView {
 
   public async create(request: FastifyRequest, reply: FastifyReply) {
     try {
-      const body = request.body as CandidateModel
+      const body = request.body as CandidateData
       const data = await this.candidateViewModel.create(body)
       reply.code(201).send(data)
     } catch (err: any) {

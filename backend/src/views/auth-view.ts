@@ -14,8 +14,6 @@ interface AuthResponse {
   name: string
   email: string
   password: string
-  password_reset?: string
-  role: string
 }
 
 export class AuthView {
@@ -45,7 +43,12 @@ export class AuthView {
       }
 
       const token = this.generateTokenJwt(response, user)
-      return reply.code(200).send({ auth: true, token, role: data?.role })
+      return reply.code(200).send({
+        auth: true,
+        name: data?.name,
+        email: data?.email,
+        token
+      })
     } catch (err) {
       console.error(err)
       reply.code(500).send({

@@ -47,8 +47,13 @@ export function Login() {
             localStorage.setItem('@Auth:token', token)
             setAuthenticated(true)
             setSpinner(!spinner)
+
+            if (response.data.role === 'COMPANY') {
+                setTimeout(() => navigation('/home'), 750)
+                return
+            }
             // Redireciona usuário para página em 750ms
-            setTimeout(() => navigation('/jobs'), 750)
+            setTimeout(() => navigation('/vagas'), 750)
         } catch (err: any) {
             console.error(err.response?.data.message)
             toast.error(err.response?.data.message)
@@ -98,12 +103,12 @@ export function Login() {
 
                         <div className="mt-5">
                             <span className=" font-medium text-gray-200">Não tem conta?
-                                <a href="/company"> Sou empresa</a>
+                                <a href="/empresas"> Sou empresa</a>
                             </span>
                         </div>
                         <div className="mt-2">
                             <span className="font-medium text-gray-200">
-                                <Link to="/candidate">Sou candidato</Link>
+                                <Link to="/candidatos">Sou candidato</Link>
                             </span>
                         </div>
                     </div>

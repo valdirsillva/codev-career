@@ -1,44 +1,47 @@
+import { IUser } from "./IUser"
+import { CandidateData } from "../repositories/protocols/candidate-repository"
 import { PrismaCandidateRepository } from "../repositories/prisma/prisma-candidate-repository"
-import { CandidateModel } from "../repositories/protocols/candidate-repository"
 
-export class Candidate {
-    private props: CandidateModel
-    private repositoryCandidate: PrismaCandidateRepository
+export class Candidate extends IUser {
+    private readonly cpf: String
+    private readonly gender: String
+    private readonly training: String // Formação
+    private readonly experiences: String
 
-    constructor(props: CandidateModel, repositoryCandidate: PrismaCandidateRepository) {
-        this.props = { ...props }
-        this.repositoryCandidate = repositoryCandidate
+    private readonly candidateRepository: PrismaCandidateRepository
+
+    constructor(name: String, email: String, password: String, phoneNumber: String, address: String, cpf: String, gender: String, training: String, experiences: String, candidateRepository: PrismaCandidateRepository) {
+        super(name, email, password, phoneNumber, address)
+
+        this.cpf = cpf
+        this.gender = gender
+        this.training = training
+        this.experiences = experiences
+
+        this.candidateRepository = candidateRepository
     }
 
-    public set name(name: string) {
-        this.props.name = name
+    public getCpf() {
+        return this.cpf
     }
 
-    public set email(email: string) {
-        this.props.email = email
+    public getGender() {
+        return this.gender
     }
 
-    public set experiences(experiences: string) {
-        this.props.experiences = experiences
+    public getTraining() {
+        return this.training
     }
 
-    public get name() {
-        return this.props.name
+    public getExperiences() {
+        return this.experiences
     }
 
-    public get email() {
-        return this.props.email
+    public add(data: CandidateData) {
+        return this.candidateRepository.create(data)
     }
 
-    public get experiences() {
-        return this.props.experiences
-    }
-
-    public save(data: CandidateModel) {
-        return this.repositoryCandidate.create(data)
-    }
-
-    public getAll() {
-        return this.repositoryCandidate.getAll()
+    public get() {
+        return this.candidateRepository.getAll()
     }
 }

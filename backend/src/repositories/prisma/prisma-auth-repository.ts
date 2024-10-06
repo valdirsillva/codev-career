@@ -10,7 +10,6 @@ export class PrismaAuthRepository implements Auth {
                 }
             })
             return user
-
         } catch (err: any) {
             console.error(err.message)
             return null

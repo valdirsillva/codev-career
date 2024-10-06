@@ -1,4 +1,4 @@
-import { Auth } from "../models/auth"
+import { Auth } from "../models/Auth"
 import { AuthModel } from "../repositories/auth-repository"
 
 export class AuthViewModel {

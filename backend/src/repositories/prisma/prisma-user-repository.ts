@@ -5,7 +5,13 @@ export class PrismaUserRepository implements User {
   async create(data: Omit<UserModel, 'id'>): Promise<void> {
     try {
       await prisma.user.create({
-        data: { ...data },
+        data: {
+          name: data.name,
+          email: data.email,
+          password: data.password,
+          phoneNumber: data.phoneNumber,
+          address: data.address,
+        }
       })
 
     } catch (error) {

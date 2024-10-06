@@ -1,15 +1,16 @@
-import { Company } from "../models/company"
+import { Company } from "../models/Company"
 import { CompanyModel } from "../repositories/company-repository"
+import { UserCompany } from "../repositories/protocols/company-repository"
 
 export class CompanyViewModel {
   constructor(private readonly company: Company) { }
 
   public get() {
-    return this.company.getCompanies()
+    return this.company.get()
   }
 
-  public create(data: CompanyModel) {
-    return this.company.save(data)
+  public create(data: UserCompany) {
+    return this.company.add(data)
   }
 }
 

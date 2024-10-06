@@ -1,20 +1,20 @@
 
-export interface CompanyModel {
+export interface UserModel {
   id?: string
-  name: string | null
-  cnpj: string
-  sector: string | null
-  description?: string | null
-}
-
-export interface UserCompany extends CompanyModel {
-  cnpj: string
+  name: string
   email: string
   password: string
-  role: string
+  phoneNumber: string
+  address: string
+}
+
+export interface UserCompany extends UserModel {
+  cnpj: string
+  description: string
+  sector: string
 }
 
 export interface Company {
-  create: (data: UserCompany) => Promise<CompanyModel | undefined>
-  getAll: () => Promise<CompanyModel[]>
+  create: (data: UserCompany) => Promise<UserCompany | undefined>
+  getAll: () => Promise<UserCompany[]>
 }

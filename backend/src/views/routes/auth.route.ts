@@ -1,18 +1,9 @@
-import { Auth } from "../../models/auth"
-import { AuthViewModel } from "../../viewmodel/auth-view-model"
-import { AuthView } from "../auth-view"
 import { FastifyInstance } from "fastify"
+import { makeAuthFactory } from "../factories/auth-factory"
 
 export async function auth(app: FastifyInstance) {
-    const login = {
-        email: '',
-        password: ''
-    }
-
-    const auth = new AuthViewModel(new Auth(login))
-    const authenticate = new AuthView(auth)
+    const authenticate = makeAuthFactory()
 
     app.post('/api/login', authenticate.login.bind(authenticate))
-
-    return app;
+    return app
 }

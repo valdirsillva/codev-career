@@ -3,10 +3,11 @@ import cors from '@fastify/cors'
 import Fastify from "fastify";
 import { auth } from './views/routes/auth.route';
 import { company } from './views/routes/company.route';
-import { userRouter } from './views/routes/user.route';
+// import { userRouter } from './views/routes/user.route';
 import { authMiddleware } from './middleware/auth.middleware';
 
 import fastifyJwt from '@fastify/jwt';
+import { candidate } from './views/routes/candidate.route';
 
 dotenv.config()
 
@@ -28,7 +29,8 @@ app.register(cors, {
 // Register routes
 app.register(auth)
 app.register(company)
-app.register(userRouter)
+app.register(candidate)
+// app.register(userRouter)
 
 app.listen({ port: 9001, host: '0.0.0.0' }, () => {
   console.log(`http:localhost:9001`)
