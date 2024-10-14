@@ -5,7 +5,7 @@ import { VacancyView } from "../vacancy-view"
 
 export const makeVacancyFactory = (): VacancyView => {
     const repository = new PrismaVacancyRepository()
-    const vacancyModel = new Vacancy('', '', '', '', '', '', '', '', '', '', '', '', repository)
+    const vacancyModel = new Vacancy('', '', '', '', repository)
     const controllerJob = new VacancyViewModel(vacancyModel)
     return new VacancyView(controllerJob)
 }

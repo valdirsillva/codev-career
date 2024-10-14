@@ -1,5 +1,5 @@
 import { Vacancy } from "../models/vacancy"
-import { VacancyNodel } from "../repositories/vacancy-repository"
+import { VacancyModel } from "../repositories/vacancy-repository"
 
 export class VacancyViewModel {
   constructor(private readonly vacancyModel: Vacancy) { }
@@ -8,7 +8,7 @@ export class VacancyViewModel {
     return this.vacancyModel.getJobs()
   }
 
-  public create(data: VacancyNodel) {
+  public create(data: VacancyModel) {
     return this.vacancyModel.save(data)
   }
 }

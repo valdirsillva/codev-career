@@ -1,6 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify"
 import { CandidateViewModel } from "../viewmodel/candidate-view-model";
 import { CandidateData } from "../repositories/protocols/candidate-repository";
+import bcrypt from "bcryptjs"
 
 export class CandidateView {
   constructor(private readonly candidateViewModel: CandidateViewModel) { }
@@ -17,8 +18,12 @@ export class CandidateView {
 
   public async create(request: FastifyRequest, reply: FastifyReply) {
     try {
+      const saltRounds = 10
       const body = request.body as CandidateData
-      const data = await this.candidateViewModel.create(body)
+      const password = bcrypt.hashSync(body.password, saltRounds)
+      const data = await this.candidateViewModel.create(
+        Object.assign(body, { password })
+      )
       reply.code(201).send(data)
     } catch (err: any) {
       console.error(err)

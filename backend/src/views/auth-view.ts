@@ -47,7 +47,8 @@ export class AuthView {
         auth: true,
         name: data?.name,
         email: data?.email,
-        token
+        token,
+        role: data?.role
       })
     } catch (err) {
       console.error(err)

@@ -2,49 +2,29 @@ import { PrismaVacancyRepository } from "../repositories/prisma/prisma-vacancy-r
 import { VacancyModel } from "../repositories/protocols/vacancy-repository"
 
 export class Vacancy {
-  private props: VacancyModel
-  private repositoryVacancy: PrismaVacancyRepository
+  constructor(
+    private readonly title: string,
+    private readonly description: string,
+    private readonly salary: string,
+    private readonly requirements: string,
 
-  constructor(props: VacancyModel) {
-    this.repositoryVacancy = new PrismaVacancyRepository()
+    private readonly repositoryVacancy: PrismaVacancyRepository
+  ) { }
 
-    this.props = { ...props }
+  public getTitle() {
+    return this.title
   }
 
-  public set title(title: string) {
-    this.props.title = title
+  public getDescription() {
+    return this.description
   }
 
-  public set description(description: string) {
-    this.props.description = description
+  public getSalary() {
+    return this.salary
   }
 
-  public set location(location: string) {
-    this.props.location = location
-  }
-
-  public set salary(salary: string) {
-    this.props.salary = salary
-  }
-
-  public set requirements(requirement: string) {
-    this.props.requirements = requirement
-  }
-
-  public get title() {
-    return this.props.title
-  }
-
-  public get location() {
-    return this.props.location
-  }
-
-  public get salary() {
-    return this.props.salary
-  }
-
-  public get requirements() {
-    return this.props.requirements
+  public getRequirements() {
+    return this.requirements
   }
 
   public save(data: VacancyModel) {

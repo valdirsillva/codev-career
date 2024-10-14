@@ -1,5 +1,4 @@
-import { Company } from "../models/Company"
-import { CompanyModel } from "../repositories/company-repository"
+import { Company } from "../models/company"
 import { UserCompany } from "../repositories/protocols/company-repository"
 
 export class CompanyViewModel {

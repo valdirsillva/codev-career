@@ -78,8 +78,8 @@ export class PrismaCompanyRepository implements Company {
           },
         },
         include: {
-          user: true
-        }
+          user: true,
+        },
       })
 
       if (!response) {
