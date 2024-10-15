@@ -1,5 +1,5 @@
-import { Company } from "../models/company"
-import { UserCompany } from "../repositories/protocols/company-repository"
+import { Company } from "@/models/company"
+import { UserCompany } from "@/repositories/protocols/company-repository"
 
 export class CompanyViewModel {
   constructor(private readonly company: Company) { }

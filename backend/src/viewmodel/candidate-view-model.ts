@@ -1,5 +1,5 @@
-import { Candidate } from "../models/candidate"
-import { CandidateData } from "../repositories/protocols/candidate-repository"
+import { Candidate } from "@/models/candidate"
+import { CandidateData } from "@/repositories/protocols/candidate-repository"
 
 export class CandidateViewModel {
     constructor(private readonly candidate: Candidate) { }

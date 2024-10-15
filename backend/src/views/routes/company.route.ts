@@ -1,6 +1,6 @@
 import { FastifyInstance } from 'fastify'
-import { makeCompanyFactory } from '../factories/company-factory'
-import { makeVacancyFactory } from '../factories/vacancy-factory'
+import { makeCompanyFactory } from '@/views/factories/company-factory'
+import { makeVacancyFactory } from '@/views/factories/vacancy-factory'
 
 export async function company(app: FastifyInstance) {
 

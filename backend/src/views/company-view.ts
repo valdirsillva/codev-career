@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify"
-import { CompanyViewModel } from "../viewmodel/company-view-model"
+import { CompanyViewModel } from "@/viewmodel/company-view-model"
 
 export class CompanyView {
   constructor(private readonly companyViewModel: CompanyViewModel) { }

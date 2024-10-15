@@ -1,5 +1,5 @@
-import { prisma } from "../../views/lib/prisma";
-import { Auth, AuthModel } from "../auth-repository";
+import { prisma } from "@/views/lib/prisma";
+import { Auth, AuthModel } from "@/repositories/auth-repository";
 
 export class PrismaAuthRepository implements Auth {
     async login({ email }: AuthModel) {

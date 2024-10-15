@@ -1,7 +1,7 @@
-import { Vacancy } from "../../models/vacancy"
-import { PrismaVacancyRepository } from "../../repositories/prisma/prisma-vacancy-repository"
-import { VacancyViewModel } from "../../viewmodel/vacancy-view-model"
-import { VacancyView } from "../vacancy-view"
+import { Vacancy } from "@/models/vacancy"
+import { PrismaVacancyRepository } from "@/repositories/prisma/prisma-vacancy-repository"
+import { VacancyViewModel } from "@/viewmodel/vacancy-view-model"
+import { VacancyView } from "@/views/vacancy-view"
 
 export const makeVacancyFactory = (): VacancyView => {
     const repository = new PrismaVacancyRepository()

@@ -1,7 +1,6 @@
-import fastify from "fastify"
 import bcrypt from "bcryptjs"
 import { FastifyReply, FastifyRequest } from "fastify"
-import { AuthViewModel } from "../viewmodel/auth-view-model"
+import { AuthViewModel } from "@/viewmodel/auth-view-model"
 import app from "../app"
 
 interface Auth {

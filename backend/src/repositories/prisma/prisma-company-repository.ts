@@ -1,6 +1,6 @@
-import { prisma } from "../../views/lib/prisma"
-import { Role } from "../enum/role"
-import { UserCompany, Company } from "../protocols/company-repository"
+import { prisma } from "@/views/lib/prisma"
+import { Role } from "@/repositories/enum/role"
+import { UserCompany, Company } from "@/repositories/protocols/company-repository"
 import bcrypt from "bcryptjs"
 
 export class PrismaCompanyRepository implements Company {

@@ -1,7 +1,7 @@
-import { CandidateView } from "../candidate-view"
-import { Candidate } from "../../models/candidate"
-import { CandidateViewModel } from "../../viewmodel/candidate-view-model"
-import { PrismaCandidateRepository } from "../../repositories/prisma/prisma-candidate-repository"
+import { CandidateView } from "@/views/candidate-view"
+import { Candidate } from "@/models/candidate"
+import { CandidateViewModel } from "@/viewmodel/candidate-view-model"
+import { PrismaCandidateRepository } from "@/repositories/prisma/prisma-candidate-repository"
 
 export const makeCandidateFactory = (): CandidateView => {
     const repository = new PrismaCandidateRepository()

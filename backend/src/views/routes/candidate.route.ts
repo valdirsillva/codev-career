@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify"
-import { makeCandidateFactory } from "../factories/candidate-factory"
+import { makeCandidateFactory } from "@/views/factories/candidate-factory"
 
 export async function candidate(app: FastifyInstance) {
     const viewCandidate = makeCandidateFactory()

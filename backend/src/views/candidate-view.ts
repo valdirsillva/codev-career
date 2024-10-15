@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify"
-import { CandidateViewModel } from "../viewmodel/candidate-view-model";
-import { CandidateData } from "../repositories/protocols/candidate-repository";
+import { CandidateViewModel } from "@/viewmodel/candidate-view-model";
+import { CandidateData } from "@/repositories/protocols/candidate-repository";
 import bcrypt from "bcryptjs"
 
 export class CandidateView {

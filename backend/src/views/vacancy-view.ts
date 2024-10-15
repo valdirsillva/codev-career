@@ -1,4 +1,4 @@
-import { VacancyViewModel } from "../viewmodel/vacancy-view-model"
+import { VacancyViewModel } from "@/viewmodel/vacancy-view-model"
 
 export class VacancyView {
   constructor(private readonly vacancyViewModel: VacancyViewModel) { }

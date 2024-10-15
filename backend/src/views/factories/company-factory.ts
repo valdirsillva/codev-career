@@ -1,7 +1,7 @@
-import { Company } from "../../models/company"
-import { CompanyView } from "../company-view"
-import { CompanyViewModel } from "../../viewmodel/company-view-model"
-import { PrismaCompanyRepository } from "../../repositories/prisma/prisma-company-repository"
+import { Company } from "@/models/company"
+import { CompanyView } from "@/views/company-view"
+import { CompanyViewModel } from "@/viewmodel/company-view-model"
+import { PrismaCompanyRepository } from "@/repositories/prisma/prisma-company-repository"
 
 export const makeCompanyFactory = () => {
     const repository = new PrismaCompanyRepository()
