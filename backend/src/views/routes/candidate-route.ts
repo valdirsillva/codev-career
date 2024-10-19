@@ -7,5 +7,5 @@ export async function candidate(app: FastifyInstance) {
     app.get("/api/candidatos", viewCandidate.get.bind(viewCandidate))
     app.post("/api/candidatos", viewCandidate.create.bind(viewCandidate))
 
-    return app;
+    return app
 }

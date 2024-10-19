@@ -1,4 +1,4 @@
-import { IUser } from "./IUser"
+import { IUser } from "./user"
 import { CandidateData } from "../repositories/protocols/candidate-repository"
 import { PrismaCandidateRepository } from "../repositories/prisma/prisma-candidate-repository"
 
