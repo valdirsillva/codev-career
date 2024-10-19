@@ -28,8 +28,15 @@ export class PrismaCompanyRepository implements Company {
     try {
       const response = await prisma.company.findMany({
         include: {
-          user: true
-        }
+          Vacancy: {
+            select: {
+              id: true,
+              title: true,
+              description: true,
+              salary: true
+            },
+          },
+        },
       })
 
       if (response.length === 0) {
@@ -40,11 +47,7 @@ export class PrismaCompanyRepository implements Company {
         cnpj: company.cnpj,
         sector: company.sector,
         description: company.description,
-        name: company.user.name, // Assumindo que "user" não é nulo
-        email: company.user.email,
-        password: company.user.password,
-        phoneNumber: company.user.phoneNumber,
-        address: company.user.address,
+        vagas: company.Vacancy.map(vacancy => vacancy),
       }))
 
       return userCompanies
