@@ -18,6 +18,11 @@ export class CompanyView {
     try {
       const body = request.body
       const data = await this.companyViewModel.create(body)
+
+      if (!data) {
+        reply.code(400).send({ message: 'Não foi possive cadastrar a empresa'})
+      }
+
       reply.code(201).send(data)
     } catch (err) {
       console.error(err)

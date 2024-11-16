@@ -1,22 +1,23 @@
-import { IUser } from "./user"
-import { CandidateData } from "../repositories/protocols/candidate-repository"
-import { PrismaCandidateRepository } from "../repositories/prisma/prisma-candidate-repository"
+import { User } from "@/models/user"
+import { CandidateParams } from "@/repositories/protocols/candidate-repository"
+import { PrismaCandidateRepository } from "@/repositories/prisma/prisma-candidate-repository"
 
-export class Candidate extends IUser {
-    private readonly cpf: String
-    private readonly gender: String
-    private readonly training: String // Formação
-    private readonly experiences: String
+export class Candidate extends User {
+    private readonly cpf: string
+    private readonly gender: string
+    private readonly training: string // Formação
+    private readonly experiences: string
 
     private readonly candidateRepository: PrismaCandidateRepository
 
-    constructor(name: String, email: String, password: String, phoneNumber: String, address: String, cpf: String, gender: String, training: String, experiences: String, candidateRepository: PrismaCandidateRepository) {
+    constructor(data: CandidateParams, candidateRepository: PrismaCandidateRepository) {
+        const { name, email, password, phoneNumber, address } = data
         super(name, email, password, phoneNumber, address)
 
-        this.cpf = cpf
-        this.gender = gender
-        this.training = training
-        this.experiences = experiences
+        this.cpf = data.cpf
+        this.gender = data.gender
+        this.training = data.training
+        this.experiences = data.experiences
 
         this.candidateRepository = candidateRepository
     }
@@ -37,7 +38,7 @@ export class Candidate extends IUser {
         return this.experiences
     }
 
-    public add(data: CandidateData) {
+    public add(data: CandidateParams) {
         return this.candidateRepository.create(data)
     }
 

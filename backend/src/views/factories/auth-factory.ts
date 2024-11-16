@@ -1,4 +1,4 @@
-import { Auth } from "@/models/Auth"
+import { Auth } from "@/models/auth"
 import { AuthView } from "@/views/auth-view"
 import { AuthViewModel } from "@/viewmodel/auth-view-model"
 import { PrismaAuthRepository } from "@/repositories/prisma/prisma-auth-repository"

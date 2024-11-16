@@ -1,11 +1,11 @@
 
-export abstract class IUser {
+export abstract class User {
     constructor(
-        protected readonly name: String,
-        protected readonly email: String,
-        protected readonly password: String,
-        protected readonly phoneNumber: String,
-        protected readonly address: String,
+        protected readonly name: string,
+        protected readonly email: string,
+        protected readonly password: string,
+        protected readonly phoneNumber: string,
+        protected readonly address: string,
     ) { }
 
     getName() {

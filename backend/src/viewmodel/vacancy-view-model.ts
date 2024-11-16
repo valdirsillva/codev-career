@@ -8,6 +8,10 @@ export class VacancyViewModel {
     return this.vacancyModel.getJobs()
   }
 
+  public getById(id: string) {
+    return this.vacancyModel.getById(id)
+  }
+
   public create(data: VacancyModel) {
     return this.vacancyModel.save(data)
   }

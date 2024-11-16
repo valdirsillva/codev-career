@@ -11,4 +11,5 @@ export interface VacancyModel {
 export interface Vacancy {
   create: (data: VacancyModel) => Promise<VacancyModel>
   getAll: () => Promise<VacancyModel[]>
+  getById: (id: string) => Promise<VacancyModel>
 }

@@ -68,6 +68,7 @@ model Candidate {
 model Company {
   id          String    @id @default(uuid())
   cnpj        String    @unique
+  name        String
   sector      String?
   description String?
   Vacancy     Vacancy[]

@@ -1,5 +1,5 @@
 import { prisma } from "@/views/lib/prisma";
-import { UserModel, User } from "../user-repository";
+import { UserModel, User } from "@/repositories/protocols/user-repository";
 
 export class PrismaUserRepository implements User {
   async create(data: Omit<UserModel, 'id'>): Promise<void> {
@@ -15,7 +15,7 @@ export class PrismaUserRepository implements User {
       })
 
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 

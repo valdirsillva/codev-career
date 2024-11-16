@@ -5,6 +5,9 @@ export interface UserModel {
   email: string
   password: string
   password_reset?: string
+  phoneNumber: string
+  role: string
+  address: string
 }
 
 export interface Users {

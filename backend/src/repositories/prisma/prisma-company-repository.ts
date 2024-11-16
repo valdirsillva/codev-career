@@ -58,7 +58,7 @@ export class PrismaCompanyRepository implements Company {
     }
   }
 
-  async create(data: UserCompany): Promise<UserCompany | undefined> {
+  async create(data: UserCompany): Promise<UserCompany | Boolean> {
     try {
       const saltRounds = 10
       const hash = bcrypt.hashSync(data.password, saltRounds)
@@ -68,6 +68,7 @@ export class PrismaCompanyRepository implements Company {
           cnpj: data.cnpj,
           description: data.description,
           sector: data.sector,
+          name: data.name,
           user: {
             create: {
               id: data.id,
@@ -104,6 +105,7 @@ export class PrismaCompanyRepository implements Company {
       return userCompany
     } catch (err: any) {
       console.error(err)
+      return false
     }
   }
 }

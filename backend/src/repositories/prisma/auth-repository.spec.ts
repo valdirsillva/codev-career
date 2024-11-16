@@ -15,7 +15,7 @@ describe('Auth Repository', () => {
       role: 'user'
     }
     const prismaRepositoryStub = sut()
-    const spyAuth = jest.spyOn(prismaRepositoryStub, 'login').mockResolvedValue(makeFakeUser)
+    const spyAuth = jest.spyOn(prismaRepositoryStub, 'login').mockReturnValueOnce(new Promise(resolve => resolve(makeFakeUser)))
     const response = await prismaRepositoryStub.login({ email: 'jhondoe@gmail.com', password: '123' })
     expect(spyAuth).toHaveBeenCalledWith({ email: 'jhondoe@gmail.com', password: '123' })
     expect(response).toEqual(makeFakeUser)

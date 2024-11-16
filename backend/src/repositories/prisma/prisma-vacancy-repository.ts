@@ -27,11 +27,31 @@ export class PrismaVacancyRepository implements Vacancy {
 
   async getAll(): Promise<VacancyModel[]> {
     try {
-      const vacancies = await prisma.vacancy.findMany()
+      const vacancies = await prisma.vacancy.findMany({
+        include: {
+          company: true
+        }
+      })
       return vacancies
     } catch (err) {
       console.error(err)
       return []
+    }
+  }
+
+  async getById(id: string): Promise<VacancyModel> {
+    try {
+      const vacancies = await prisma.vacancy.findUnique({
+        where: {
+          id: id
+        },
+        include: {
+          company: true
+        }
+      })
+      return vacancies
+    } catch (err) {
+      console.error(err)
     }
   }
 }

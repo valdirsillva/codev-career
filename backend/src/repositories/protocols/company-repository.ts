@@ -8,13 +8,14 @@ export interface UserModel {
   address: string
 }
 
-export interface UserCompany extends UserModel {
+export interface CompanyParams extends UserModel {
+  name: string
   cnpj: string
   description: string
   sector: string
 }
 
 export interface Company {
-  create: (data: UserCompany) => Promise<UserCompany | undefined>
-  getAll: () => Promise<UserCompany[]>
+  create: (data: CompanyParams) => Promise<CompanyParams | Boolean>
+  getAll: () => Promise<CompanyParams[]>
 }
