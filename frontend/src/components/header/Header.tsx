@@ -46,15 +46,15 @@ export function Header({ data }: any) {
 
           <div
             className={` ${profile ? "block" : "hidden"} 
-              w-[230px] absolute mt-4 mr-1 bg-white p-5 right-20 rounded-md border border-zinc-300 
+              w-[230px] absolute mt-4 mr-1 bg-[#1a1a1e] p-5 right-20 rounded-md border border-zinc-300 
             `}>
-            <p className="font-medium text-black-800 uppercase">{userAuthenticated?.name}</p>
+            <p className="font-medium text-white uppercase">{userAuthenticated?.name}</p>
             <span className="font-normal text-sm text-zinc-500">{userAuthenticated?.email}</span>
 
-            <div className="relative mt-2 border-t-2">
+            <div className="relative mt-2 border-t-2 text-white">
               <ul className="flex flex-col gap-5 mt-5">
                 <li>
-                  <a href="/profile" >
+                  <a href="/perfil" >
                     <div className="flex flex-row gap-5">
                       <User2 size={20} color="purple" /> Perfil
                     </div>
@@ -70,7 +70,6 @@ export function Header({ data }: any) {
               </ul>
             </div>
           </div>
-
         </div>
       </nav>
     </header>
