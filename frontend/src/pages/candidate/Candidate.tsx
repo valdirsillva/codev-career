@@ -3,8 +3,8 @@ import { CreateCandidate } from "../../components/form/create-candidate"
 
 export function Candidate() {
     return (
-        <div>
+        <>
             <CreateCandidate />
-        </div>
+        </>
     )
 }

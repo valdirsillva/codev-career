@@ -6,6 +6,7 @@ import { Candidate } from "../pages/candidate/candidate"
 import { UserProfile } from "../pages/profile/user-profile"
 import { PrivateRoute } from "./private-route"
 import { HomePage } from "../pages/homepage/homepage"
+import { VacancyDetail } from "../pages/details-vacancy/vacancy-detail"
 
 export function Router() {
     return (
@@ -15,6 +16,7 @@ export function Router() {
             <Route path="/candidatos" element={<Candidate />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/vagas" element={<PrivateRoute element={Home} />} />
+            <Route path="/vagas/info" element={<PrivateRoute element={VacancyDetail} />} />
             <Route path="/perfil" element={<PrivateRoute element={UserProfile} />} />
         </Routes>
     )
