@@ -1,6 +1,6 @@
 import { ArrowLeft, Pencil } from "lucide-react"
 import { Link } from "react-router-dom"
-import { useQuery } from "@tanstack/react-query"
+import { useQueries } from "@tanstack/react-query"
 import { Fragment, useState } from "react"
 import { ProfileUserEdit } from "./profile-user-edit"
 
@@ -9,22 +9,44 @@ export function ProfileUser() {
   const handleEditEduation = () => {
     setExperiencesFormEdit(!experiencesFormEdit)
   }
-  const { isPending, error, data } = useQuery({
-    queryKey: ['perfil'],
-    queryFn: async () => {
-      const response = await fetch(`http://localhost:9001/api/candidatos`)
-      if (!response.ok) {
-        throw new Error('Houve um erro ao tentar carregar seus fdados')
-      }
-      return response.json()
-    },
+  const id = localStorage.getItem('@Auth:userId')
+  const executeQueries = useQueries({
+    queries: [
+      {
+        queryKey: ['perfil'],
+        queryFn: async () => {
+          const response = await fetch(`${process.env.REACT_APP_API}/api/candidatos`)
+          if (!response.ok) {
+            throw new Error('Houve um erro ao tentar carregar seus dados')
+          }
+          return response.json()
+        },
+      },
+
+      {
+        queryKey: ['experiencias', id],
+        queryFn: async () => {
+          const response = await fetch(`${process.env.REACT_APP_API}/api/experiencias/${id}/candidato`)
+          if (!response.ok) {
+            throw new Error('Erro ao carregar as experiências')
+          }
+          return response.json()
+        },
+      },
+    ]
   })
 
+  const isLoading = executeQueries.some((query) => query.isLoading)
+  const isError = executeQueries.some((query) => query.isError)
+  const errors = executeQueries.filter((query) => query.isError).map((q) => q.error.message)
+
   // Renderiza enquanto carrega
-  if (isPending) return <>Carregando...</>
+  if (isLoading) return <>Carregando...</>
 
   // Renderiza se houver um erro
-  if (error) return <>Erro: {error.message}</>
+  if (isError) return <>Erro: {errors.join(', ')}</>
+
+  const [perfilData, experienciasData] = executeQueries.map((q) => q.data)
 
   return (
     <div className="w-full flex flex-row ">
@@ -65,27 +87,27 @@ export function ProfileUser() {
             <div className="flex flex-row flex-wrap">
               <div className="flex flex-col w-1/3">
                 <div className="font-bold mt-5">Nome completo</div>
-                <span>{data[0].user.name}</span>
+                <span>{perfilData[0].user.name}</span>
               </div>
 
               <div className="flex flex-col w-1/3">
                 <div className="font-bold mt-5">E-mail</div>
-                <span>{data[0].user.email}</span>
+                <span>{perfilData[0].user.email}</span>
               </div>
 
               <div className="flex flex-col w-1/3">
                 <div className="font-bold mt-5">CPF</div>
-                <span>{data[0].cpf}</span>
+                <span>{perfilData[0].cpf}</span>
               </div>
 
               <div className="flex flex-col w-1/3">
                 <div className="font-bold mt-5">Telefone</div>
-                <span>{data[0].phoneNumber}</span>
+                <span>{perfilData[0].phoneNumber}</span>
               </div>
 
               <div className="flex flex-col w-1/3">
                 <div className="font-bold mt-5">Data de nascimento</div>
-                <span>{data[0].dateOfBirth}</span>
+                <span>{perfilData[0].dateOfBirth}</span>
               </div>
 
               <div className="flex flex-col w-1/3">
@@ -103,7 +125,7 @@ export function ProfileUser() {
           <div className="flex flex-row items-center justify-between mt-5">
             <div>
               <h3 className="text-2xl mt-3 font-semibold text-indigo-600 ">Formação</h3>
-              {data[0].education}
+              {perfilData[0].education}
             </div>
             <div>
               <Pencil size={20} className="cursor-pointer" onClick={handleEditEduation} />
@@ -116,18 +138,22 @@ export function ProfileUser() {
             {!experiencesFormEdit ? (
               <Fragment>
                 <div className="flex flex-col mt-5">
-                  <span className="font-bold">Analista de Desenvolvimento Fullstack Pleno</span>
-                  <span className="font-thin">Grupo Mais Valor</span>
+                  <span className="font-bold">{experienciasData.jobPosition}</span>
+                  <span className="font-thin">{experienciasData.employee}</span>
 
+                  <h3 className="text-1xl mt-3 font-semibold text-indigo-600 ">Atividades</h3>
                   <p className="mt-2">
-                    Desenvolvimento de sites modernos, responsivos e semântico utilizando técnicas de SEO Search Engine Optimization ( otimização para os motores de busca), posicionando sites na primeira página do google, criação de banners, análise de páginas no google search console.
+                    {experienciasData.description}
                   </p>
 
-                  <p className="flex gap-3 mt-5">
-                    <span>Javascript</span>
-                    <span>NodeJS</span>
-                    <span>ReactJS</span>
-                    <span>HTML</span>
+                  <p className="flex flex-wrap gap-3 mt-5">
+                    {experienciasData.skills.map((skill: string, index: string) => (
+                      <span key={index} 
+                          className="w-auto px-3 py-1 text-sm cursor-pointer border border-solid rounded-md bg-[#4f46e5] text-white "
+                        >
+                        {skill}
+                      </span>
+                    ))}
                   </p>
                 </div>
               </Fragment>
