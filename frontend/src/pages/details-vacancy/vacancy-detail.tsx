@@ -26,10 +26,10 @@ export const VacancyDetail = () => {
         <Fragment>
             <Header data={{ label: 'Login', routerPath: 'login' }} />
 
-            <section className="w-full flex px-10">
-                <div className="w-full flex flex-row sm:mt-10 mt-60">
+            <section className="w-full flex px-4 ">
+                <div className="w-full flex flex-row sm:mt-10 md:mt-20 gap-5">
                     <div className="w-4/12 flex md:flex-row sm:flex-col ">
-                        <aside className={` w-[366px] fixed md:ml-10 md:mt-20 min-[320px]:p-5 md:p-10 bg-[#1a1a1e] rounded-xl`}>
+                        <aside className={`w-[366px] fixed md:ml-10 md:mt-20 min-[320px]:p-5 md:p-10 bg-[#1a1a1e] rounded-xl`}>
                             <h3 className="font-medium text-2xl mb-2 text-gray-200">Sobre a empresa</h3>
                             <div className="flex flex-col gap-3">
                                 <p className="text-white">{data.company.name}</p>
@@ -37,7 +37,7 @@ export const VacancyDetail = () => {
                         </aside>
                     </div>
 
-                    <section className="w-8/12 flex bg-[#1a1a1e] rounded-xl mt-20 ">
+                    <section className="w-10/12 flex bg-[#1a1a1e] rounded-xl mt-20 ">
                         <div className="flex flex-col text-white p-10 ">
                             <span className="font-bold sm:text-3xl md:text-4xl text-indigo-600 ">
                                 {data.title}

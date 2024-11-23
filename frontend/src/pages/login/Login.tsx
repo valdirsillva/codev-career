@@ -45,6 +45,7 @@ export function Login() {
             if (!token) return false
 
             localStorage.setItem('@Auth:token', token)
+            localStorage.setItem('@Auth:userId', response.data.userId)
             setAuthenticated(true)
             setSpinner(!spinner)
 

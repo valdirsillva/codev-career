@@ -37,9 +37,9 @@ export function Home() {
         </div> */}
       </section>
 
-      <section className="w-full flex flex-row gap-4">
-        <div className="w-6/12 flex md:flex-row sm:flex-col md:gap-5">
-          <aside className={` w-[366px] fixed md:ml-10 md:mt-20 min-[320px]:p-5 md:p-10 bg-[#1a1a1e] rounded-xl`}>
+      <section className="w-full flex flex-row">
+        <div className="w-4/12 flex md:flex-row sm:flex-col ">
+          <aside className={`w-[366px] fixed md:ml-10 md:mt-14 min-[320px]:p-5 md:p-10 bg-[#1a1a1e] rounded-xl`}>
             <h3 className="font-medium text-2xl mb-2 text-gray-200">Filtre sua vaga</h3>
             <div className="flex flex-col gap-3">
               <Search />
@@ -47,8 +47,7 @@ export function Home() {
           </aside>
         </div>
 
-
-        <div className="flex flex-col sm:mt-10 md:mt-[60px]">
+        <div className="w-10/12 flex flex-col sm:mt-10 md:mt-[40px] px-4">
           <span className="font-bold sm:text-2xl md:text-3xl text-gray-200 min-[320px]:mb-4 md:mb-5">
             {/* Total de vagas encontradas: {listJobs.length} */}
             {/* {parseInt(scrollPosition.toFixed(1))} */}
@@ -104,7 +103,6 @@ export function Home() {
             );
           })}
         </div>
-
       </section>
     </Fragment>
   );

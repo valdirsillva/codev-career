@@ -1,10 +1,13 @@
 import { ArrowLeft, Pencil } from "lucide-react"
 import { Link } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
+import { Fragment, useState } from "react"
+import { ProfileUserEdit } from "./profile-user-edit"
 
 export function ProfileUser() {
+  const [experiencesFormEdit, setExperiencesFormEdit] = useState(false)
   const handleEditEduation = () => {
-
+    setExperiencesFormEdit(!experiencesFormEdit)
   }
   const { isPending, error, data } = useQuery({
     queryKey: ['perfil'],
@@ -55,7 +58,7 @@ export function ProfileUser() {
         </div>
       </section>
 
-      <section className="w-full h-screen flex-col py-10 px-5 rounded-2xl text-gray-200 ">
+      <section className="w-full h-screen flex-col py-10  rounded-2xl text-gray-200 ">
         <div className="flex flex-col p-5 mt-20 rounded-lg bg-[#1a1a1e]">
           <div className="w-full">
             <h3 className="text-2xl mt-3 font-semibold text-indigo-600 ">Informações pessoais</h3>
@@ -107,24 +110,30 @@ export function ProfileUser() {
             </div>
           </div>
 
-          <div className="">
+          <div className="min-h-72">
             <h3 className="text-2xl mt-3 font-semibold text-indigo-600 ">Experiência Profissional</h3>
             {/* {data[0].experiences} */}
-            <div className="flex flex-col mt-5">
-              <span className="font-bold">Analista de Desenvolvimento Fullstack Pleno</span>
-              <span className="font-thin">Grupo Mais Valor</span>
+            {!experiencesFormEdit ? (
+              <Fragment>
+                <div className="flex flex-col mt-5">
+                  <span className="font-bold">Analista de Desenvolvimento Fullstack Pleno</span>
+                  <span className="font-thin">Grupo Mais Valor</span>
 
-              <p className="mt-2">
-                Desenvolvimento de sites modernos, responsivos e semântico utilizando técnicas de SEO Search Engine Optimization ( otimização para os motores de busca), posicionando sites na primeira página do google, criação de banners, análise de páginas no google search console.
-              </p>
+                  <p className="mt-2">
+                    Desenvolvimento de sites modernos, responsivos e semântico utilizando técnicas de SEO Search Engine Optimization ( otimização para os motores de busca), posicionando sites na primeira página do google, criação de banners, análise de páginas no google search console.
+                  </p>
 
-              <p className="flex gap-3 mt-5">
-                <span>Javascript</span>
-                <span>NodeJS</span>
-                <span>ReactJS</span>
-                <span>HTML</span>
-              </p>
-            </div>
+                  <p className="flex gap-3 mt-5">
+                    <span>Javascript</span>
+                    <span>NodeJS</span>
+                    <span>ReactJS</span>
+                    <span>HTML</span>
+                  </p>
+                </div>
+              </Fragment>
+            ) : (
+              <ProfileUserEdit />
+            )}
           </div>
         </div>
       </section>
