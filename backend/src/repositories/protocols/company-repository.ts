@@ -1,5 +1,7 @@
 
-export interface UserModel {
+
+
+interface User {
   id?: string
   name: string
   email: string
@@ -8,11 +10,11 @@ export interface UserModel {
   address: string
 }
 
-export interface CompanyParams extends UserModel {
+export interface CompanyParams extends User {
   name: string
   cnpj: string
-  description: string
   sector: string
+  description: string
 }
 
 export interface Company {

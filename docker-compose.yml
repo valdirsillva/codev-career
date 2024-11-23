@@ -40,6 +40,8 @@ services:
     container_name: ${POSTGRES_CONTAINER_NAME}
     ports:
       - "${POSTGRES_EXTERNAL_PORT}:${POSTGRES_INTERNAL_PORT}"
+    expose:
+      - "${POSTGRES_EXTERNAL_PORT}"
     env_file:
       - .env
     environment:

@@ -1,6 +1,6 @@
-import { User } from "@/models/user"
-import { CandidateParams } from "@/repositories/protocols/candidate-repository"
-import { PrismaCandidateRepository } from "@/repositories/prisma/prisma-candidate-repository"
+import { User } from '@/models/user'
+import { CandidateParams } from '@/repositories/protocols/candidate-repository'
+import { PrismaCandidateRepository } from '@/repositories/prisma/prisma-candidate-repository'
 
 export class Candidate extends User {
     private readonly cpf: string

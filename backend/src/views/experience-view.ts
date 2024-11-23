@@ -1,5 +1,5 @@
+import { FastifyReply } from 'fastify'
 import { ExperienceViewModel } from '@/viewmodel/experience-view-model'
-import { FastifyReply, FastifyRequest } from 'fastify'
 
 export class ExperienceView {
 	constructor(private readonly experienceViewModel: ExperienceViewModel) { }
@@ -18,7 +18,6 @@ export class ExperienceView {
 	public async get(request: any, reply: FastifyReply) {
 		try {
 			const id = request.params.id
-			console.log(id)
 			const response = await this.experienceViewModel.getById(id)
 			reply.code(200).send(response)
 		} catch (err) {

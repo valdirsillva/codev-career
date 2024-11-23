@@ -1,6 +1,6 @@
 
-import { AuthModel } from "@/repositories/auth-repository"
-import { PrismaAuthRepository } from "@/repositories/prisma/prisma-auth-repository"
+import { AuthModel } from '@/repositories/protocols/auth-repository'
+import { PrismaAuthRepository } from '@/repositories/prisma/prisma-auth-repository'
 
 export class Auth {
     private readonly email: string

@@ -1,62 +1,9 @@
-import { prisma } from "@/views/lib/prisma"
-import { Role } from "@/repositories/enum/role"
-import { CompanyParams, Company } from "@/repositories/protocols/company-repository"
-import bcrypt from "bcryptjs"
+import bcrypt from 'bcryptjs'
+import { prisma } from '@/views/lib/prisma'
+import { Role } from '@/repositories/enum/role'
+import { CompanyParams, Company } from '@/repositories/protocols/company-repository'
 
 export class PrismaCompanyRepository implements Company {
-  // async checkCnpj(data: CompanyModel) {
-  //   try {
-  //     const result = await prisma.company.findUnique({
-  //       where: {
-  //         cnpj: data.cnpj
-  //       },
-  //       select: {
-  //         cnpj: true
-  //       },
-  //     })
-
-  //     if (result?.cnpj != null) {
-  //       throw new Error("O CNPJ informado já está vinculado a uma outra empresa")
-  //     }
-  //     return false
-  //   } catch (err: any) {
-  //     return true
-  //   }
-  // }
-
-  async getAll(): Promise<CompanyParams[]> {
-    try {
-      const response = await prisma.company.findMany({
-        include: {
-          Vacancy: {
-            select: {
-              id: true,
-              title: true,
-              description: true,
-              salary: true
-            },
-          },
-        },
-      })
-
-      if (response.length === 0) {
-        throw new Error("Nenhuma empresa encontrada.")
-      }
-      const userCompanies: any = response.map(company => ({
-        id: company.id,
-        cnpj: company.cnpj,
-        sector: company.sector,
-        description: company.description,
-        vagas: company.Vacancy.map(vacancy => vacancy),
-      }))
-
-      return userCompanies
-
-    } catch (err: any) {
-      console.error(err)
-      return []
-    }
-  }
 
   async create(data: CompanyParams): Promise<CompanyParams | Boolean> {
     try {
@@ -106,6 +53,40 @@ export class PrismaCompanyRepository implements Company {
     } catch (err: any) {
       console.error(err)
       return false
+    }
+  }
+  
+  async getAll(): Promise<CompanyParams[]> {
+    try {
+      const response = await prisma.company.findMany({
+        include: {
+          Vacancy: {
+            select: {
+              id: true,
+              title: true,
+              description: true,
+              salary: true
+            },
+          },
+        },
+      })
+
+      if (response.length === 0) {
+        throw new Error("Nenhuma empresa encontrada.")
+      }
+      const userCompanies: any = response.map(company => ({
+        id: company.id,
+        cnpj: company.cnpj,
+        sector: company.sector,
+        description: company.description,
+        vagas: company.Vacancy.map(vacancy => vacancy),
+      }))
+
+      return userCompanies
+
+    } catch (err: any) {
+      console.error(err)
+      return []
     }
   }
 }

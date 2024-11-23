@@ -1,7 +1,7 @@
-import bcrypt from "bcryptjs"
-import { FastifyReply, FastifyRequest } from "fastify"
-import { AuthViewModel } from "@/viewmodel/auth-view-model"
-import app from "../app"
+import bcrypt from 'bcryptjs'
+import { FastifyReply, FastifyRequest } from 'fastify'
+import { AuthViewModel } from '@/viewmodel/auth-view-model'
+import app from '../app'
 
 interface Auth {
   email: string
@@ -57,17 +57,6 @@ export class AuthView {
       })
     }
   }
-
-  // private async validateUser(response: AuthResponse, user: Auth, reply: FastifyReply) {
-  //     const { password } = response
-  //     const hasPassword = await bcrypt.compare(user.password, password)
-
-  //     if (hasPassword === false) {
-  //         return reply.code(401).send({ message: 'Credenciais inválidas!' })
-  //         // return false
-  //     }
-  //     return true
-  // }
 
   private generateTokenJwt(response: AuthResponse, user: Auth) {
     const { id, name, email } = response

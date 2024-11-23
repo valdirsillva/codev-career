@@ -1,6 +1,6 @@
-import { PrismaCompanyRepository } from "../repositories/prisma/prisma-company-repository"
-import { CompanyParams } from "../repositories/protocols/company-repository"
-import { User } from "@/models/user"
+import { PrismaCompanyRepository } from '@/repositories/prisma/prisma-company-repository'
+import { CompanyParams } from '@/repositories/protocols/company-repository'
+import { User } from '@/models/user'
 
 export class Company extends User {
   private readonly cnpj: string

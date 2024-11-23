@@ -1,5 +1,5 @@
 import { Vacancy } from "@/models/vacancy"
-import { VacancyModel } from "@/repositories/vacancy-repository"
+import { VacancyModel } from "@/repositories/protocols/vacancy-repository"
 
 export class VacancyViewModel {
   constructor(private readonly vacancyModel: Vacancy) { }

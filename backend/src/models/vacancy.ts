@@ -1,5 +1,5 @@
-import { PrismaVacancyRepository } from "@/repositories/prisma/prisma-vacancy-repository"
-import { VacancyModel } from "@/repositories/protocols/vacancy-repository"
+import { PrismaVacancyRepository } from '@/repositories/prisma/prisma-vacancy-repository'
+import { VacancyModel } from '@/repositories/protocols/vacancy-repository'
 
 export class Vacancy {
   constructor(

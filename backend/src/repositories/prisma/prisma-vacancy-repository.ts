@@ -1,6 +1,6 @@
 import { prisma } from "@/views/lib/prisma"
 import { VacancyModel } from "@/repositories/protocols/vacancy-repository"
-import { Vacancy } from "@/repositories/vacancy-repository"
+import { Vacancy } from "@/repositories/protocols/vacancy-repository"
 
 export class PrismaVacancyRepository implements Vacancy {
   async create(data: VacancyModel): Promise<VacancyModel> {
