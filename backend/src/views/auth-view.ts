@@ -44,6 +44,7 @@ export class AuthView {
       const token = this.generateTokenJwt(response, user)
       return reply.code(200).send({
         auth: true,
+        userId: data?.Candidate.map(candidate => candidate.id),
         name: data?.name,
         email: data?.email,
         token,

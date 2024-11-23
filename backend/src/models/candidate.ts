@@ -6,7 +6,6 @@ export class Candidate extends User {
     private readonly cpf: string
     private readonly gender: string
     private readonly training: string // Formação
-    private readonly experiences: string
 
     private readonly candidateRepository: PrismaCandidateRepository
 
@@ -17,7 +16,6 @@ export class Candidate extends User {
         this.cpf = data.cpf
         this.gender = data.gender
         this.training = data.training
-        this.experiences = data.experiences
 
         this.candidateRepository = candidateRepository
     }
@@ -34,15 +32,11 @@ export class Candidate extends User {
         return this.training
     }
 
-    public getExperiences() {
-        return this.experiences
-    }
-
     public add(data: CandidateParams) {
         return this.candidateRepository.create(data)
     }
 
-    public get() {
+    public getAllCandidates() {
         return this.candidateRepository.getAll()
     }
 }

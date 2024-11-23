@@ -8,6 +8,7 @@ import { authMiddleware } from './middleware/auth.middleware'
 
 import fastifyJwt from '@fastify/jwt'
 import { candidate } from '@/views/routes/candidate-route'
+import { experience } from './views/routes/experience-route'
 
 dotenv.config()
 
@@ -30,6 +31,8 @@ app.register(cors, {
 app.register(auth)
 app.register(company)
 app.register(candidate)
+app.register(experience)
+
 // app.register(userRouter)
 
 app.listen({ port: 9001, host: '0.0.0.0' }, () => {

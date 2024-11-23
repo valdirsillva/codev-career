@@ -3,10 +3,10 @@ generator client {
 }
 
 datasource db {
-  // provider = "postgresql"
-  // url      = env("DATABASE_URL")
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // provider = "sqlite"
+  // url      = "file:./dev.db"
 }
 
 // Vaga
@@ -56,13 +56,30 @@ model Candidate {
   cpf         String?
   gender      String
   education   String
-  experiences String?
+  // experiences String?
   Application Application[]
+  Experience Experience[]
 
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
+  userId     String
+  user       User         @relation(fields: [userId], references: [id])
 
   @@map("candidates")
+}
+
+model Experience {
+  id String @id @default(uuid())
+
+  employee         String
+  jobPosition      String
+  currentVacancy   Boolean
+  admissionalDate   String
+  demissionalDate  String
+  description      String
+  skills           String[]
+
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id])
+   @@map("experiences")
 }
 
 model Company {
