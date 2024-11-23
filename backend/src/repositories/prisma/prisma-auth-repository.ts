@@ -7,6 +7,13 @@ export class PrismaAuthRepository implements Auth {
             const user = await prisma.user.findFirst({
                 where: {
                     email,
+                },
+                include: {
+                    Candidate: {
+                        select: {
+                            id: true
+                        }
+                    }
                 }
             })
             return user

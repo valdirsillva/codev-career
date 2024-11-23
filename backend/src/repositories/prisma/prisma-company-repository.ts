@@ -1,6 +1,6 @@
 import { prisma } from "@/views/lib/prisma"
 import { Role } from "@/repositories/enum/role"
-import { UserCompany, Company } from "@/repositories/protocols/company-repository"
+import { CompanyParams, Company } from "@/repositories/protocols/company-repository"
 import bcrypt from "bcryptjs"
 
 export class PrismaCompanyRepository implements Company {
@@ -24,7 +24,7 @@ export class PrismaCompanyRepository implements Company {
   //   }
   // }
 
-  async getAll(): Promise<UserCompany[]> {
+  async getAll(): Promise<CompanyParams[]> {
     try {
       const response = await prisma.company.findMany({
         include: {
@@ -58,7 +58,7 @@ export class PrismaCompanyRepository implements Company {
     }
   }
 
-  async create(data: UserCompany): Promise<UserCompany | Boolean> {
+  async create(data: CompanyParams): Promise<CompanyParams | Boolean> {
     try {
       const saltRounds = 10
       const hash = bcrypt.hashSync(data.password, saltRounds)
@@ -89,8 +89,8 @@ export class PrismaCompanyRepository implements Company {
       if (!response) {
         throw new Error("Houve um erro a cadastrar a empresa.")
       }
-      // Mapeando manualmente o resultado para o tipo UserCompany
-      const userCompany: UserCompany = {
+      // Mapeando manualmente o resultado para o tipo CompanyParams
+      const userCompany: CompanyParams = {
         id: response.id,
         cnpj: response.cnpj,
         description: response.description!,

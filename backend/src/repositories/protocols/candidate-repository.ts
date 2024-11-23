@@ -1,5 +1,5 @@
 interface User {
-    id: string
+    id?: string
     name: string
     email: string
     password: string
@@ -12,7 +12,6 @@ export interface CandidateParams extends User {
     gender: string
     training: string
     education: string
-    experiences: string
 }
 
 export interface Candidate {

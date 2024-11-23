@@ -1,15 +1,14 @@
 import { prisma } from "@/views/lib/prisma";
 import { Role } from "@/repositories/enum/role";
-import { Candidate, CandidateData } from "@/repositories/protocols/candidate-repository";
+import { Candidate, CandidateParams } from "@/repositories/protocols/candidate-repository";
 
 export class PrismaCandidateRepository implements Candidate {
-  async create(data: CandidateData): Promise<CandidateData | undefined> {
+  async create(data: CandidateParams): Promise<CandidateParams | undefined> {
     try {
       const response = await prisma.candidate.create({
         data: {
           cpf: data.cpf,
           gender: data.gender,
-          experiences: data.experiences,
           education: data.education,
           user: {
             create: {
@@ -32,12 +31,13 @@ export class PrismaCandidateRepository implements Candidate {
         throw new Error('Houve um erro ao cadastrar o candidato.')
       }
 
-      const candidate: CandidateData = {
+      const candidate: CandidateParams = {
         id: response.id,
         cpf: response.cpf!,
         gender: response.gender!,
         education: response.education!,
-        experiences: response.experiences!,
+        training: response.education!,
+      
         name: response.user.name,
         email: response.user.email,
         password: response.user.password,
@@ -51,7 +51,7 @@ export class PrismaCandidateRepository implements Candidate {
     }
   }
 
-  async getAll(): Promise<CandidateData[]> {
+  async getAll(): Promise<CandidateParams[]> {
     try {
       const candidatesDB = await prisma.candidate.findMany({
         include: {
@@ -68,7 +68,6 @@ export class PrismaCandidateRepository implements Candidate {
         cpf: candidate.cpf!,
         gender: candidate.gender!,
         education: candidate.education!,
-        experiences: candidate.experiences!,
         user: {
           id: candidate.user.id,
           name: candidate.user.name,
