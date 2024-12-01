@@ -13,5 +13,5 @@ export interface ExperienceParams {
 
 export interface Experience {
     create: (data: Omit<ExperienceParams, 'id'>) => Promise<ExperienceParams>
-    getById: (id: string) => Promise<ExperienceParams>
+    getById: (id: string) => Promise<ExperienceParams[]>
 }

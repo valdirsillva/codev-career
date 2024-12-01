@@ -22,9 +22,9 @@ export class PrismaExperienceRepository implements Experience {
 		}
 	}
 
-	async getById(id: string): Promise<ExperienceParams> {
+	async getById(id: string): Promise<ExperienceParams[]> {
 		try {
-			const response = await prisma.experience.findFirstOrThrow({
+			const response = await prisma.experience.findMany({
 				where: {
 					candidateId: id,
 				},
@@ -42,20 +42,23 @@ export class PrismaExperienceRepository implements Experience {
 				throw new Error("Não foi possivel listar as experiencias do candidato")
 			}
 
-			const experiences: ExperienceParams = {
-				id: response.id,
-				employee: response.employee,
-				jobPosition: response.jobPosition,
-				currentVacancy: response.currentVacancy,
-				admissionalDate: response.admissionalDate,
-				demissionalDate: response.demissionalDate,
-				description: response.description,
-				skills: response.skills,
-				candidateId: response.candidate.userId,
-			}
+			const experiences = response.map((item) => {
+				return {
+					id: item.id,
+					employee: item.employee,
+					jobPosition: item.jobPosition,
+					currentVacancy: item.currentVacancy,
+					admissionalDate: item.admissionalDate,
+					demissionalDate: item.demissionalDate,
+					description: item.description,
+					skills: item.skills,
+					candidateId: item.candidate.userId,
+				}
+			})
 			return experiences
 		} catch (err) {
 			console.error(err)
+			return []
 		}
 	}
 }

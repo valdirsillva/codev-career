@@ -18,6 +18,10 @@ export class ExperienceView {
 	public async get(request: any, reply: FastifyReply) {
 		try {
 			const id = request.params.id
+			console.log(id)
+			if (!id)
+				return reply.code(400).send({ message: 'Houve um erro ao tentar listas as especienciass'})
+
 			const response = await this.experienceViewModel.getById(id)
 			reply.code(200).send(response)
 		} catch (err) {

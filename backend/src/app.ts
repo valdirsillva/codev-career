@@ -9,6 +9,7 @@ import { authMiddleware } from './middleware/auth.middleware'
 import fastifyJwt from '@fastify/jwt'
 import { candidate } from '@/views/routes/candidate-route'
 import { experience } from './views/routes/experience-route'
+import { application } from './views/routes/application-route'
 
 dotenv.config()
 
@@ -32,6 +33,7 @@ app.register(auth)
 app.register(company)
 app.register(candidate)
 app.register(experience)
+app.register(application)
 
 // app.register(userRouter)
 
