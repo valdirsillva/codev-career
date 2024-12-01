@@ -5,12 +5,27 @@ import { useQuery } from "@tanstack/react-query";
 export const VacancyDetail = () => {
     const url = new URL(window.location.href)
     const params = url.searchParams;
-    const id = params.get('id')
+    const vacancyId = params.get('id')
+
+    const subscriber = async () => {
+        try {
+            await fetch(`http://localhost:9001/api/vagas/inscricao`, {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    candidateId: localStorage.getItem('@Auth:userId'),
+                    vacancyId: vacancyId,
+                })
+            })
+        } catch(err) {
+            console.error(err)
+        }
+    }
 
     const { isPending, error, data } = useQuery({
         queryKey: ['vagas'],
         queryFn: async () => {
-            const response = await fetch('http://localhost:9001/api/vagas/' + id)
+            const response = await fetch('http://localhost:9001/api/vagas/' + vacancyId)
             if (!response.ok) {
                 throw new Error('Erro na requisição');
             }
@@ -67,6 +82,15 @@ export const VacancyDetail = () => {
 
                             <div className="mt-5">
                                 Contratação: CLT
+                            </div>
+
+                            <div className="flex flex-row py-5">
+                                <button
+                                    className="w-30 h-10 flex items-center bg-indigo-600 hover:bg-indigo-700 transition px-8 py-3 text-white rounded"
+                                    onClick={subscriber}
+                                >
+                                    INSCREVER
+                                </button>
                             </div>
                         </div>
                     </section>

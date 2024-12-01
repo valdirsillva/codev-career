@@ -137,25 +137,29 @@ export function ProfileUser() {
             {/* {data[0].experiences} */}
             {!experiencesFormEdit ? (
               <Fragment>
-                <div className="flex flex-col mt-5">
-                  <span className="font-bold">{experienciasData.jobPosition}</span>
-                  <span className="font-thin">{experienciasData.employee}</span>
+                {experienciasData.map((experience: any) => {
+                  return (
+                    <div className="flex flex-col mt-5">
+                      <span className="font-bold">{experience.jobPosition}</span>
+                      <span className="font-thin">{experience.employee}</span>
 
-                  <h3 className="text-1xl mt-3 font-semibold text-indigo-600 ">Atividades</h3>
-                  <p className="mt-2">
-                    {experienciasData.description}
-                  </p>
+                      <h3 className="text-1xl mt-3 font-semibold text-indigo-600 ">Atividades</h3>
+                      <p className="mt-2">
+                        {experience.description}
+                      </p>
 
-                  <p className="flex flex-wrap gap-3 mt-5">
-                    {experienciasData.skills.map((skill: string, index: string) => (
-                      <span key={index} 
-                          className="w-auto px-3 py-1 text-sm cursor-pointer border border-solid rounded-md bg-[#4f46e5] text-white "
-                        >
-                        {skill}
-                      </span>
-                    ))}
-                  </p>
-                </div>
+                      <p className="flex flex-wrap gap-3 mt-5">
+                        {experience.skills.map((skill: string, index: string) => (
+                          <span key={index}
+                            className="w-auto px-3 py-1 text-sm cursor-pointer border border-solid rounded-md bg-[#4f46e5] text-white"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </p>
+                    </div>
+                  )
+                })}
               </Fragment>
             ) : (
               <ProfileUserEdit />
