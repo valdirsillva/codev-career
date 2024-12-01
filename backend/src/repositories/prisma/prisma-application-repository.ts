@@ -2,8 +2,31 @@ import { prisma } from "@/views/lib/prisma";
 import { Application, ApplicationModel, ResponseApplication } from "../protocols/application-repository";
 
 export class PrismaApplicationRepository implements Application {
+	async findApplicationByCandidade(candidateId: string, vacancyId: string) {
+		try {
+			const response = await prisma.application.findFirstOrThrow({
+				where: {
+					candidateId,
+					vacancyId,
+				},
+			})
+
+			if (!response) {
+				return false
+			} 
+			return true
+		} catch(err) {
+			console.error(err)
+			throw err
+		}
+	}
+
 	async add(data: ApplicationModel): Promise<ApplicationModel> {
 		try {
+			const existsApplicationFromCandidate = await this.findApplicationByCandidade(data.candidateId, data.vacancyId)
+			if (existsApplicationFromCandidate) {
+				throw new Error('Voce já se candidatou à essa vaga.')
+			}
 			const response = await prisma.application.create({
 				data: {
 					candidateId: data.candidateId,
@@ -18,6 +41,7 @@ export class PrismaApplicationRepository implements Application {
 			}
 		} catch (err) {
 			console.error(err)
+			throw err
 		}
 	}
 

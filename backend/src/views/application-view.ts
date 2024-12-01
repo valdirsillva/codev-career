@@ -13,8 +13,6 @@ export class ApplicationView {
         try {
             const requestBody = request.body as RequestApplication
 
-            console.log(requestBody.candidateId)
-
             if (!requestBody.candidateId) {
                 return reply.code(404).send({ message: 'O id do candidato nao foi recebido' })
             }
@@ -27,6 +25,7 @@ export class ApplicationView {
             return reply.code(201).send(response)
         } catch(err) {
             console.error(err)
+            return reply.code(400).send(err)
         }
     }
 
