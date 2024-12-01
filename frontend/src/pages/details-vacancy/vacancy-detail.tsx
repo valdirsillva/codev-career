@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { Header } from "../../components/header/header";
 import { useQuery } from "@tanstack/react-query";
+import { toast, ToastContainer } from "react-toastify";
 
 export const VacancyDetail = () => {
     const url = new URL(window.location.href)
@@ -9,7 +10,7 @@ export const VacancyDetail = () => {
 
     const subscriber = async () => {
         try {
-            await fetch(`http://localhost:9001/api/vagas/inscricao`, {
+           const response = await fetch(`http://localhost:9001/api/vagas/inscricao`, {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -17,6 +18,10 @@ export const VacancyDetail = () => {
                     vacancyId: vacancyId,
                 })
             })
+            const results = await response.json()
+            if (results.statusCode === 400) {
+                toast.warning(results.message, { theme: 'dark' })
+            }
         } catch(err) {
             console.error(err)
         }
@@ -40,9 +45,12 @@ export const VacancyDetail = () => {
     return (
         <Fragment>
             <Header data={{ label: 'Login', routerPath: 'login' }} />
+           
 
             <section className="w-full flex px-4 ">
+                
                 <div className="w-full flex flex-row sm:mt-10 md:mt-20 gap-5">
+                <ToastContainer />
                     <div className="w-4/12 flex md:flex-row sm:flex-col ">
                         <aside className={`w-[366px] fixed md:ml-10 md:mt-20 min-[320px]:p-5 md:p-10 bg-[#1a1a1e] rounded-xl`}>
                             <h3 className="font-medium text-2xl mb-2 text-gray-200">Sobre a empresa</h3>
