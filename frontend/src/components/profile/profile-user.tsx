@@ -38,7 +38,7 @@ export function ProfileUser() {
 
   const isLoading = executeQueries.some((query) => query.isLoading)
   const isError = executeQueries.some((query) => query.isError)
-  const errors = executeQueries.filter((query) => query.isError).map((q) => q.error.message)
+  const errors = executeQueries.filter((query) => query.isError).map((q) => q.error?.message)
 
   // Renderiza enquanto carrega
   if (isLoading) return <>Carregando...</>
