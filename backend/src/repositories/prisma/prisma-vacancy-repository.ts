@@ -1,5 +1,5 @@
 import { prisma } from "@/views/lib/prisma"
-import { VacancyModel } from "@/repositories/protocols/vacancy-repository"
+import { ResponseVacancy, VacancyModel } from "@/repositories/protocols/vacancy-repository"
 import { Vacancy } from "@/repositories/protocols/vacancy-repository"
 
 export class PrismaVacancyRepository implements Vacancy {
@@ -52,6 +52,34 @@ export class PrismaVacancyRepository implements Vacancy {
       return vacancies
     } catch (err) {
       console.error(err)
+    }
+  }
+
+  async findVacancyOfCompanyById(id: string): Promise<ResponseVacancy[]> {
+    try {
+      const response = await prisma.vacancy.findMany({
+        where: {
+          companyId: id
+        }
+      })
+
+      if (response.length === 0) {
+        throw new Error("Nenhuma vaga encontrada.")
+      }
+      
+      const vacancies: any = response.map(v => ({
+        id: v.id,
+        title: v.title,
+        salary: v.salary,
+        description: v.description,
+        companyId: v.companyId
+      }))
+
+      return vacancies
+
+    } catch(err) {
+      console.error(err.message)
+      return []
     }
   }
 }

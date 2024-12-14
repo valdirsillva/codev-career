@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs'
 import { prisma } from '@/views/lib/prisma'
 import { Role } from '@/repositories/enum/role'
 import { CompanyParams, Company } from '@/repositories/protocols/company-repository'
+import { Vacancy } from '../protocols/vacancy-repository'
 
 export class PrismaCompanyRepository implements Company {
 
@@ -89,4 +90,6 @@ export class PrismaCompanyRepository implements Company {
       return []
     }
   }
+
+  
 }

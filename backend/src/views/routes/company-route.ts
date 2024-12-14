@@ -12,6 +12,7 @@ export async function company(app: FastifyInstance) {
 
   app.get('/api/vagas', viewVacancy.get.bind(viewVacancy))
   app.get('/api/vagas/:id', viewVacancy.getById.bind(viewVacancy))
+  app.get("/api/vagas/:id/empresa", viewVacancy.getVacanciesByIdWithEmployee.bind(viewVacancy))
   app.post('/api/vagas', viewVacancy.create.bind(viewVacancy))
 
   return app;

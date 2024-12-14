@@ -12,6 +12,10 @@ export class VacancyViewModel {
     return this.vacancyModel.getById(id)
   }
 
+  public getVacancyByIdEmployee(id: string) {
+    return this.vacancyModel.getVacancyByIdEmployee(id)
+  }
+
   public create(data: VacancyModel) {
     return this.vacancyModel.save(data)
   }

@@ -37,4 +37,8 @@ export class Vacancy {
   public getById(id: string) {
     return this.repositoryVacancy.getById(id)
   }
+
+  public getVacancyByIdEmployee(id: string) {
+    return this.repositoryVacancy.findVacancyOfCompanyById(id)
+  }
 }

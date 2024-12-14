@@ -28,6 +28,19 @@ export class VacancyView {
     }
   }
 
+  public async getVacanciesByIdWithEmployee(request: any, reply: any) {
+    try {
+      const id = request.params.id
+      const vacancy = await this.vacancyViewModel.getVacancyByIdEmployee(id)
+      reply.code(200).send(vacancy)
+    } catch (err) {
+      console.error(err)
+      reply
+        .code(400)
+        .send({ message: "Ops! Não foi possível listar as vagas!" })
+    }
+  }
+
   public async create(request: any, reply: any) {
     try {
       const body = request.body
