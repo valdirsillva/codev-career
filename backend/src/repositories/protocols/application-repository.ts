@@ -1,3 +1,14 @@
+export interface Experiences {
+    id: string
+    employee: string,
+    jobPosition: string
+    currentVacancy: boolean
+    admissionalDate: string
+    demissionalDate: string
+    description: string
+    skills: string[]
+}
+
 export interface ApplicationModel {
     vacancyId: string
     candidateId: string
@@ -5,13 +16,16 @@ export interface ApplicationModel {
 }
 
 export interface ResponseApplication {
-    cpf: string
-    education: string
-    gender: string
-
     company: string
     salary: string
     requirements: string
+    candidate: {
+        candidateId:string
+        cpf: string
+        dateSubscriber: string
+        education: string
+        experiences: Experiences[]
+    }
 }
 
 export interface Application {

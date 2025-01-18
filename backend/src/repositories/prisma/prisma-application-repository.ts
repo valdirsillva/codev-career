@@ -13,9 +13,9 @@ export class PrismaApplicationRepository implements Application {
 
 			if (!response) {
 				return false
-			} 
+			}
 			return true
-		} catch(err) {
+		} catch (err) {
 			console.error(err)
 			throw err
 		}
@@ -49,25 +49,39 @@ export class PrismaApplicationRepository implements Application {
 		try {
 			const response = await prisma.application.findMany({
 				include: {
-					candidate: true,
-					vacancy: true
+					candidate: {
+						include: {
+							Experience: true
+						},
+					},
+					vacancy: true,
 				},
 			})
 
 			const applications = response.map((application) => {
 				return {
-					candidateId: application.candidate.id,
-					cpf: application.candidate.cpf,
-					education: application.candidate.education,
-					gender: application.candidate.gender,
 					vacancyId: application.vacancy.id,
 					company: application.vacancy.companyId,
 					salary: application.vacancy.salary,
 					requirements: application.vacancy.requirements,
-					dateSubscriber: application.dateApplication
+					candidate: {
+						candidateId: application.candidate.id,
+						cpf: application.candidate.cpf,
+						dateSubscriber: application.dateApplication.toISOString(),
+						education: application.candidate.education,
+						experiences: application.candidate.Experience.map((experience) => ({
+							id: experience.id,
+							employee: experience.employee,
+							jobPosition: experience.jobPosition,
+							currentVacancy: experience.currentVacancy,
+							admissionalDate: experience.admissionalDate,
+							demissionalDate: experience.demissionalDate,
+							description: experience.description,
+							skills: experience.skills,
+						}))
+					}
 				}
 			})
-
 			return applications
 		} catch (err) {
 			console.error(err)
