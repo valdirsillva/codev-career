@@ -41,8 +41,8 @@ model User {
   name        String
   email       String      @unique
   password    String
-  phoneNumber String
-  address     String
+  phoneNumber String?
+  address     String?
   role        String      @default("CANDIDATE")
   Candidate   Candidate[]
   Company     Company[]
@@ -54,8 +54,8 @@ model User {
 model Candidate {
   id          String        @id @default(uuid())
   cpf         String?
-  gender      String
-  education   String
+  gender      String?
+  education   String?
   // experiences String?
   Application Application[]
   Experience Experience[]

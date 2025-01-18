@@ -12,7 +12,6 @@ export class ApplicationView {
     public async add(request: FastifyRequest, reply: FastifyReply) {
         try {
             const requestBody = request.body as RequestApplication
-
             if (!requestBody.candidateId) {
                 return reply.code(404).send({ message: 'O id do candidato nao foi recebido' })
             }

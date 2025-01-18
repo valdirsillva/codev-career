@@ -1,12 +1,20 @@
-export interface Experiences {
-    id: string
-    employee: string,
+interface ExperienceDetail {
+    id: number
+    employee: string
     jobPosition: string
     currentVacancy: boolean
     admissionalDate: string
     demissionalDate: string
     description: string
     skills: string[]
+}
+
+interface CandidateDetail {
+    candidateId: number
+    cpf: string
+    dateSubscriber: string
+    education: string
+    experiences: ExperienceDetail[]
 }
 
 export interface ApplicationModel {
@@ -16,16 +24,11 @@ export interface ApplicationModel {
 }
 
 export interface ResponseApplication {
+    vacancyId: string
     company: string
-    salary: string
+    salary: number
     requirements: string
-    candidate: {
-        candidateId:string
-        cpf: string
-        dateSubscriber: string
-        education: string
-        experiences: Experiences[]
-    }
+    candidates: CandidateDetail[]
 }
 
 export interface Application {

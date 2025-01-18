@@ -3,15 +3,15 @@ interface User {
     name: string
     email: string
     password: string
-    phoneNumber: string
-    address: string
+    phoneNumber?: string | null
+    address?: string | null
 }
 
 export interface CandidateParams extends User {
-    cpf: string
-    gender: string
-    training: string
-    education: string
+    cpf?: string | null
+    gender?: string | null
+    training?: string | null
+    education?: string | null
 }
 
 export interface Candidate {
