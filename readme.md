@@ -8,7 +8,7 @@ Bem-vindo ao projeto **Codev-Career**! O Codev-Career e um sistema para conectar
 
 #### Diagrama de classe:
 
-![Exemplo de Diagrama](https://github.com/valdirsillva/codev-career/blob/main/docs/diagram-class.png)
+![Exemplo de Diagrama](https://github.com/valdirsillva/codev-career/blob/main/docs/diagram-class.svg)
 ![Exemplo de Objetos](https://github.com/valdirsillva/codev-career/blob/main/docs/diagram-object.png)
 
 ## Tecnologias Utilizadas
@@ -53,7 +53,7 @@ Bem-vindo ao projeto **Codev-Career**! O Codev-Career e um sistema para conectar
 ├── frontend/         # Código do frontend com ReactJS;
 ├── backend/          # Código do backend com Fastify e Prisma;
 ├── docker-composer   # Definição docker-compose para gerenciar conteineres da aplicação;
-├── docker/           # Configuração para execução do PostgreSQL e serviços auxiliares;
+├── docs/             # Diagramas do sistema;
 └── README.md         # Documentação do projeto;
 ```
 
