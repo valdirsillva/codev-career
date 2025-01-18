@@ -9,6 +9,8 @@ Bem-vindo ao projeto **Codev-Career**! O Codev-Career e um sistema para conectar
 #### Diagrama de classe:
 
 ![Exemplo de Diagrama](https://github.com/valdirsillva/codev-career/blob/main/docs/diagram-class.png)
+
+#### Diagrama de objetos:
 ![Exemplo de Objetos](https://github.com/valdirsillva/codev-career/blob/main/docs/diagram-object.png)
 
 ## Tecnologias Utilizadas
