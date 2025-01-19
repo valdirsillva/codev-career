@@ -18,6 +18,7 @@ export function Header({ data }: any) {
 
   const logout = (): void => {
     localStorage.removeItem("@Auth:token")
+    localStorage.removeItem("@Auth:userId")
     setAuthenticated(false)
   }
 

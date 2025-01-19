@@ -34,4 +34,5 @@ export interface ResponseApplication {
 export interface Application {
     add: (data: ApplicationModel) => Promise<ApplicationModel>
     findAll: () => Promise<ResponseApplication[]>
+    findById: (applicationId: string) => Promise<any>
 }

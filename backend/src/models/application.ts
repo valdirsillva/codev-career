@@ -20,4 +20,8 @@ export class Application {
     public get() {
         return this.applicationRepository.findAll()
     }
+
+    public getById(id: string) {
+        return this.applicationRepository.findById(id)
+    }
 }

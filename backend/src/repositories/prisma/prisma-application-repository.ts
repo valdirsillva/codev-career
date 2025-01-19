@@ -62,7 +62,7 @@ export class PrismaApplicationRepository implements Application {
 			})
 
 			// Agrupar as candidaturas por vaga
-			const groupByVacancy = response.reduce<{ [key: number]:  ResponseApplication} >((acc, application) => {
+			const groupByVacancy = response.reduce<{ [key: number]: ResponseApplication }>((acc, application) => {
 				// Encontre ou crie uma entrada para a vaga no acumulador
 				const vacancyId = application.vacancy.id
 				if (!acc[vacancyId]) {
@@ -76,7 +76,7 @@ export class PrismaApplicationRepository implements Application {
 				}
 				// Total de candidatos inscritos na vaga
 				acc[vacancyId]['totalCandidates'] = acc[vacancyId].candidates.length
-				
+
 				// Adicionar o candidato à vaga
 				acc[vacancyId].candidates.push({
 					candidateId: application.candidate.id,
@@ -100,7 +100,20 @@ export class PrismaApplicationRepository implements Application {
 
 			// Converter o objeto agrupado em um array 
 			return Object.values(groupByVacancy)
+		} catch (err) {
+			console.error(err)
+		}
+	}
 
+	async findById(applicationId: string): Promise<any> {
+		try {
+			const response = await prisma.application.count({
+				where: { vacancyId: applicationId },
+			})
+
+			return {
+				totalCandidates: response
+			}
 		} catch (err) {
 			console.error(err)
 		}

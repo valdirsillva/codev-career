@@ -11,4 +11,8 @@ export class ApplicationViewModel {
     public get() {
         return this.applicationModel.get()
     }
+
+    public getById(id: string) {
+        return this.applicationModel.getById(id)
+    }
 }

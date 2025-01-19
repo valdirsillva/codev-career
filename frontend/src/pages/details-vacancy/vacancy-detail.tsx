@@ -44,7 +44,7 @@ export const VacancyDetail = () => {
 			{
 				queryKey: ['totalCandidatosInscritos'],
 				queryFn: async () => {
-					const response = await fetch('http://localhost:9001/api/vagas/inscricao')
+					const response = await fetch(`http://localhost:9001/api/vagas/candidaturas/${vacancyId}`)
 					if (!response.ok) {
 						throw new Error('Erro na requisição');
 					}
@@ -114,7 +114,7 @@ export const VacancyDetail = () => {
 							</div>
 
 							<div className="flex gap-2 items-center mt-3">
-								<UserPlus size={30} color="#4f46e5" /> Total de inscritos: {vacancyInfo[0].totalCandidates}
+								<UserPlus size={30} color="#4f46e5" /> Total de inscritos: {vacancyInfo.totalCandidates!}
 							</div>
 
 							<div className="flex flex-row py-5">
