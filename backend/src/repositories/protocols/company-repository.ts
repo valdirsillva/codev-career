@@ -20,4 +20,5 @@ export interface CompanyParams extends User {
 export interface Company {
   create: (data: CompanyParams) => Promise<CompanyParams | Boolean>
   getAll: () => Promise<CompanyParams[]>
+  getById: (id: string) => Promise<CompanyParams[]>
 }

@@ -14,6 +14,17 @@ export class CompanyView {
     }
   }
 
+  public async getById(request: any, reply: FastifyReply) {
+    try {
+      const id = request.params.id
+      const companies = await this.companyViewModel.findById(id)
+      reply.code(200).send(companies)
+    } catch (err) {
+      console.error(err)
+      reply.code(400).send({ message: "Ops! Falha listar as empresas" })
+    }
+  }
+
   public async create(request: any, reply: FastifyReply) {
     try {
       const body = request.body

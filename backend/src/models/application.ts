@@ -8,7 +8,7 @@ export class Application {
 
     constructor(vacancyId: string, candidateId: string, applicationRepository: PrismaApplicationRepository) {
         this.vacancyId = vacancyId
-        this.candidateId = vacancyId
+        this.candidateId = candidateId
 
         this.applicationRepository = applicationRepository
     }

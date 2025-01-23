@@ -56,7 +56,7 @@ export class PrismaCompanyRepository implements Company {
       return false
     }
   }
-  
+
   async getAll(): Promise<CompanyParams[]> {
     try {
       const response = await prisma.company.findMany({
@@ -91,5 +91,22 @@ export class PrismaCompanyRepository implements Company {
     }
   }
 
-  
+  async getById(id: string): Promise<any> {
+    try {
+      const response = await prisma.company.findMany({
+        where: {
+          id: id
+        },
+      })
+
+      if (!response) {
+        throw new Error("Não foi possivel listar dados da empresa.")
+      }
+
+      return response
+    } catch (err) {
+      console.error(err)
+      return []
+    }
+  }
 }

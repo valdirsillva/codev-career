@@ -39,4 +39,8 @@ export class Company extends User {
   public get() {
     return this.companyRepository.getAll()
   }
+
+  public getById(id: string) {
+    return this.companyRepository.getById(id)
+  }
 }

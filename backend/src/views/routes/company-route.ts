@@ -8,6 +8,7 @@ export async function company(app: FastifyInstance) {
   const viewVacancy = makeVacancyFactory()
 
   app.get('/api/empresas', viewCompany.get.bind(viewCompany))
+  app.get('/api/empresas/:id', viewCompany.getById.bind(viewCompany))
   app.post('/api/empresas', viewCompany.create.bind(viewCompany))
 
   app.get('/api/vagas', viewVacancy.get.bind(viewVacancy))
