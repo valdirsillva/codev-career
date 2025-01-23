@@ -7,7 +7,7 @@
     "dev": "tsx ./src/app.ts",
     "start": "node dist/app.js",
     "start:migrate:deploy": "npx prisma generate && prisma migrate deploy && npm run start",
-    "test": "jest",
+    "test:unit": "jest",
     "build": "tsc"
   },
   "author": "valdirsillva",
@@ -20,6 +20,7 @@
     "dotenv": "^16.0.3",
     "fastify": "^4.29.0",
     "fastify-plugin": "^4.5.1",
+    "module-alias": "^2.2.3",
     "tsx": "^4.19.1",
     "typescript": "^5.1.6"
   },
@@ -34,5 +35,8 @@
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.1",
     "uninstall": "^0.0.0"
+  },
+  "_moduleAliases": {
+    "@": "dist"
   }
 }
