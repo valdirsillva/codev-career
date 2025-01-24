@@ -16,7 +16,7 @@ export interface ResponseVacancy {
   requirements: string
   companyId: string
 }
-export interface Vacancy {
+export interface VacancyRepository {
   create: (data: VacancyModel) => Promise<VacancyModel>
   getAll: () => Promise<VacancyModel[]>
   findVacancyOfCompanyById: (id: string) => Promise<ResponseVacancy[]>

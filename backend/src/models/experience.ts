@@ -1,5 +1,4 @@
-import { PrismaExperienceRepository } from '@/repositories/prisma/prisma-experience-repository'
-import { ExperienceParams } from '@/repositories/protocols/experience-repository'
+import { ExperienceParams, ExperienceRepository } from '@/repositories/protocols/experience-repository'
 
 export class Experience {
     private readonly employee: string
@@ -11,9 +10,9 @@ export class Experience {
     private readonly demissionalDate: string
     private readonly candidateId: string
 
-    private readonly experienceRepository: PrismaExperienceRepository
+    private readonly experienceRepository: ExperienceRepository
 
-    constructor(experience: ExperienceParams, experienceRepository: PrismaExperienceRepository) {
+    constructor(experience: ExperienceParams, experienceRepository: ExperienceRepository) {
         this.employee = experience.employee
         this.jobPosition = experience.jobPosition
         this.description = experience.description

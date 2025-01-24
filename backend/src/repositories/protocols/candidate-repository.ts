@@ -14,7 +14,7 @@ export interface CandidateParams extends User {
     education?: string | null
 }
 
-export interface Candidate {
+export interface CandidateRepository {
     create: (data: CandidateParams) => Promise<CandidateParams | undefined>
     getAll: () => Promise<CandidateParams[]>
 }

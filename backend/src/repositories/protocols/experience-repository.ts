@@ -11,7 +11,7 @@ export interface ExperienceParams {
     candidateId: string
 }
 
-export interface Experience {
+export interface ExperienceRepository {
     create: (data: Omit<ExperienceParams, 'id'>) => Promise<ExperienceParams>
     getById: (id: string) => Promise<ExperienceParams[]>
 }

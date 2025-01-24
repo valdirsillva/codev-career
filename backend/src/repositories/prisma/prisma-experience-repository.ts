@@ -1,7 +1,7 @@
-import { Experience, ExperienceParams } from '../protocols/experience-repository'
+import { ExperienceRepository, ExperienceParams } from '../protocols/experience-repository'
 import { prisma } from '@/views/lib/prisma'
 
-export class PrismaExperienceRepository implements Experience {
+export class PrismaExperienceRepository implements ExperienceRepository {
 	async create(data: Omit<ExperienceParams, 'id'>): Promise<ExperienceParams> {
 		try {
 			const response = await prisma.experience.create({

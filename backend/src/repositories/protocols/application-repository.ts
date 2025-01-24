@@ -31,7 +31,7 @@ export interface ResponseApplication {
     candidates: CandidateDetail[]
 }
 
-export interface Application {
+export interface ApplicationRepository {
     add: (data: ApplicationModel) => Promise<ApplicationModel>
     findAll: () => Promise<ResponseApplication[]>
     findById: (applicationId: string) => Promise<any>

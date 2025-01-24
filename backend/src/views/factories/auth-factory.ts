@@ -6,6 +6,6 @@ import { PrismaAuthRepository } from "@/repositories/prisma/prisma-auth-reposito
 export const makeAuthFactory = (): AuthView => {
     const repositoryAuth = new PrismaAuthRepository()
     const authModel = new Auth('', '', repositoryAuth)
-    const auth = new AuthViewModel(authModel)
-    return new AuthView(auth)
+    const authViewModel = new AuthViewModel(authModel)
+    return new AuthView(authViewModel)
 }

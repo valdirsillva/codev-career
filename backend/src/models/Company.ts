@@ -1,5 +1,4 @@
-import { PrismaCompanyRepository } from '@/repositories/prisma/prisma-company-repository'
-import { CompanyParams } from '@/repositories/protocols/company-repository'
+import { CompanyParams, CompanyRepository } from '@/repositories/protocols/company-repository'
 import { User } from '@/models/user'
 
 export class Company extends User {
@@ -7,9 +6,9 @@ export class Company extends User {
   private readonly description: string
   private readonly sector: string
 
-  private readonly companyRepository: PrismaCompanyRepository
+  private readonly companyRepository: CompanyRepository
 
-  constructor(data: CompanyParams, companyRepository: PrismaCompanyRepository) {
+  constructor(data: CompanyParams, companyRepository: CompanyRepository) {
     const { name, email, password, phoneNumber, address } = data
     super(name, email, password, phoneNumber, address)
 

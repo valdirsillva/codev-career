@@ -1,15 +1,14 @@
 import { User } from '@/models/user'
-import { CandidateParams } from '@/repositories/protocols/candidate-repository'
-import { PrismaCandidateRepository } from '@/repositories/prisma/prisma-candidate-repository'
+import { CandidateParams, CandidateRepository } from '@/repositories/protocols/candidate-repository'
 
 export class Candidate extends User {
     private readonly cpf: string
     private readonly gender: string
     private readonly training: string // Formação
 
-    private readonly candidateRepository: PrismaCandidateRepository
+    private readonly candidateRepository: CandidateRepository
 
-    constructor(data: CandidateParams, candidateRepository: PrismaCandidateRepository) {
+    constructor(data: CandidateParams, candidateRepository: CandidateRepository) {
         const { name, email, password, phoneNumber, address } = data
         super(name, email, password, phoneNumber, address)
 

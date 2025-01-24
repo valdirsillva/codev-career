@@ -1,7 +1,7 @@
 import { prisma } from "@/views/lib/prisma";
-import { Application, ApplicationModel, ResponseApplication } from "../protocols/application-repository";
+import { ApplicationRepository, ApplicationModel, ResponseApplication } from "../protocols/application-repository";
 
-export class PrismaApplicationRepository implements Application {
+export class PrismaApplicationRepository implements ApplicationRepository {
 	async findApplicationByCandidade(candidateId: string, vacancyId: string) {
 		try {
 			const response = await prisma.application.findFirst({

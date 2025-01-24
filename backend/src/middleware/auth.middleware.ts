@@ -19,7 +19,6 @@ const authMiddleware = async (request: FastifyRequest, reply: FastifyReply) => {
 
         // req.user = decoded?.user
         // next();
-
         console.log(decoded)
 
     } catch (err) {

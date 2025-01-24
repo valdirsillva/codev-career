@@ -5,12 +5,12 @@
     "target": "ES2021",
     "moduleResolution": "Node",
     "esModuleInterop": true, /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
-    "rootDir": "src",
-    "baseUrl": "src",
+    "rootDir": "./src",
+    "baseUrl": "./",
     "skipLibCheck": true,
     "paths": {
       "@/*": [
-        "*"
+        "src/*"
       ]
     },
     "typeRoots": [
@@ -21,6 +21,8 @@
     "src"
   ],
   "exclude": [
-    
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "node_modules"
   ]
 }

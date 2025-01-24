@@ -1,8 +1,8 @@
 import { prisma } from '@/views/lib/prisma'
 import { Role } from '@/repositories/enum/role'
-import { Candidate, CandidateParams } from '@/repositories/protocols/candidate-repository'
+import { CandidateRepository, CandidateParams } from '@/repositories/protocols/candidate-repository'
 
-export class PrismaCandidateRepository implements Candidate {
+export class PrismaCandidateRepository implements CandidateRepository {
   async create(data: CandidateParams): Promise<CandidateParams | undefined> {
     try {
       const response = await prisma.candidate.create({

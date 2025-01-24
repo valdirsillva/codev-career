@@ -27,14 +27,15 @@ export class AuthView {
       }
 
       const data = await this.viewModelAuth.login(user)
-      const response = data as AuthResponse
-
+      
+      const response = data as any
+      
       if (response == null) {
         return reply.code(400).send({
           message: 'Login ou senha inválidos'
         })
       }
-
+      
       const hasUser = bcrypt.compareSync(user.password, response.password)
 
       if (hasUser === false) {
@@ -44,11 +45,11 @@ export class AuthView {
       const token = this.generateTokenJwt(response, user)
       return reply.code(200).send({
         auth: true,
-        userId: data?.userId.id,
-        name: data?.name,
-        email: data?.email,
+        userId: response?.userId.id,
+        name: response?.name,
+        email: response?.email,
         token,
-        role: data?.role
+        role: response?.role
       })
     } catch (err) {
       console.error(err)

@@ -1,10 +1,9 @@
 import bcrypt from 'bcryptjs'
 import { prisma } from '@/views/lib/prisma'
 import { Role } from '@/repositories/enum/role'
-import { CompanyParams, Company } from '@/repositories/protocols/company-repository'
-import { Vacancy } from '../protocols/vacancy-repository'
+import { CompanyParams, CompanyRepository } from '@/repositories/protocols/company-repository'
 
-export class PrismaCompanyRepository implements Company {
+export class PrismaCompanyRepository implements CompanyRepository {
 
   async create(data: CompanyParams): Promise<CompanyParams | Boolean> {
     try {
@@ -90,6 +89,4 @@ export class PrismaCompanyRepository implements Company {
       return []
     }
   }
-
-  
 }

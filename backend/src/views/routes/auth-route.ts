@@ -5,5 +5,7 @@ export async function auth(app: FastifyInstance) {
     const authenticate = makeAuthFactory()
 
     app.post('/api/login', authenticate.login.bind(authenticate))
+
+ 
     return app
 }

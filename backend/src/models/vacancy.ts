@@ -1,5 +1,4 @@
-import { PrismaVacancyRepository } from '@/repositories/prisma/prisma-vacancy-repository'
-import { VacancyModel } from '@/repositories/protocols/vacancy-repository'
+import { VacancyModel, VacancyRepository } from '@/repositories/protocols/vacancy-repository'
 
 export class Vacancy {
   constructor(
@@ -8,7 +7,7 @@ export class Vacancy {
     private readonly salary: string,
     private readonly requirements: string,
 
-    private readonly repositoryVacancy: PrismaVacancyRepository
+    private readonly repositoryVacancy: VacancyRepository
   ) { }
 
   public getTitle() {
@@ -34,9 +33,9 @@ export class Vacancy {
     return this.repositoryVacancy.getAll()
   }
 
-  public getById(id: string) {
-    return this.repositoryVacancy.getById(id)
-  }
+  // public getById(id: string) {
+  //   return this.repositoryVacancy.
+  // }
 
   public getVacancyByIdEmployee(id: string) {
     return this.repositoryVacancy.findVacancyOfCompanyById(id)

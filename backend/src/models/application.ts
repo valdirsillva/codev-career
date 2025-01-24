@@ -1,12 +1,11 @@
-import { PrismaApplicationRepository } from "@/repositories/prisma/prisma-application-repository"
-import { ApplicationModel } from "@/repositories/protocols/application-repository"
+import { ApplicationModel, ApplicationRepository } from "@/repositories/protocols/application-repository"
 
 export class Application {
     private readonly vacancyId: string
     private readonly candidateId: string
-    private readonly applicationRepository: PrismaApplicationRepository
+    private readonly applicationRepository: ApplicationRepository
 
-    constructor(vacancyId: string, candidateId: string, applicationRepository: PrismaApplicationRepository) {
+    constructor(vacancyId: string, candidateId: string, applicationRepository: ApplicationRepository) {
         this.vacancyId = vacancyId
         this.candidateId = vacancyId
 

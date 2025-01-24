@@ -1,8 +1,8 @@
 import { prisma } from "@/views/lib/prisma"
 import { ResponseVacancy, VacancyModel } from "@/repositories/protocols/vacancy-repository"
-import { Vacancy } from "@/repositories/protocols/vacancy-repository"
+import { VacancyRepository } from "@/repositories/protocols/vacancy-repository"
 
-export class PrismaVacancyRepository implements Vacancy {
+export class PrismaVacancyRepository implements VacancyRepository {
   async create(data: VacancyModel): Promise<VacancyModel> {
     try {
       const response = await prisma.vacancy.create({

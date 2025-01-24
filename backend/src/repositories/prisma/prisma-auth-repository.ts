@@ -1,8 +1,8 @@
 import { prisma } from "@/views/lib/prisma";
-import { Auth, AuthModel } from "@/repositories/protocols/auth-repository";
+import { AuthRepository, AuthModel } from "@/repositories/protocols/auth-repository";
 import { Role } from "../enum/role";
 
-export class PrismaAuthRepository implements Auth {
+export class PrismaAuthRepository implements AuthRepository {
     async login({ email }: AuthModel) {
         try {
             const response = await prisma.user.findFirst({

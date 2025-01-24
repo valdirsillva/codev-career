@@ -8,9 +8,9 @@ export class VacancyViewModel {
     return this.vacancyModel.getJobs()
   }
 
-  public getById(id: string) {
-    return this.vacancyModel.getById(id)
-  }
+  // public getById(id: string) {
+  //   return this.vacancyModel.getById(id)
+  // }
 
   public getVacancyByIdEmployee(id: string) {
     return this.vacancyModel.getVacancyByIdEmployee(id)
