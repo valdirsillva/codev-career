@@ -15,6 +15,6 @@ export interface Users {
 }
 
 export interface UserRepository {
-  create: (data: UserModel) => Promise<void>;
+  add: (data: UserModel) => Promise<void>;
   getUsers: () => Promise<Users | {}>
 }

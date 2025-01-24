@@ -15,6 +15,6 @@ export interface CandidateParams extends User {
 }
 
 export interface CandidateRepository {
-    create: (data: CandidateParams) => Promise<CandidateParams | undefined>
+    add: (data: CandidateParams) => Promise<CandidateParams | undefined>
     getAll: () => Promise<CandidateParams[]>
 }

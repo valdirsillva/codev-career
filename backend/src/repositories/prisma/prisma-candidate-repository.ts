@@ -3,7 +3,7 @@ import { Role } from '@/repositories/enum/role'
 import { CandidateRepository, CandidateParams } from '@/repositories/protocols/candidate-repository'
 
 export class PrismaCandidateRepository implements CandidateRepository {
-  async create(data: CandidateParams): Promise<CandidateParams | undefined> {
+  async add(data: CandidateParams): Promise<CandidateParams | undefined> {
     try {
       const response = await prisma.candidate.create({
         data: {

@@ -33,7 +33,7 @@ export const VacancyDetail = () => {
 			{
 				queryKey: ['vagas'],
 				queryFn: async () => {
-					const response = await fetch('http://localhost:9001/api/vagas/' + vacancyId)
+					const response = await fetch(`http://localhost:9001/api/vagas/${vacancyId}`)
 					if (!response.ok) {
 						throw new Error('Erro na requisição');
 					}
@@ -65,6 +65,8 @@ export const VacancyDetail = () => {
 	if (isError) return <>Erro: {errors.join(', ')}</>
 
 	const [detailsVacancy, vacancyInfo] = executeQueries.map((q) => q.data)
+
+	console.log(detailsVacancy)
 
 	return (
 		<Fragment>

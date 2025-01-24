@@ -25,19 +25,20 @@ export class Vacancy {
   public getRequirements() {
     return this.requirements
   }
-
-  public save(data: VacancyModel) {
-    return this.repositoryVacancy.create(data)
+  
+  public add(data: VacancyModel) {
+    return this.repositoryVacancy.add(data)
   }
-  public getJobs() {
+  
+  public getAllVacancies() {
     return this.repositoryVacancy.getAll()
   }
+  
+  public findVacancyById(id: string) {
+    return this.repositoryVacancy.findVacancyById(id)
+  }
 
-  // public getById(id: string) {
-  //   return this.repositoryVacancy.
-  // }
-
-  public getVacancyByIdEmployee(id: string) {
+  public findVacancyByIdEmployee(id: string) {
     return this.repositoryVacancy.findVacancyOfCompanyById(id)
   }
 }

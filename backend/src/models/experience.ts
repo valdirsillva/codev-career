@@ -58,7 +58,7 @@ export class Experience {
     }
 
     public add(data: ExperienceParams) {
-        return this.experienceRepository.create(data)
+        return this.experienceRepository.add(data)
     }
 
     public get(id: string) {

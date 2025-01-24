@@ -32,7 +32,7 @@ export class Candidate extends User {
     }
 
     public add(data: CandidateParams) {
-        return this.candidateRepository.create(data)
+        return this.candidateRepository.add(data)
     }
 
     public getAllCandidates() {

@@ -32,7 +32,7 @@ export class Company extends User {
   }
 
   public add(data: CompanyParams) {
-    return this.companyRepository.create(data)
+    return this.companyRepository.add(data)
   }
 
   public get() {

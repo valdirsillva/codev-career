@@ -14,13 +14,17 @@ export const makeCandidateFactory = (): CandidateView => {
     }
     const candidate: CandidateParams = {
         cpf: '',
-        gender:  '',
-        training:'',
+        gender: '',
+        training: '',
         education: '',
-        ...user
+        name: user.name,
+        email: user.email,
+        password: user.password,
+        phoneNumber: user.phoneNumber,
+        address: user.address,
     }
     const repository = new PrismaCandidateRepository()
-    const viewModelCandidate = new Candidate(candidate, repository)
-    const candidateView = new CandidateViewModel(viewModelCandidate)
-    return new CandidateView(candidateView)
+    const candidadeModel = new Candidate(candidate, repository)
+    const candidateViewModel = new CandidateViewModel(candidadeModel)
+    return new CandidateView(candidateViewModel)
 }

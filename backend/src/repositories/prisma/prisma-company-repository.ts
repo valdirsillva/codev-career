@@ -5,7 +5,7 @@ import { CompanyParams, CompanyRepository } from '@/repositories/protocols/compa
 
 export class PrismaCompanyRepository implements CompanyRepository {
 
-  async create(data: CompanyParams): Promise<CompanyParams | Boolean> {
+  async add(data: CompanyParams): Promise<CompanyParams | Boolean> {
     try {
       const saltRounds = 10
       const hash = bcrypt.hashSync(data.password, saltRounds)

@@ -3,7 +3,7 @@ import { ResponseVacancy, VacancyModel } from "@/repositories/protocols/vacancy-
 import { VacancyRepository } from "@/repositories/protocols/vacancy-repository"
 
 export class PrismaVacancyRepository implements VacancyRepository {
-  async create(data: VacancyModel): Promise<VacancyModel> {
+  async add(data: VacancyModel): Promise<VacancyModel> {
     try {
       const response = await prisma.vacancy.create({
         data: {
@@ -39,7 +39,7 @@ export class PrismaVacancyRepository implements VacancyRepository {
     }
   }
 
-  async getById(id: string): Promise<VacancyModel> {
+  async findVacancyById(id: string): Promise<ResponseVacancy> {
     try {
       const vacancies = await prisma.vacancy.findUnique({
         where: {

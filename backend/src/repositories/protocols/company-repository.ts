@@ -18,6 +18,6 @@ export interface CompanyParams extends User {
 }
 
 export interface CompanyRepository {
-  create: (data: CompanyParams) => Promise<CompanyParams | Boolean>
+  add: (data: CompanyParams) => Promise<CompanyParams | Boolean>
   getAll: () => Promise<CompanyParams[]>
 }
