@@ -43,6 +43,8 @@ model User {
   password    String
   phoneNumber String?
   address     String?
+  city        String?
+  state       String?
   role        String      @default("CANDIDATE")
   Candidate   Candidate[]
   Company     Company[]

@@ -1,6 +1,7 @@
 import { prisma } from '@/views/lib/prisma'
 import { Role } from '@/repositories/enum/role'
-import { CandidateRepository, CandidateParams } from '@/repositories/protocols/candidate-repository'
+import { CandidateRepository, CandidateParams, CandidateResponse } from '@/repositories/protocols/candidate-repository'
+import { CandidateMapper } from '@/mappers/candidate-mapper'
 
 export class PrismaCandidateRepository implements CandidateRepository {
   async add(data: CandidateParams): Promise<CandidateParams | undefined> {
@@ -17,6 +18,8 @@ export class PrismaCandidateRepository implements CandidateRepository {
               password: data.password,
               phoneNumber: data.phoneNumber,
               address: data.address,
+              city: data.city,
+              state: data.state,
               role: Role.Candidate
             },
           },
@@ -37,7 +40,6 @@ export class PrismaCandidateRepository implements CandidateRepository {
         gender: response.gender!,
         education: response.education!,
         training: response.education!,
-    
         name: response.user.name,
         email: response.user.email,
         password: response.user.password,
@@ -51,32 +53,20 @@ export class PrismaCandidateRepository implements CandidateRepository {
     }
   }
 
-  async getAll(): Promise<CandidateParams[]> {
+  async getAll(): Promise<CandidateResponse[]> {
     try {
-      const candidatesDB = await prisma.candidate.findMany({
+      const candidates = await prisma.candidate.findMany({
         include: {
           user: true
         }
       })
 
-      if (candidatesDB.length === 0) {
+      if (candidates.length === 0) {
         throw new Error('Nenhum candidato encontrado.')
       }
 
-      const candidates: any = candidatesDB.map(candidate => ({
-        id: candidate.id,
-        cpf: candidate.cpf!,
-        gender: candidate.gender!,
-        education: candidate.education!,
-        user: {
-          id: candidate.user.id,
-          name: candidate.user.name,
-          email: candidate.user.email,
-          password: candidate.user.password,
-          phoneNumber: candidate.user.phoneNumber,
-        }
-      }))
-      return candidates
+      const response = CandidateMapper.toCandidate(candidates)
+      return response
     } catch (err: any) {
       console.error(err)
       return []

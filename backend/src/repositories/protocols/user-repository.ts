@@ -8,6 +8,8 @@ export interface UserModel {
   phoneNumber: string
   role: string
   address: string
+  city?: string
+  state?: string
 }
 
 export interface Users {

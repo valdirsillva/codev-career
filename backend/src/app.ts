@@ -35,7 +35,6 @@ app.register(candidate)
 app.register(experience)
 app.register(application)
 
-console.log(app.printRoutes())
 // app.register(userRouter)
 app.listen({ port: 9001, host: '0.0.0.0' }, () => {
   console.log(`http:localhost:9001`)

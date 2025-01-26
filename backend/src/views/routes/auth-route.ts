@@ -6,6 +6,5 @@ export async function auth(app: FastifyInstance) {
 
     app.post('/api/login', authenticate.login.bind(authenticate))
 
- 
     return app
 }
