@@ -1,18 +1,31 @@
+import { z } from "zod"
 import { FormEvent, ChangeEvent, useState } from "react"
 import { ToastContainer, toast } from "react-toastify"
-import { Link } from "react-router-dom"
 import { makeServiceApi } from "../../factories/api-service-factory"
 
-interface Company {
-  name: string
-  email: string
-  cnpj: string
-  password: string
-}
+const formSchema = z.object({
+  name: z
+    .string()
+    .min(5, { message: 'Nome deve ter no minimo 5 caracteres' })
+    .nonempty({ message: 'Preencha o nome da sua empresa' }),
+  email: z
+    .string()
+    .email({ message: 'Email inválido' })
+    .nonempty({ message: 'Preencha seu e-mail' }),
+  password: z
+    .string()
+    .min(6, { message: 'A senha deve ter no mínimo 6 caracteres' })
+    .nonempty({ message: 'Preencha sua senha' }),
+  cnpj: z
+    .string()
+    .min(11, { message: 'CNPJ inválido' })
+    .nonempty({ message: 'Preencha seu CNPJ' }),
+})
+
+type Company = z.infer<typeof formSchema>
 
 export function CreateCompany() {
   const [cep, setCep] = useState<string>('')
-
   const [fieldValues, setFieldValues] = useState<Company>({
     name: '',
     email: '',
@@ -20,33 +33,51 @@ export function CreateCompany() {
     password: ''
   })
 
+  const [errors, setErrors] = useState<Record<string, string>>({})
+
   const handleChangeValues = (e: ChangeEvent<HTMLInputElement>) => {
-    const fieldName = e.target.name
-    const fieldValue = e.target.value
+    const name = e.target.name
+    const value = e.target.value
 
     setFieldValues((current) => {
       return {
         ...current,
-        [fieldName]: fieldValue,
+        [name]: value,
       }
     })
+    /**
+     * Limpa o erro do campo conformew o usuario digita
+     */
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: "",
+    }))
   }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
-      const newCompany = {
-        name: fieldValues.name,
-        email: fieldValues.email,
-        cnpj: fieldValues.cnpj,
-        password: fieldValues.password,
-        role: 'COMPANY'
+      const companyResponse: Company = fieldValues
+      const response = await makeServiceApi.post('/api/empresas',
+        formSchema.parse({ ...companyResponse, role: 'COMPANY' })
+      )
+
+      if (response.status === 201) {
+        toast.success('Usuário cadastrado com sucesso.')
+        setErrors({})
       }
 
-      await makeServiceApi.post('/api/empresas', newCompany)
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const recordErrors: Record<string, string> = {}
 
-    } catch (err) {
-      console.error(err)
+        for (const issue of error.issues) {
+          recordErrors[issue.path[0]] = issue.message
+        }
+        setErrors(recordErrors)
+      } else {
+        toast.error("Erro ao cadastrar usuário. Tente novamente.");
+      }
     }
   }
 
@@ -55,7 +86,7 @@ export function CreateCompany() {
       <ToastContainer />
       <div className="sm:w-12/12 md:w-4/12 min-h-[80%] flex items-center justify-center flex-col bg-[#1a1a1e] p-5 rounded-md">
         <h2 className="text-gray-200 font-bold text-3xl">Criar uma conta</h2>
-        <form onSubmit={handleSubmit} className="w-full flex flex-col gap-5 p-10">
+        <form onSubmit={handleSubmit} className="w-full flex flex-col gap-2 p-10">
           <div className=" flex flex-col">
             <label htmlFor="nomeEmpresa" className="w-30 font-medium text-gray-200 mb-1">Nome da empresa</label>
             <input
@@ -67,6 +98,7 @@ export function CreateCompany() {
               value={fieldValues.name}
               onChange={handleChangeValues}
             />
+            <div className="h-[20px]">{errors.name && <span className="text-red-600 font-semibold">{errors.name}</span>}</div>
           </div>
 
           <div className="flex flex-col">
@@ -79,6 +111,7 @@ export function CreateCompany() {
               value={fieldValues.email}
               onChange={handleChangeValues}
             />
+            <div className="h-[20px]">{errors.email && <span className="text-red-600 font-semibold">{errors.email}</span>}</div>
           </div>
 
           <div className="flex flex-col">
@@ -91,6 +124,7 @@ export function CreateCompany() {
               value={fieldValues.cnpj}
               onChange={handleChangeValues}
             />
+            <div className="h-[20px]">{errors.cnpj && <span className="text-red-600 font-semibold">{errors.cnpj}</span>}</div>
           </div>
 
           <div className="flex flex-col">
@@ -102,6 +136,8 @@ export function CreateCompany() {
               placeholder="Sua senha"
               onChange={handleChangeValues}
             />
+            <div className="h-[20px]">{errors.password && <span className="text-red-600 font-semibold">{errors.password}</span>}</div>
+
           </div>
           <div className="flex flex-col mt-3">
             <button type="submit"
