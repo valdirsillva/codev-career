@@ -10,11 +10,12 @@ import { candidate } from '@/views/routes/candidate-route'
 import { experience } from '@/views/routes/experience-route'
 import { application } from '@/views/routes/application-route'
 import 'module-alias/register'
+import { vacancy } from './views/routes/vacancy-route'
 
 dotenv.config()
 
 const app = Fastify({
-  logger: false,
+  logger: true,
   trustProxy: false,
 })
 
@@ -31,6 +32,7 @@ app.register(cors, {
 // Register routes
 app.register(auth)
 app.register(company)
+app.register(vacancy)
 app.register(candidate)
 app.register(experience)
 app.register(application)

@@ -18,7 +18,10 @@ export class VacancyView {
   public async getById(request: any, reply: any) {
     try {
       const id = request.params.id
-      const vacancy = await this.vacancyViewModel.getById(id)
+      if (!id)
+				return reply.code(400).send({ message: 'Error: Failed list vacancy by id'})
+
+      const vacancy = await this.vacancyViewModel.findById(id)
       reply.code(200).send(vacancy)
     } catch (err) {
       console.error(err)
@@ -28,10 +31,13 @@ export class VacancyView {
     }
   }
 
-  public async getVacanciesByIdWithEmployee(request: any, reply: any) {
+  public async getVacanciesFromCompany(request: any, reply: any) {
     try {
       const id = request.params.id
-      const vacancy = await this.vacancyViewModel.getVacancyByIdEmployee(id)
+      if (!id)
+				return reply.code(400).send({ message: 'Error: Failed list vacancy by id'})
+
+      const vacancy = await this.vacancyViewModel.findVacancyById(id)
       reply.code(200).send(vacancy)
     } catch (err) {
       console.error(err)

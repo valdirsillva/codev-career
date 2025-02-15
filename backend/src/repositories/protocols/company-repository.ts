@@ -1,6 +1,3 @@
-
-
-
 interface User {
   id?: string
   name: string
@@ -17,7 +14,15 @@ export interface CompanyParams extends User {
   description: string
 }
 
+export interface ResponseCompany {
+  name: string
+  cnpj: string
+  sector: string
+  description: string
+}
+
 export interface CompanyRepository {
   add: (data: CompanyParams) => Promise<CompanyParams | Boolean>
   getAll: () => Promise<CompanyParams[]>
+  getById: (id: string) => Promise<ResponseCompany>
 }

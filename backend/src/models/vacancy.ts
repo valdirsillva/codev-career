@@ -34,11 +34,11 @@ export class Vacancy {
     return this.repositoryVacancy.getAll()
   }
   
-  public findVacancyById(id: string) {
+  public getVacancyById(id: string) {
     return this.repositoryVacancy.findVacancyById(id)
   }
 
-  public findVacancyByIdEmployee(id: string) {
+  public getVacanciesByCompany(id: string) {
     return this.repositoryVacancy.findVacancyOfCompanyById(id)
   }
 }

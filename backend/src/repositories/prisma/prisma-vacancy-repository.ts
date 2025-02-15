@@ -39,6 +39,7 @@ export class PrismaVacancyRepository implements VacancyRepository {
     }
   }
 
+  // Retorna vaga por id
   async findVacancyById(id: string): Promise<ResponseVacancy> {
     try {
       const vacancies = await prisma.vacancy.findUnique({
@@ -54,7 +55,7 @@ export class PrismaVacancyRepository implements VacancyRepository {
       console.error(err)
     }
   }
-
+  // Retorna todas as vagas da empresa 
   async findVacancyOfCompanyById(id: string): Promise<ResponseVacancy[]> {
     try {
       const response = await prisma.vacancy.findMany({
@@ -76,7 +77,6 @@ export class PrismaVacancyRepository implements VacancyRepository {
       }))
 
       return vacancies
-
     } catch(err) {
       console.error(err.message)
       return []

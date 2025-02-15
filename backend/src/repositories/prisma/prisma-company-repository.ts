@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs'
 import { prisma } from '@/views/lib/prisma'
 import { Role } from '@/repositories/enum/role'
-import { CompanyParams, CompanyRepository } from '@/repositories/protocols/company-repository'
+import { CompanyParams, CompanyRepository, ResponseCompany } from '@/repositories/protocols/company-repository'
 
 export class PrismaCompanyRepository implements CompanyRepository {
 
@@ -83,10 +83,29 @@ export class PrismaCompanyRepository implements CompanyRepository {
       }))
 
       return userCompanies
-
     } catch (err: any) {
       console.error(err)
       return []
+    }
+  }
+
+  async getById(id: string): Promise<ResponseCompany> {
+    try {
+      const company = await prisma.company.findUnique({
+        where: {
+          id: id
+        },
+        select: {
+          id: false,
+          name: true,
+          cnpj: true,
+          sector: true,
+          description: true
+        }
+      })
+      return company
+    } catch (err: any) {
+      console.error(err)
     }
   }
 }

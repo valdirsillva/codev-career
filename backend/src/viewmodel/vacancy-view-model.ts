@@ -8,12 +8,12 @@ export class VacancyViewModel {
     return this.vacancyModel.getAllVacancies()
   }
 
-  public getById(id: string) {
-    return this.vacancyModel.findVacancyById(id)
+  public findById(id: string) {
+    return this.vacancyModel.getVacancyById(id)
   }
 
-  public getVacancyByIdEmployee(id: string) {
-    return this.vacancyModel.findVacancyByIdEmployee(id)
+  public findVacancyById(id: string) {
+    return this.vacancyModel.getVacanciesByCompany(id)
   }
 
   public create(data: VacancyModel) {

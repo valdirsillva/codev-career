@@ -11,11 +11,9 @@ export class Company extends User {
   constructor(data: CompanyParams, companyRepository: CompanyRepository) {
     const { name, email, password, phoneNumber, address } = data
     super(name, email, password, phoneNumber, address)
-
     this.cnpj = data.cnpj
     this.description = data.description
     this.sector = data.sector
-
     this.companyRepository = companyRepository
   }
 
@@ -37,5 +35,9 @@ export class Company extends User {
 
   public get() {
     return this.companyRepository.getAll()
+  }
+
+  public getCompanyById(id: string) {
+    return this.companyRepository.getById(id)
   }
 }

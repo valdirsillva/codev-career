@@ -8,6 +8,10 @@ export class CompanyViewModel {
     return this.company.get()
   }
 
+  public getById(id: string) {
+    return this.company.getCompanyById(id)
+  }
+
   public create(data: CompanyParams) {
     return this.company.add(data)
   }
