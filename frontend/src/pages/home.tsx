@@ -1,8 +1,8 @@
 import { Fragment } from "react"
 import { Building2, CircleDollarSign } from "lucide-react"
 
-import { Search } from "../../components/jobs/search/search"
-import { Header } from "../../components/header/header"
+import { Search } from "../layouts/search"
+import { Header } from "../layouts/header"
 import { useQuery } from "@tanstack/react-query"
 
 export function Home() {

@@ -1,7 +1,7 @@
 import jwt_decode from 'jwt-decode'
 import { LogOut, User, User2 } from 'lucide-react'
 import { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../../context/auth'
+import { AuthContext } from '../context/auth'
 
 interface User {
   id?: number

@@ -1,7 +1,7 @@
 import { z } from "zod"
 import { FormEvent, ChangeEvent, useState } from "react"
 import { ToastContainer, toast } from "react-toastify"
-import { makeServiceApi } from "../../factories/api-service-factory"
+import { makeServiceApi } from "../factories/api-service-factory"
 
 const formSchema = z.object({
   name: z

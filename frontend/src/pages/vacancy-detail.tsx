@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Header } from "../../components/header/header"
+import { Header } from "../layouts/header"
 import { useQueries } from "@tanstack/react-query"
 import { toast, ToastContainer } from "react-toastify"
 import { ScrollText, UserPlus, Users } from "lucide-react"

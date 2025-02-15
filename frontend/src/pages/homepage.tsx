@@ -1,5 +1,5 @@
 import { Fragment } from "react"
-import { Header } from "../../components/header/header"
+import { Header } from "../layouts/header"
 import { useQueries } from "@tanstack/react-query"
 import { CircleDollarSign, UserCheck } from "lucide-react"
 
