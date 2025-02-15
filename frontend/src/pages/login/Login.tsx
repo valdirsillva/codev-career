@@ -50,11 +50,11 @@ export function Login() {
             setSpinner(!spinner)
 
             if (response.data.role === 'COMPANY') {
-                setTimeout(() => navigation('/home'), 750)
+                setTimeout(() => navigation('/empresa/home'), 750)
                 return
             }
             // Redireciona usuário para página em 750ms
-            setTimeout(() => navigation('/vagas'), 750)
+            setTimeout(() => navigation('/candidato/vagas'), 750)
         } catch (err: any) {
             console.error(err.response?.data.message)
             toast.error(err.response?.data.message)

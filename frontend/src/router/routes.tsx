@@ -14,8 +14,9 @@ export function Router() {
             <Route path="/" element={<Login />} />
             <Route path="/empresas" element={<Company />} />
             <Route path="/candidatos" element={<Candidate />} />
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/vagas" element={<PrivateRoute element={Home} />} />
+            <Route path="/empresa/home" element={<HomePage />} />
+            
+            <Route path="/candidato/vagas" element={<PrivateRoute element={Home} />} />
             <Route path="/vagas/info" element={<PrivateRoute element={VacancyDetail} />} />
             <Route path="/perfil" element={<PrivateRoute element={UserProfile} />} />
         </Routes>
