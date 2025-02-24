@@ -1,7 +1,8 @@
 import jwt_decode from 'jwt-decode'
-import { LogOut, User, User2 } from 'lucide-react'
+import { Home, List, LogOut, Plus, User, User2 } from 'lucide-react'
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../context/auth'
+import { Link } from 'react-router-dom'
 
 interface User {
   id?: number
@@ -35,10 +36,25 @@ export function Header({ data }: any) {
   }, [])
 
   return (
-    <header className="w-full fixed bg-[#121218] top-0 flex items-center border-solid border-b-[2px] h-24 z-10">
+    <header className="w-full fixed bg-[#121218] top-0 flex items-center border-solid border-b-[2px] h-20 z-10">
       <nav className="sm:w-full md:w-full flex items-center justify-between px-20">
         <img src="./logo.svg" className="w-24 ml-10" alt='Logotipo' />
         {/* <Button data={data}/> */}
+
+        <ul className="w-6/12 flex flex-row list-none ">
+          <li>
+            <Link to="/empresa/home" className=" text-white uppercase hover:bg-violet-700 px-6 py-3 h-20 flex justify-center gap-2 items-center">
+              <Home className="size-7" />
+               Vagas
+            </Link>
+          </li>
+          <li>
+            <Link to="/empresa/nova-vaga" className=" text-white uppercase hover:bg-violet-700 px-6 py-3 h-20 flex justify-center gap-2 items-center">
+              <Plus className="size-7" />
+               Criar vaga
+            </Link>
+          </li>
+        </ul>
 
         <div className="bg-violet-700 p-3 rounded-full">
           <a href="#" onClick={() => setProfile(!profile)}>
