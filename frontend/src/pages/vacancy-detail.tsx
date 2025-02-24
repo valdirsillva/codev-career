@@ -66,8 +66,6 @@ export const VacancyDetail = () => {
 
 	const [detailsVacancy, vacancyInfo] = executeQueries.map((q) => q.data)
 
-	console.log(detailsVacancy)
-
 	return (
 		<Fragment>
 			<Header data={{ label: 'Login', routerPath: 'login' }} />
@@ -116,7 +114,7 @@ export const VacancyDetail = () => {
 							</div>
 
 							<div className="flex gap-2 items-center mt-3">
-								<UserPlus size={30} color="#4f46e5" /> Total de inscritos: {vacancyInfo.totalCandidates!}
+								<UserPlus size={30} color="#4f46e5" /> Total de inscritos: {vacancyInfo.length}
 							</div>
 
 							<div className="flex flex-row py-5">

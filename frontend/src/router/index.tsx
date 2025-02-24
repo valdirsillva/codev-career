@@ -5,5 +5,8 @@ export * from '../pages/homepage'
 export * from '../pages/login'
 export * from '../pages/user-profile'
 export * from '../pages/vacancy-detail'
+export * from '../pages/application-vacancy'
+export * from "../pages/vacancy"
+
 
 

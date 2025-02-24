@@ -1,7 +1,7 @@
 import { Fragment } from "react"
 import { Header } from "../layouts/header"
 import { useQueries } from "@tanstack/react-query"
-import { CircleDollarSign, UserCheck } from "lucide-react"
+import { CircleDollarSign, Plus, UserCheck } from "lucide-react"
 
 export function HomePage() {
 	const id = localStorage.getItem('@Auth:userId')
@@ -42,6 +42,7 @@ export function HomePage() {
 	if (isError) return <>Erro: {errors.join(', ')}</>
 
 	const [vacancies, profileData] = executeQueries.map((q) => q.data)
+	
 	return (
 		<Fragment>
 			<Header data={{
@@ -89,10 +90,14 @@ export function HomePage() {
 										{vacancy.description}
 									</div>
 
-									<div className="sm:w-12/12 md:w-11/12 flex flex-row gap-2 items-center md:p-1 mt-5 ">
-										<span className="flex flex-row gap-2 items-center">Inscrições: 10  <UserCheck size={18} /></span>
+									<div className="sm:w-12/12 md:w-11/12 flex flex-row gap-2 justify-between items-center md:p-1 mt-5 ">
+										<span className="flex flex-row gap-2 items-center">Inscrições: {vacancies.length} <UserCheck size={18} /></span>
 
-										<button>Candidatos</button>
+										<div className="flex">
+											<a href={`/vagas/${vacancy.id}/candidaturas`} className="w-auto px-5 py-2 bg-violet-800 hover:bg-violet-900 text-white rounded"> 
+												Ver candidaturas
+											</a>
+										</div>
 									</div>
 								</div>
 							</section>
