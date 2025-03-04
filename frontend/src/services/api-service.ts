@@ -18,4 +18,12 @@ export class ApiService {
   public post(endpoint: string, data: Object) {
     return this.httpRequest.post(endpoint, data)
   }
+
+  public put(endpoint: string, data: Object) {
+    return this.httpRequest.put(endpoint, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    })
+  }
 }

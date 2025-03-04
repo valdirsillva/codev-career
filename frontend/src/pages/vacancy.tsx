@@ -35,7 +35,7 @@ export function Vacancy() {
     const submit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            const response = await makeServiceApi.post(`${process.env.REACT_APP_API}/api/vagas`,  {
+            const response = await makeServiceApi.post(`${process.env.REACT_APP_API}/api/vagas`, {
                 companyId: localStorage.getItem('@Auth:userId'),
                 title: inputValue.title,
                 salary: inputValue.salary,
@@ -46,17 +46,35 @@ export function Vacancy() {
             if (response.status === 201) {
                 toast.success('Vaga cadastrada com sucesso')
             }
-        } catch(err) {
+        } catch (err) {
             console.error(err)
         }
-     }
-
+    }
 
     return (
         <Fragment>
-            <ToastContainer / >
+            <ToastContainer />
             <Header data={{ label: 'Login', routerPath: 'login' }} />
             <section className="w-full mt-24">
+                <section className="w-[30rem] flex-col px-10 rounded-2xl fixed top-120 left-0 h-full">
+                    <div className="flex flex-col items-center gap-3 p-8 mt-10 rounded-lg text-gray-200 bg-[#1a1a1e] ">
+                        <div className="">
+                            <h2 className="w-full flex justify-center font-bold tracking-wide text-lg"></h2>
+                        </div>
+                        <div className="">
+                            <img className="w-[150px] rounded-full"
+                                src="https://github.com/valdirsillva.png"
+                                alt="Imagem do candidato"
+                            />
+                        </div>
+
+                        <div className="w-full flex flex-col  gap-5">
+                            <span className="text-center font-black line-clamp-3 tracking-wide">Setor</span>
+                            {/* <span className="text-center line-clamp-3">{profileData.description}</span> */}
+                        </div>
+                    </div>
+                </section>
+
                 <div className="sm:w-full md:w-full md:flex md:flex-row sm:flex-col md:gap-5 px-1">
                     <div className="ml-[30rem] w-[1024px] flex flex-row flex-wrap gap-3 mt-10 mr-10 overflow-y-auto bg-[#1a1a1e] rounded-lg">
                         <form className="w-full flex flex-col gap-5 p-10" onSubmit={submit}>

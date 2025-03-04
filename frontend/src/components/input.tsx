@@ -4,7 +4,7 @@ import { ComponentProps } from "react";
 interface InputRootProps extends ComponentProps<'div'> {}
 
 export function InputRoot(props: InputRootProps) {
-    return <div className="flex flex-col" {...props} />
+    return <div className="flex-1 flex flex-col" {...props} />
 }
 
 interface LabelProps extends ComponentProps<'label'> {
