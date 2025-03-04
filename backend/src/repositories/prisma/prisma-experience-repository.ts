@@ -23,7 +23,6 @@ export class PrismaExperienceRepository implements ExperienceRepository {
 			where: {
 				candidateId: id,
 			},
-
 			include: {
 				candidate: {
 					select: {

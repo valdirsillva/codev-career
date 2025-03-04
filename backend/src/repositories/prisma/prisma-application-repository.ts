@@ -22,105 +22,91 @@ export class PrismaApplicationRepository implements ApplicationRepository {
 	}
 
 	async add(data: ApplicationModel): Promise<ApplicationModel> {
-		try {
-			const existsApplicationFromCandidate = await this.findApplicationByCandidade(data.candidateId, data.vacancyId)
+		const existsApplicationFromCandidate = await this.findApplicationByCandidade(data.candidateId, data.vacancyId)
 
-			if (existsApplicationFromCandidate) {
-				throw new Error('Voce já se candidatou à essa vaga.')
+		if (existsApplicationFromCandidate) {
+			throw new Error('Voce já se candidatou à essa vaga.')
+		}
+		const response = await prisma.application.create({
+			data: {
+				candidateId: data.candidateId,
+				vacancyId: data.vacancyId
 			}
-			const response = await prisma.application.create({
-				data: {
-					candidateId: data.candidateId,
-					vacancyId: data.vacancyId
-				}
-			})
-
-			return {
-				vacancyId: response.vacancyId,
-				candidateId: response.candidateId,
-				createdAt: response.dateApplication
-			}
-		} catch (err) {
-			console.error(err)
-			throw err
+		})
+		return {
+			vacancyId: response.vacancyId,
+			candidateId: response.candidateId,
+			createdAt: response.dateApplication
 		}
 	}
 
 	async findAll(): Promise<ResponseApplication[]> {
-		try {
-			const response = await prisma.application.findMany({
-				include: {
-					candidate: {
-						include: {
-							Experience: true
-						},
+		const response = await prisma.application.findMany({
+			include: {
+				candidate: {
+					include: {
+						Experience: true
 					},
-					vacancy: true,
 				},
-			})
+				vacancy: true,
+			},
+		})
 
-			// Agrupar as candidaturas por vaga
-			const groupByVacancy = response.reduce<{ [key: number]: ResponseApplication }>((acc, application) => {
-				// Encontre ou crie uma entrada para a vaga no acumulador
-				const vacancyId = application.vacancy.id
-				if (!acc[vacancyId]) {
-					acc[vacancyId] = {
-						vacancyId: application.vacancy.id,
-						company: application.vacancy.companyId,
-						salary: application.vacancy.salary,
-						requirements: application.vacancy.requirements,
-						candidates: []
-					}
+		// Agrupar as candidaturas por vaga
+		const groupByVacancy = response.reduce<{ [key: number]: ResponseApplication }>((acc, application) => {
+			// Encontre ou crie uma entrada para a vaga no acumulador
+			const vacancyId = application.vacancy.id
+			if (!acc[vacancyId]) {
+				acc[vacancyId] = {
+					vacancyId: application.vacancy.id,
+					company: application.vacancy.companyId,
+					salary: application.vacancy.salary,
+					requirements: application.vacancy.requirements,
+					candidates: []
 				}
-				// Total de candidatos inscritos na vaga
-				acc[vacancyId]['totalCandidates'] = acc[vacancyId].candidates.length
+			}
+			// Total de candidatos inscritos na vaga
+			acc[vacancyId]['totalCandidates'] = acc[vacancyId].candidates.length
 
-				// Adicionar o candidato à vaga
-				acc[vacancyId].candidates.push({
-					candidateId: application.candidate.id,
-					cpf: application.candidate.cpf,
-					dateSubscriber: application.dateApplication.toISOString(),
-					education: application.candidate.education,
-					experiences: application.candidate.Experience.map((experience) => ({
-						id: experience.id,
-						employee: experience.employee,
-						jobPosition: experience.jobPosition,
-						currentVacancy: experience.currentVacancy,
-						admissionalDate: experience.admissionalDate,
-						demissionalDate: experience.demissionalDate,
-						description: experience.description,
-						skills: experience.skills,
-					})),
-				})
-				return acc
-			}, {})
-			// Converter o objeto agrupado em um array 
-			return Object.values(groupByVacancy)
-		} catch (err) {
-			console.error(err)
-		}
+			// Adicionar o candidato à vaga
+			acc[vacancyId].candidates.push({
+				candidateId: application.candidate.id,
+				cpf: application.candidate.cpf,
+				dateSubscriber: application.dateApplication.toISOString(),
+				education: application.candidate.education,
+				experiences: application.candidate.Experience.map((experience) => ({
+					id: experience.id,
+					employee: experience.employee,
+					jobPosition: experience.jobPosition,
+					currentVacancy: experience.currentVacancy,
+					admissionalDate: experience.admissionalDate,
+					demissionalDate: experience.demissionalDate,
+					description: experience.description,
+					skills: experience.skills,
+				})),
+			})
+			return acc
+		}, {})
+		// Converter o objeto agrupado em um array 
+		return Object.values(groupByVacancy)
 	}
 
 	async findById(applicationId: string): Promise<any> {
-		try {
-			const response = await prisma.application.findMany({
-				where: { vacancyId: applicationId },
-				include: {
-					candidate: {
-						include: { 
-							user: {
-								select: {
-									name: true,
-									email:true,
-								},
+		const response = await prisma.application.findMany({
+			where: { vacancyId: applicationId },
+			include: {
+				candidate: {
+					include: {
+						user: {
+							select: {
+								name: true,
+								email: true,
 							},
 						},
 					},
 				},
-			})
-			return response
-		} catch (err) {
-			console.error(err)
-		}
+			},
+		})
+		return response
 	}
 }
