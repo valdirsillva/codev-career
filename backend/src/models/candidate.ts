@@ -11,11 +11,9 @@ export class Candidate extends User {
     constructor(data: CandidateParams, candidateRepository: CandidateRepository) {
         const { name, email, password, phoneNumber, address } = data
         super(name, email, password, phoneNumber, address)
-
         this.cpf = data.cpf
         this.gender = data.gender
         this.training = data.training
-
         this.candidateRepository = candidateRepository
     }
 

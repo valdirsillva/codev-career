@@ -45,6 +45,7 @@ model User {
   address     String?
   city        String?
   state       String?
+  image       String?
   role        String      @default("CANDIDATE")
   Candidate   Candidate[]
   Company     Company[]
@@ -89,6 +90,7 @@ model Company {
   cnpj        String    @unique
   name        String
   sector      String?
+ 
   description String?
   Vacancy     Vacancy[]
 

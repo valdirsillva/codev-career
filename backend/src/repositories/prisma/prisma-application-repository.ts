@@ -49,8 +49,6 @@ export class PrismaApplicationRepository implements ApplicationRepository {
 	async findAll(): Promise<ResponseApplication[]> {
 		try {
 			const response = await prisma.application.findMany({
-				// distinct: ['vacancyId'],
-
 				include: {
 					candidate: {
 						include: {
@@ -96,8 +94,6 @@ export class PrismaApplicationRepository implements ApplicationRepository {
 				})
 				return acc
 			}, {})
-
-
 			// Converter o objeto agrupado em um array 
 			return Object.values(groupByVacancy)
 		} catch (err) {
@@ -107,13 +103,22 @@ export class PrismaApplicationRepository implements ApplicationRepository {
 
 	async findById(applicationId: string): Promise<any> {
 		try {
-			const response = await prisma.application.count({
+			const response = await prisma.application.findMany({
 				where: { vacancyId: applicationId },
+				include: {
+					candidate: {
+						include: { 
+							user: {
+								select: {
+									name: true,
+									email:true,
+								},
+							},
+						},
+					},
+				},
 			})
-
-			return {
-				totalCandidates: response
-			}
+			return response
 		} catch (err) {
 			console.error(err)
 		}

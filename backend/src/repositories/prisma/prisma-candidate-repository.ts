@@ -54,22 +54,17 @@ export class PrismaCandidateRepository implements CandidateRepository {
   }
 
   async getAll(): Promise<CandidateResponse[]> {
-    try {
-      const candidates = await prisma.candidate.findMany({
-        include: {
-          user: true
-        }
-      })
-
-      if (candidates.length === 0) {
-        throw new Error('Nenhum candidato encontrado.')
+    const candidates = await prisma.candidate.findMany({
+      include: {
+        user: true
       }
+    })
 
-      const response = CandidateMapper.toCandidate(candidates)
-      return response
-    } catch (err: any) {
-      console.error(err)
-      return []
+    if (candidates.length === 0) {
+      throw new Error('Nenhum candidato encontrado.')
     }
+
+    const response = CandidateMapper.toCandidate(candidates)
+    return response
   }
 }

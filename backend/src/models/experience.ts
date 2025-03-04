@@ -22,7 +22,6 @@ export class Experience {
         this.demissionalDate = experience.demissionalDate
         this.candidateId = experience.candidateId
         this.experienceRepository = experienceRepository
-
     }
 
     public getEmployee(): string {

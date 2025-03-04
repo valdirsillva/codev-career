@@ -1,11 +1,19 @@
-import { CompanyParams, CompanyRepository } from '@/repositories/protocols/company-repository'
+import { CompanyParams, CompanyProps, CompanyRepository } from '@/repositories/protocols/company-repository'
 import { User } from '@/models/user'
+
+export interface UserProps {
+  id?: string
+  name: string
+  email: string
+  password: string
+  phoneNumber: string
+  address: string
+}
 
 export class Company extends User {
   private readonly cnpj: string
-  private readonly description: string
   private readonly sector: string
-
+  private readonly description: string
   private readonly companyRepository: CompanyRepository
 
   constructor(data: CompanyParams, companyRepository: CompanyRepository) {
@@ -39,5 +47,9 @@ export class Company extends User {
 
   public getCompanyById(id: string) {
     return this.companyRepository.getById(id)
+  }
+
+  public updateDataCompany(data: CompanyProps) {
+    return this.companyRepository.update(data)
   }
 }

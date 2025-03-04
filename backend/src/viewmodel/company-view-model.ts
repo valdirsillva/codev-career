@@ -1,5 +1,5 @@
 import { Company } from "@/models/company"
-import { CompanyParams } from "@/repositories/protocols/company-repository"
+import { CompanyParams, CompanyProps } from "@/repositories/protocols/company-repository"
 
 export class CompanyViewModel {
   constructor(private readonly company: Company) { }
@@ -15,6 +15,9 @@ export class CompanyViewModel {
   public create(data: CompanyParams) {
     return this.company.add(data)
   }
-}
 
+  public update(data: CompanyProps) {
+    return this.company.updateDataCompany(data)
+  }
+}
 

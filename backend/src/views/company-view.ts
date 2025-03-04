@@ -1,5 +1,10 @@
+import fs from 'node:fs'
 import { FastifyReply, FastifyRequest } from "fastify"
 import { CompanyViewModel } from "@/viewmodel/company-view-model"
+
+import { pipeline } from 'node:stream/promises'
+import { promisify } from "util"
+import { CompanyProps } from '@/repositories/protocols/company-repository'
 
 export class CompanyView {
   constructor(private readonly companyViewModel: CompanyViewModel) { }
@@ -44,6 +49,43 @@ export class CompanyView {
     } catch (err) {
       console.error(err)
       reply.code(500).send({ message: 'Failed to list company data' })
+    }
+  }
+
+  public async updateDataCompany(request: FastifyRequest, reply: FastifyReply) {
+    const pump = promisify(pipeline);
+
+    try {
+      const newObj = {} as CompanyProps
+
+      const data = await request.file()
+
+      const image = data.file
+      const fields = data.fields
+      const filename = data.filename
+      const fieldname = data.fieldname
+      const encoding = data.encoding
+      const mimetype = data.mimetype.split('/')[1]
+
+      for await (const [key, value] of Object.entries(fields)) {
+        if (typeof value === 'object' && value !== null && 'value' in value) {
+          newObj[key] = value.value
+        }
+      }
+
+      if (image) {
+        // Salve a imagem recebida
+        let filePath = `./public/images/${filename}`
+        await pipeline(image, fs.createWriteStream(filePath))
+        newObj['image'] = filename
+      }
+      // Execute a atualização
+      const result = await this.companyViewModel.update(newObj)
+      reply.code(204).send({ message: "Dados atualizados com sucesso" })
+
+    } catch (err) {
+      console.error(err);
+      reply.code(400).send({ message: "Falha ao atualizar os dados do usuário." });
     }
   }
 }
