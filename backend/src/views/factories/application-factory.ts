@@ -4,8 +4,8 @@ import { Application } from "@/models/application"
 import { ApplicationViewModel } from "@/viewmodel/application-view-model"
 
 export const makeApplicationFactory = (): ApplicationView => {
-    const repositoryApplication = new PrismaApplicationRepository()
-    const applicationModel = new Application('', '', repositoryApplication)
-    const auth = new ApplicationViewModel(applicationModel)
-    return new ApplicationView(auth)
+  const repositoryApplication = new PrismaApplicationRepository()
+  const applicationModel = new Application('', '', repositoryApplication)
+  const auth = new ApplicationViewModel(applicationModel)
+  return new ApplicationView(auth)
 }

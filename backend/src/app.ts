@@ -31,7 +31,7 @@ app.register(fastifyJwt, {
   secret: 'meutokensecreto'
 })
 
-app.decorate('authenticate', authMiddleware);
+app.decorate('authenticate', authMiddleware)
 
 app.register(cors, {
   origin: "*",
@@ -48,8 +48,8 @@ app.register(application)
 
 app.listen({ port: 9001, host: '0.0.0.0' }, (err, address) => {
   if (err) {
-    app.log.error(err);
-    process.exit(1);
+    app.log.error(err)
+    process.exit(1)
   }
   console.log(`http:localhost:9001`)
 })

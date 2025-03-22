@@ -1,5 +1,5 @@
-import { prisma } from "@/views/lib/prisma";
-import { UserModel, UserRepository } from "@/repositories/protocols/user-repository";
+import { prisma } from "@/views/lib/prisma"
+import { UserModel, UserRepository } from "@/repositories/protocols/user-repository"
 
 export class PrismaUserRepository implements UserRepository {
   async add(data: Omit<UserModel, 'id'>): Promise<void> {
@@ -18,11 +18,9 @@ export class PrismaUserRepository implements UserRepository {
 
   async getUsers(): Promise<UserModel[]> {
     const response = await prisma.user.findMany()
-
     if (response.length === 0) {
       throw new Error('Nenhum usuário')
     }
-
     return response
   }
 }

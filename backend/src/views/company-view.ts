@@ -53,7 +53,7 @@ export class CompanyView {
   }
 
   public async updateDataCompany(request: FastifyRequest, reply: FastifyReply) {
-    const pump = promisify(pipeline);
+    const pump = promisify(pipeline)
 
     try {
       const newObj = {} as CompanyProps
@@ -84,8 +84,8 @@ export class CompanyView {
       reply.code(204).send({ message: "Dados atualizados com sucesso" })
 
     } catch (err) {
-      console.error(err);
-      reply.code(400).send({ message: "Falha ao atualizar os dados do usuário." });
+      console.error(err)
+      reply.code(400).send({ message: "Falha ao atualizar os dados do usuário." })
     }
   }
 }

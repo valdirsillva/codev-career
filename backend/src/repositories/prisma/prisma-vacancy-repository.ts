@@ -29,7 +29,7 @@ export class PrismaVacancyRepository implements VacancyRepository {
     })
     return vacancies
   }
-  
+
   // Retorna vaga por id
   async findVacancyById(id: string): Promise<ResponseVacancy> {
     const vacancies = await prisma.vacancy.findUnique({
@@ -49,11 +49,9 @@ export class PrismaVacancyRepository implements VacancyRepository {
         companyId: id
       }
     })
-
     if (response.length === 0) {
       throw new Error("Nenhuma vaga encontrada.")
     }
-
     const vacancies: any = response.map(v => ({
       id: v.id,
       title: v.title,

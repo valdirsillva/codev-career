@@ -99,7 +99,7 @@ export class PrismaCompanyRepository implements CompanyRepository {
     })
 
     if (!company || !company.userId) {
-      throw new Error(`Empresa com ID ${data.id} não encontrada ou sem usuário associado.`);
+      throw new Error(`Empresa com ID ${data.id} não encontrada ou sem usuário associado.`)
     }
 
     // Atualiza dados da empresa

@@ -59,12 +59,9 @@ export class PrismaCandidateRepository implements CandidateRepository {
         user: true
       }
     })
-
     if (candidates.length === 0) {
       throw new Error('Nenhum candidato encontrado.')
     }
-
-    const response = CandidateMapper.toCandidate(candidates)
-    return response
+    return CandidateMapper.toCandidate(candidates)
   }
 }

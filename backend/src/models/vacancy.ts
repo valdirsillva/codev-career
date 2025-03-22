@@ -6,7 +6,6 @@ export class Vacancy {
     private readonly description: string,
     private readonly salary: string,
     private readonly requirements: string,
-
     private readonly repositoryVacancy: VacancyRepository
   ) { }
 
@@ -25,15 +24,15 @@ export class Vacancy {
   public getRequirements() {
     return this.requirements
   }
-  
+
   public add(data: VacancyModel) {
     return this.repositoryVacancy.add(data)
   }
-  
+
   public getAllVacancies() {
     return this.repositoryVacancy.getAll()
   }
-  
+
   public getVacancyById(id: string) {
     return this.repositoryVacancy.findVacancyById(id)
   }

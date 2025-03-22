@@ -19,7 +19,7 @@ export class VacancyView {
     try {
       const id = request.params.id
       if (!id)
-				return reply.code(400).send({ message: 'Error: Failed list vacancy by id'})
+        return reply.code(400).send({ message: 'Error: Failed list vacancy by id'})
 
       const vacancy = await this.vacancyViewModel.findById(id)
       reply.code(200).send(vacancy)
@@ -35,7 +35,7 @@ export class VacancyView {
     try {
       const id = request.params.id
       if (!id)
-				return reply.code(400).send({ message: 'Error: Failed list vacancy by id'})
+        return reply.code(400).send({ message: 'Error: Failed list vacancy by id'})
 
       const vacancy = await this.vacancyViewModel.findVacancyById(id)
       reply.code(200).send(vacancy)
