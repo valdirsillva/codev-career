@@ -1,3 +1,5 @@
+import { CandidateResponseDTO } from "@/dtos/candidate-response-dto"
+
 interface User {
     id?: string
     name: string
@@ -16,21 +18,7 @@ export interface CandidateParams extends User {
     education?: string | null
 }
 
-export interface CandidateResponse {
-    id: string
-    cpf: string
-    gender: string
-    education: string
-    user: {
-        id: string
-        name: string
-        email: string
-        password: string
-        phoneNumber: string
-    }
-}
-
 export interface CandidateRepository {
-    add: (data: CandidateParams) => Promise<CandidateResponse>
-    getAll: () => Promise<CandidateResponse[]>
+    add: (data: CandidateParams) => Promise<void>
+    getAll: () => Promise<CandidateResponseDTO[]>
 }

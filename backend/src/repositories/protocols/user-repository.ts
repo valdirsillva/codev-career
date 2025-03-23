@@ -5,11 +5,12 @@ export interface UserModel {
   email: string
   password: string
   password_reset?: string
-  phoneNumber: string
+  phoneNumber: string | null
   role: string
-  address: string
-  city?: string
-  state?: string
+  address: string | null
+  city: string | null
+  state: string | null
+  image: string | null
 }
 
 export interface Users {
@@ -18,5 +19,5 @@ export interface Users {
 
 export interface UserRepository {
   add: (data: UserModel) => Promise<void>;
-  getUsers: () => Promise<Users | {}>
+  getUsers: () => Promise<UserModel[]>
 }

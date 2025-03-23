@@ -21,13 +21,13 @@ export class CandidateView {
       const saltRounds = 10
       const body = request.body as CandidateParams
       const password = bcrypt.hashSync(body.password, saltRounds)
-      const data = await this.candidateViewModel.create(
+      const response = await this.candidateViewModel.create(
         Object.assign(body, { password })
       )
-      reply.code(201).send(data)
+      return reply.code(201).send(response)
     } catch (err: any) {
-      console.error(err)
-      reply.code(400).send({ message: "Houve um erro ao cadastrar o candidato" })
+      console.error(err.message)
+      return reply.code(400).send({ message: err.message })
     }
   }
 }

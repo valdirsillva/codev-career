@@ -2,8 +2,8 @@ import { FastifyReply, FastifyRequest } from 'fastify'
 import { ApplicationViewModel } from '@/viewmodel/application-view-model'
 
 interface RequestApplication {
-	candidateId: any
-	vacancyId: any
+  candidateId: any
+  vacancyId: any
 }
 
 export class ApplicationView {
@@ -19,7 +19,6 @@ export class ApplicationView {
       if (!requestBody.vacancyId) {
         return reply.code(404).send({ message: 'O id da vaga nao foi recebido' })
       }
-
       const response = await this.viewModelApplication.add(requestBody)
       return reply.code(201).send(response)
     } catch (err) {

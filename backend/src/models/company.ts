@@ -37,7 +37,7 @@ export class Company extends User {
     return this.sector
   }
 
-  public add(data: CompanyParams): Promise<ResponseCompany> {
+  public add(data: CompanyParams): Promise<void> {
     return this.companyRepository.add(data)
   }
 

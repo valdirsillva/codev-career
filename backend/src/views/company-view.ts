@@ -1,9 +1,8 @@
 import fs from 'node:fs'
+import { promisify } from "util"
+import { pipeline } from 'node:stream/promises'
 import { FastifyReply, FastifyRequest } from "fastify"
 import { CompanyViewModel } from "@/viewmodel/company-view-model"
-
-import { pipeline } from 'node:stream/promises'
-import { promisify } from "util"
 import { CompanyProps } from '@/repositories/protocols/company-repository'
 
 export class CompanyView {
@@ -13,42 +12,36 @@ export class CompanyView {
     try {
       const companies = await this.companyViewModel.get()
       reply.code(200).send(companies)
-    } catch (err) {
+    } catch (err: any) {
       console.error(err)
-      reply.code(400).send({ message: 'Error: Failed to list companies' })
+      reply.code(400).send({ message: err.message })
     }
   }
 
   public async getById(request: any, reply: FastifyReply) {
     try {
       const id = request.params.companyId
-
       if (!id) {
         return reply.code(400).send({ message: 'Error: Failed to list company' })
       }
-
       const response = await this.companyViewModel.getById(id)
       reply.code(200).send(response)
-
-    } catch (err) {
+    } catch (err: any) {
       console.error(err)
-      reply.code(500).send({ message: 'Error: Failed to list company by id' })
+      reply.code(500).send({ message: err.message })
     }
   }
 
   public async create(request: any, reply: FastifyReply) {
     try {
       const body = request.body
-      const data = await this.companyViewModel.create(body)
-
-      if (!data) {
-        reply.code(400).send({ message: 'Error: Failed to create the company' })
-      }
-
-      reply.code(201).send(data)
-    } catch (err) {
+      await this.companyViewModel.create(body)
+      reply.code(201).send({
+        message: 'Empresa cadastrada com sucesso'
+      })
+    } catch (err: any) {
       console.error(err)
-      reply.code(500).send({ message: 'Failed to list company data' })
+      reply.code(500).send({ message: err.message })
     }
   }
 
@@ -57,7 +50,6 @@ export class CompanyView {
 
     try {
       const newObj = {} as CompanyProps
-
       const data = await request.file()
 
       const image = data.file
@@ -72,7 +64,6 @@ export class CompanyView {
           newObj[key] = value.value
         }
       }
-
       if (image) {
         // Salve a imagem recebida
         let filePath = `./public/images/${filename}`
@@ -82,10 +73,9 @@ export class CompanyView {
       // Execute a atualização
       const result = await this.companyViewModel.update(newObj)
       reply.code(204).send({ message: "Dados atualizados com sucesso" })
-
-    } catch (err) {
+    } catch (err: any) {
       console.error(err)
-      reply.code(400).send({ message: "Falha ao atualizar os dados do usuário." })
+      reply.code(400).send(({ message: err.message }))
     }
   }
 }

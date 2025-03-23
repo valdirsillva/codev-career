@@ -1,11 +1,23 @@
 import { prisma } from '@/views/lib/prisma'
 import { Role } from '@/repositories/enum/role'
-import { CandidateRepository, CandidateParams, CandidateResponse } from '@/repositories/protocols/candidate-repository'
+import { CandidateRepository, CandidateParams } from '@/repositories/protocols/candidate-repository'
 import { CandidateMapper } from '@/mappers/candidate-mapper'
+import { CandidateResponseDTO } from '@/dtos/candidate-response-dto'
 
 export class PrismaCandidateRepository implements CandidateRepository {
-  async add(data: CandidateParams): Promise<CandidateParams | undefined> {
+  async add(data: CandidateParams): Promise<void> {
     try {
+      const candidateEmailExists = await prisma.candidate.findFirst({
+        where: {
+          user: {
+            email: data.email
+          }
+        }
+      })
+      if (candidateEmailExists) {
+        throw new Error('O E-mail informado já pertence a um usuario')
+      }
+
       const response = await prisma.candidate.create({
         data: {
           cpf: data.cpf,
@@ -24,7 +36,6 @@ export class PrismaCandidateRepository implements CandidateRepository {
             },
           },
         },
-
         include: {
           user: true
         }
@@ -33,35 +44,38 @@ export class PrismaCandidateRepository implements CandidateRepository {
       if (!response) {
         throw new Error('Houve um erro ao cadastrar o candidato.')
       }
-
-      const candidate: CandidateParams = {
-        id: response.id,
-        cpf: response.cpf!,
-        gender: response.gender!,
-        education: response.education!,
-        training: response.education!,
-        name: response.user.name,
-        email: response.user.email,
-        password: response.user.password,
-        phoneNumber: response.user.phoneNumber,
-        address: response.user.address,
-      }
-      return candidate
     } catch (err: any) {
-      console.error(err)
-      return undefined
+      throw new Error(err)
     }
   }
 
-  async getAll(): Promise<CandidateResponse[]> {
-    const candidates = await prisma.candidate.findMany({
-      include: {
-        user: true
+  async getAll(): Promise<CandidateResponseDTO[]> {
+    try {
+      const candidates = await prisma.candidate.findMany({
+        select: {
+          id: true,
+          cpf: true,
+          gender: true,
+          education: true,
+          user: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              phoneNumber: true,
+              address: true,
+              city: true,
+              state: true
+            }
+          }
+        }
+      })
+      if (candidates.length === 0) {
+        throw new Error('Nenhum candidato encontrado.')
       }
-    })
-    if (candidates.length === 0) {
-      throw new Error('Nenhum candidato encontrado.')
+      return CandidateMapper.toCandidate(candidates)
+    } catch (error: any) {
+      throw new Error(error)
     }
-    return CandidateMapper.toCandidate(candidates)
   }
 }

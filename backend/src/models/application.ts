@@ -11,7 +11,7 @@ export class Application {
     this.applicationRepository = applicationRepository
   }
 
-  public add(data: ApplicationModel): Promise<ResponseApplication> {
+  public add(data: ApplicationModel): Promise<void> {
     return this.applicationRepository.add(data)
   }
 

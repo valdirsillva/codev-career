@@ -7,11 +7,11 @@ export class VacancyView {
     try {
       const companies = await this.vacancyViewModel.get()
       reply.code(200).send(companies)
-    } catch (err) {
+    } catch (err: any) {
       console.error(err)
       reply
         .code(400)
-        .send({ message: "Ops! Não foi possível listar as vagas!" })
+        .send({ message: err.message })
     }
   }
 
@@ -19,15 +19,15 @@ export class VacancyView {
     try {
       const id = request.params.id
       if (!id)
-        return reply.code(400).send({ message: 'Error: Failed list vacancy by id'})
+        return reply.code(400).send({ message: 'Error: Failed list vacancy by id' })
 
       const vacancy = await this.vacancyViewModel.findById(id)
       reply.code(200).send(vacancy)
-    } catch (err) {
+    } catch (err: any) {
       console.error(err)
       reply
         .code(400)
-        .send({ message: "Ops! Não foi possível listar as vagas!" })
+        .send({ message: err.message })
     }
   }
 
@@ -35,15 +35,14 @@ export class VacancyView {
     try {
       const id = request.params.id
       if (!id)
-        return reply.code(400).send({ message: 'Error: Failed list vacancy by id'})
-
+        return reply.code(400).send({ message: 'Error: Failed list vacancy by id' })
       const vacancy = await this.vacancyViewModel.findVacancyById(id)
       reply.code(200).send(vacancy)
-    } catch (err) {
+    } catch (err: any) {
       console.error(err)
       reply
         .code(400)
-        .send({ message: "Ops! Não foi possível listar as vagas!" })
+        .send({ message: err.message })
     }
   }
 
@@ -52,9 +51,9 @@ export class VacancyView {
       const body = request.body
       const data = await this.vacancyViewModel.create(body)
       reply.code(201).send(data)
-    } catch (err) {
+    } catch (err: any) {
       console.error(err)
-      reply.code(400).send({ message: "Ops! Falha ao publicar a vaga!" })
+      reply.code(400).send({ message: err.message })
     }
   }
 }

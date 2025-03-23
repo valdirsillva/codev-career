@@ -18,9 +18,9 @@ export interface CompanyParams extends User {
 export interface ResponseCompany {
   name: string
   cnpj: string
-  sector: string
-  description: string,
-  image?: string
+  sector?: string | null
+  description: string | null
+  image?: string | null
 }
 
 export interface CompanyProps {
@@ -36,7 +36,7 @@ export interface CompanyProps {
 }
 
 export interface CompanyRepository {
-  add: (data: CompanyParams) => Promise<ResponseCompany>
+  add: (data: CompanyParams) => Promise<void>
   getAll: () => Promise<ResponseCompany[]>
   getById: (id: string) => Promise<ResponseCompany>
   update: (data: CompanyProps) => Promise<void>

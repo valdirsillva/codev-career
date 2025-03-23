@@ -56,7 +56,7 @@ export class Experience {
     return this.candidateId
   }
 
-  public add(data: ExperienceParams): Promise<ResponseExperience> {
+  public add(data: ExperienceParams): Promise<void> {
     return this.experienceRepository.add(data)
   }
 

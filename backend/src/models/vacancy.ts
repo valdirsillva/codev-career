@@ -1,4 +1,4 @@
-import { VacancyModel, VacancyRepository } from '@/repositories/protocols/vacancy-repository'
+import { ResponseVacancy, VacancyModel, VacancyRepository } from '@/repositories/protocols/vacancy-repository'
 
 export class Vacancy {
   constructor(
@@ -25,7 +25,7 @@ export class Vacancy {
     return this.requirements
   }
 
-  public add(data: VacancyModel): Promise<VacancyModel> {
+  public add(data: VacancyModel): Promise<void> {
     return this.repositoryVacancy.add(data)
   }
 
@@ -33,11 +33,11 @@ export class Vacancy {
     return this.repositoryVacancy.getAll()
   }
 
-  public getVacancyById(id: string): Promise<VacancyModel> {
+  public getVacancyById(id: string): Promise<ResponseVacancy> {
     return this.repositoryVacancy.findVacancyById(id)
   }
 
-  public getVacanciesByCompany(id: string): Promise<VacancyModel[]> {
+  public getVacanciesByCompany(id: string): Promise<ResponseVacancy[]> {
     return this.repositoryVacancy.findVacancyOfCompanyById(id)
   }
 }

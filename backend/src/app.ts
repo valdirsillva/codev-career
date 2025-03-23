@@ -17,7 +17,7 @@ import { fastifyMultipart } from '@fastify/multipart'
 dotenv.config()
 
 const app = Fastify({
-  logger: true,
+  logger: false,
   trustProxy: false,
 })
 

@@ -3,24 +3,32 @@ import { UserModel, UserRepository } from "@/repositories/protocols/user-reposit
 
 export class PrismaUserRepository implements UserRepository {
   async add(data: Omit<UserModel, 'id'>): Promise<void> {
-    await prisma.user.create({
-      data: {
-        name: data.name,
-        email: data.email,
-        password: data.password,
-        phoneNumber: data.phoneNumber,
-        address: data.address,
-        city: data.city,
-        state: data.state
-      }
-    })
+    try {
+      await prisma.user.create({
+        data: {
+          name: data.name,
+          email: data.email,
+          password: data.password,
+          phoneNumber: data.phoneNumber,
+          address: data.address,
+          city: data.city,
+          state: data.state
+        }
+      })
+    } catch (error: any) {
+      throw new Error(error)
+    }
   }
 
   async getUsers(): Promise<UserModel[]> {
-    const response = await prisma.user.findMany()
-    if (response.length === 0) {
-      throw new Error('Nenhum usuário')
+    try {
+      const response = await prisma.user.findMany()
+      if (!response) {
+        throw new Error('Nenhum usuário')
+      }
+      return response
+    } catch (error) {
+      throw new Error("")
     }
-    return response
   }
 }
