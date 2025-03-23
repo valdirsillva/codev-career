@@ -1,4 +1,4 @@
-import { CompanyParams, CompanyProps, CompanyRepository } from '@/repositories/protocols/company-repository'
+import { CompanyParams, CompanyProps, CompanyRepository, ResponseCompany } from '@/repositories/protocols/company-repository'
 import { User } from '@/models/user'
 
 export interface UserProps {
@@ -25,31 +25,31 @@ export class Company extends User {
     this.companyRepository = companyRepository
   }
 
-  public getCNPJ() {
+  public getCNPJ(): string {
     return this.cnpj
   }
 
-  public getDescription() {
+  public getDescription(): string {
     return this.description
   }
 
-  public getSector() {
+  public getSector(): string {
     return this.sector
   }
 
-  public add(data: CompanyParams) {
+  public add(data: CompanyParams): Promise<ResponseCompany> {
     return this.companyRepository.add(data)
   }
 
-  public get() {
+  public get(): Promise<ResponseCompany[]> {
     return this.companyRepository.getAll()
   }
 
-  public getCompanyById(id: string) {
+  public getCompanyById(id: string): Promise<ResponseCompany> {
     return this.companyRepository.getById(id)
   }
 
-  public updateDataCompany(data: CompanyProps) {
+  public updateDataCompany(data: CompanyProps): Promise<void> {
     return this.companyRepository.update(data)
   }
 }

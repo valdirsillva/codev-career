@@ -1,17 +1,28 @@
+import { Role } from "../enum/role"
 import { prisma } from "@/views/lib/prisma"
 import { AuthRepository, AuthModel } from "@/repositories/protocols/auth-repository"
-import { Role } from "../enum/role"
 
 export class PrismaAuthRepository implements AuthRepository {
-  async login({ email }: AuthModel) {
+  async login({ email }: AuthModel): Promise<AuthModel | null> {
     const response = await prisma.user.findFirst({
       where: {
         email,
       },
     })
 
-    if (response.role === Role.Company) {
-      const companyId = await prisma.company.findFirst({
+    if (response) {
+      if (response.role === Role.Company) {
+        const companyId = await prisma.company.findFirst({
+          where: {
+            userId: response.id
+          },
+          select: {
+            id: true
+          }
+        })
+        return Object.assign({}, response, { userId: companyId })
+      }
+      const candidateId = await prisma.candidate.findFirst({
         where: {
           userId: response.id
         },
@@ -19,17 +30,9 @@ export class PrismaAuthRepository implements AuthRepository {
           id: true
         }
       })
-      return Object.assign({}, response, { userId: companyId })
+      return Object.assign({}, response, { userId: candidateId })
     }
 
-    const candidateId = await prisma.candidate.findFirst({
-      where: {
-        userId: response.id
-      },
-      select: {
-        id: true
-      }
-    })
-    return Object.assign({}, response, { userId: candidateId })
+    return null
   }
 }

@@ -1,4 +1,4 @@
-import { ApplicationModel, ApplicationRepository } from "@/repositories/protocols/application-repository"
+import { ApplicationModel, ApplicationRepository, ResponseApplication } from "@/repositories/protocols/application-repository"
 
 export class Application {
   private readonly vacancyId: string
@@ -8,19 +8,18 @@ export class Application {
   constructor(vacancyId: string, candidateId: string, applicationRepository: ApplicationRepository) {
     this.vacancyId = vacancyId
     this.candidateId = vacancyId
-
     this.applicationRepository = applicationRepository
   }
 
-  public add(data: ApplicationModel) {
+  public add(data: ApplicationModel): Promise<ResponseApplication> {
     return this.applicationRepository.add(data)
   }
 
-  public get() {
+  public get(): Promise<ResponseApplication[]> {
     return this.applicationRepository.findAll()
   }
 
-  public getById(id: string) {
+  public getById(id: string): Promise<ResponseApplication> {
     return this.applicationRepository.findById(id)
   }
 }

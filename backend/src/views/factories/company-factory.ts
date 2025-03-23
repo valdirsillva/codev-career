@@ -12,7 +12,7 @@ export const makeCompanyFactory = (): CompanyView => {
     phoneNumber: '',
     address: '',
   }
-    
+
   const companyParams: CompanyParams = {
     name: '',
     cnpj: '',
@@ -22,7 +22,7 @@ export const makeCompanyFactory = (): CompanyView => {
   }
 
   const companyViewModel = new CompanyViewModel(
-    new Company(companyParams,  new PrismaCompanyRepository())
+    new Company(companyParams, new PrismaCompanyRepository())
   )
   return new CompanyView(companyViewModel)
 }

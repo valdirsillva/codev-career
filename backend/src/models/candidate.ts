@@ -1,11 +1,10 @@
 import { User } from '@/models/user'
-import { CandidateParams, CandidateRepository } from '@/repositories/protocols/candidate-repository'
+import { CandidateParams, CandidateRepository, CandidateResponse } from '@/repositories/protocols/candidate-repository'
 
 export class Candidate extends User {
   private readonly cpf: string
   private readonly gender: string
   private readonly training: string // Formação
-
   private readonly candidateRepository: CandidateRepository
 
   constructor(data: CandidateParams, candidateRepository: CandidateRepository) {
@@ -17,23 +16,23 @@ export class Candidate extends User {
     this.candidateRepository = candidateRepository
   }
 
-  public getCpf() {
+  public getCpf(): string {
     return this.cpf
   }
 
-  public getGender() {
+  public getGender(): string {
     return this.gender
   }
 
-  public getTraining() {
+  public getTraining(): string {
     return this.training
   }
 
-  public add(data: CandidateParams) {
+  public add(data: CandidateParams): Promise<CandidateResponse> {
     return this.candidateRepository.add(data)
   }
 
-  public getAllCandidates() {
+  public getAllCandidates(): Promise<CandidateResponse[]> {
     return this.candidateRepository.getAll()
   }
 }

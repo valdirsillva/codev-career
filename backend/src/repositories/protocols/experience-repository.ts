@@ -1,6 +1,5 @@
 
 export interface ExperienceParams {
-    id: string
     employee: string
     jobPosition: string
     currentVacancy: boolean
@@ -11,7 +10,11 @@ export interface ExperienceParams {
     candidateId: string
 }
 
+export interface ResponseExperience extends ExperienceParams {
+    id: string
+}
+
 export interface ExperienceRepository {
-    add: (data: Omit<ExperienceParams, 'id'>) => Promise<ExperienceParams>
-    getById: (id: string) => Promise<ExperienceParams[]>
+    add: (data: ExperienceParams) => Promise<ResponseExperience>
+    getById: (id: string) => Promise<ResponseExperience[]>
 }

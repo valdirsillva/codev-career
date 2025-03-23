@@ -9,35 +9,35 @@ export class Vacancy {
     private readonly repositoryVacancy: VacancyRepository
   ) { }
 
-  public getTitle() {
+  public getTitle(): string {
     return this.title
   }
 
-  public getDescription() {
+  public getDescription(): string {
     return this.description
   }
 
-  public getSalary() {
+  public getSalary(): string {
     return this.salary
   }
 
-  public getRequirements() {
+  public getRequirements(): string {
     return this.requirements
   }
 
-  public add(data: VacancyModel) {
+  public add(data: VacancyModel): Promise<VacancyModel> {
     return this.repositoryVacancy.add(data)
   }
 
-  public getAllVacancies() {
+  public getAllVacancies(): Promise<VacancyModel[]> {
     return this.repositoryVacancy.getAll()
   }
 
-  public getVacancyById(id: string) {
+  public getVacancyById(id: string): Promise<VacancyModel> {
     return this.repositoryVacancy.findVacancyById(id)
   }
 
-  public getVacanciesByCompany(id: string) {
+  public getVacanciesByCompany(id: string): Promise<VacancyModel[]> {
     return this.repositoryVacancy.findVacancyOfCompanyById(id)
   }
 }

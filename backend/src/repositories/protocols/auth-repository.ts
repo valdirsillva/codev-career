@@ -4,11 +4,9 @@ interface User {
 }
 
 export interface AuthModel {
-    // name?: string
     email: string
     password: string
-    // role?: string
-    // userId?: User
+    role: string
 }
 
 export interface AuthRepository {

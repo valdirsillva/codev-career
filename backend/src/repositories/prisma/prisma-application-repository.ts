@@ -10,7 +10,6 @@ export class PrismaApplicationRepository implements ApplicationRepository {
           vacancyId,
         },
       })
-
       if (!response) {
         return false // Retorna false se não encontrar nenhuma inscrição
       }

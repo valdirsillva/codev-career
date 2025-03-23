@@ -1,4 +1,4 @@
-import { ExperienceParams, ExperienceRepository } from '@/repositories/protocols/experience-repository'
+import { ExperienceParams, ExperienceRepository, ResponseExperience } from '@/repositories/protocols/experience-repository'
 
 export class Experience {
   private readonly employee: string
@@ -56,11 +56,11 @@ export class Experience {
     return this.candidateId
   }
 
-  public add(data: ExperienceParams) {
+  public add(data: ExperienceParams): Promise<ResponseExperience> {
     return this.experienceRepository.add(data)
   }
 
-  public get(id: string) {
+  public get(id: string): Promise<ResponseExperience[]> {
     return this.experienceRepository.getById(id)
   }
 }

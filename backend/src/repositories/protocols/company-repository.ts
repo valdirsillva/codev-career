@@ -35,11 +35,9 @@ export interface CompanyProps {
   description?: string
 }
 
-
 export interface CompanyRepository {
-  add: (data: CompanyParams) => Promise<CompanyParams | Boolean>
-  getAll: () => Promise<CompanyParams[]>
+  add: (data: CompanyParams) => Promise<ResponseCompany>
+  getAll: () => Promise<ResponseCompany[]>
   getById: (id: string) => Promise<ResponseCompany>
-
   update: (data: CompanyProps) => Promise<void>
 }

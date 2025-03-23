@@ -31,6 +31,6 @@ export interface CandidateResponse {
 }
 
 export interface CandidateRepository {
-    add: (data: CandidateParams) => Promise<CandidateParams | undefined>
+    add: (data: CandidateParams) => Promise<CandidateResponse>
     getAll: () => Promise<CandidateResponse[]>
 }

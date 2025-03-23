@@ -32,7 +32,7 @@ export interface ResponseApplication {
 }
 
 export interface ApplicationRepository {
-    add: (data: ApplicationModel) => Promise<ApplicationModel>
+    add: (data: ApplicationModel) => Promise<ResponseApplication>
     findAll: () => Promise<ResponseApplication[]>
     findById: (applicationId: string) => Promise<any>
 }
